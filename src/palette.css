@@ -1,0 +1,11 @@
+:root {
+  --brand-orange: rgb(250, 87, 56);
+  --brand-orange-faded: rgba(250, 87, 56, 0.5);
+  --brand-blackish: #1a1d1e;
+  --brand-slate: #2b3538;
+  --brand-whale: #526268;
+  --brand-haze: #a1b7be;
+  --brand-sky: #e4eef2;
+  --brand-mist: #eff2f3;
+  --form-error: #fa5738;
+}

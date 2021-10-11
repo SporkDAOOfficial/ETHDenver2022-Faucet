@@ -1,0 +1,25 @@
+.btn-primary {
+  font-size: calc((15 / var(--base-font-size) * 1rem));
+  line-height: calc(23 / var(--base-font-size) * 1rem);
+  padding-block: calc((4 / var(--base-font-size) * 1rem));
+  padding-inline: calc((16 / var(--base-font-size) * 1rem));
+  background-color: var(--brand-orange);
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  border-radius: 100px;
+  cursor: pointer;
+  appearance: none;
+  color: white;
+}
+
+.btn-primary.with-icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-primary[disabled],
+.btn-primary:disabled {
+  background-color: var(--brand-orange-faded);
+  cursor: not-allowed;
+}

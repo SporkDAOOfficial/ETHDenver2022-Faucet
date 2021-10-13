@@ -4,12 +4,13 @@ import "./palette.css";
 import "./fonts.css";
 import "./elements.css";
 import "./index.css";
-import App from "./App";
+
 import reportWebVitals from "./reportWebVitals";
+import Home from "./Home";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Home />
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "./index.css";
 import "./palette.css";
 import "./fonts.css";
 import "./elements.css";
-import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
 import Home from "./Home";

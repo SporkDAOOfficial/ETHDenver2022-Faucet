@@ -1,8 +1,11 @@
 .btn-primary {
-  font-size: calc((15 / var(--base-font-size) * 1rem));
+  --btn-block-padding: calc(4 / var(--base-font-size) * 1rem);
+  --btn-font-size: calc(15 / var(--base-font-size) * 1rem);
+
+  font-size: var(--btn-font-size);
   line-height: calc(23 / var(--base-font-size) * 1rem);
-  padding-block: calc((4 / var(--base-font-size) * 1rem));
-  padding-inline: calc((16 / var(--base-font-size) * 1rem));
+  padding-block: var(--btn-block-padding);
+  padding-inline: calc(16 / var(--base-font-size) * 1rem);
   background-color: var(--brand-orange);
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
@@ -10,6 +13,14 @@
   cursor: pointer;
   appearance: none;
   color: white;
+}
+
+.main-content .btn-primary {
+  --btn-block-padding: calc(14 / var(--base-font-size) * 1rem);
+  --btn-font-size: calc(18 / var(--base-font-size) * 1rem);
+
+  width: calc(298 / var(--base-font-size) * 1rem);
+  max-width: 100%;
 }
 
 .btn-primary.with-icon {
@@ -22,4 +33,15 @@
 .btn-primary:disabled {
   background-color: var(--brand-orange-faded);
   cursor: not-allowed;
+}
+
+main {
+  background-image: url("./assets/bg.png");
+  background-position: -100px center;
+}
+
+.main-content {
+  width: calc(513 / var(--base-font-size) * 1rem);
+  min-height: calc(387 / var(--base-font-size) * 1rem);
+  max-width: 100%;
 }

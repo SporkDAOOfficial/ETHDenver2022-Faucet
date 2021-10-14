@@ -1,39 +1,10 @@
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import Torus from "@toruslabs/torus-embed";
-import Portis from "@portis/web3";
 import { providers } from "ethers";
 import { useCallback, useEffect, useReducer } from "react";
 import Web3Modal from "web3modal";
 import { ellipseAddress } from "./lib/utils";
 import { ButtonIcon } from "./ButtonIcon";
-
-const providerOptions = {
-  walletconnect: {
-    package: WalletConnectProvider, // required
-    options: {
-      infuraId: "INFURA_ID", // required
-    },
-  },
-  torus: {
-    package: Torus, // required
-    options: {
-      networkParams: {
-        host: "https://localhost:8545", // optional
-        chainId: 1337, // optional
-        networkId: 1337, // optional
-      },
-      config: {
-        buildEnv: "development", // optional
-      },
-    },
-  },
-  portis: {
-    package: Portis, // required
-    options: {
-      id: "PORTIS_ID", // required
-    },
-  },
-};
+import { Welcome } from "./Welcome";
+import { providerOptions } from "./lib/providers";
 
 let web3Modal: any;
 if (typeof window !== "undefined") {
@@ -153,6 +124,10 @@ const Home = (): JSX.Element => {
     }
   }, [connect]);
 
+  useEffect(() => {
+    connect();
+  }, [connect, disconnect]);
+
   // A `provider` should come with EIP-1193 events. We'll listen for those events
   // here so that when a user switches accounts or networks, we can update the
   // local React state with that new information.
@@ -198,9 +173,9 @@ const Home = (): JSX.Element => {
   }, [provider, disconnect]);
 
   return (
-    <div className="App bg-blackish min-h-screen">
-      <header className="flex justify-between items-center px-4 py-4">
-        <div className="logo self-start">
+    <div className="App bg-blackish min-h-screen flex flex-col">
+      <header className="flex justify-between items-center p-4">
+        <div className="logo">
           <img src="/OPOLIS_Text_White.png" alt="Opolis logo" />
         </div>
         <div className="signin-button flex flex-col gap-y-1">
@@ -231,6 +206,13 @@ const Home = (): JSX.Element => {
           )}
         </div>
       </header>
+      <main className="bg-white flex-grow relative">
+        {address && (
+          <div className="main-content shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-6 py-10 sm:px-4">
+            <Welcome disconnect={disconnect} />
+          </div>
+        )}
+      </main>
     </div>
   );
 };

@@ -12,33 +12,18 @@ import { Web3Provider } from '@ethersproject/providers';
 import { useWeb3React } from '@web3-react/core';
 import { chainIdToNetworkType, defaultNetworkId, NETWORK_TYPES } from './networks';
 
-// - Type Imports 
-import {DScore__factory} from '../../types/factories/DScore__factory';
-import { DScore } from "../../types/DScore";
-import { ERC20 } from "types/ERC20";
-import { ERC20__factory } from "types/factories/ERC20__factory";
-import {DecentraBank__factory} from '../../types/factories/DecentraBank__factory';
-import { DecentraBank } from "../../types/DecentraBank";
-import {DecentraCore__factory} from '../../types/factories/DecentraCore__factory';
-import { DecentraCore } from "../../types/DecentraCore";
+import { NFT__factory, NFT } from "types";
 
 
  
 export interface ContractAddresses {
-    DStock: string;
-    DDollar: string; 
-    Dscore: string;
-    DCore: string;
-    DBank: string;
-
+    opolisNFT: string;
 }
 
 export interface Contracts {
-  DCore: DecentraCore;
-  DBank: DecentraBank;
-  DDollar: ERC20;
-  DStock: ERC20;
-  Dscore: DScore;
+	// add types from type chain run typegen script
+	opolisNFT: NFT 
+
 }
 
 function useDContracts() : Contracts | null {
@@ -67,11 +52,7 @@ function useDContracts() : Contracts | null {
 		}
 
 		return {
-			DCore: DecentraCore__factory.connect(contracts.DCore, signer),
-			DBank: DecentraBank__factory.connect(contracts.DBank, signer),
-			DDollar: ERC20__factory.connect(contracts.DDollar, signer),
-			Dscore: DScore__factory.connect(contracts.Dscore, signer),
-			DStock: ERC20__factory.connect(contracts.DStock, signer),
+			opolisNFT: NFT__factory.connect(contracts.opolisNFT, signer),
 		};
 	}, [active, library, chainId]);
 	return contract;

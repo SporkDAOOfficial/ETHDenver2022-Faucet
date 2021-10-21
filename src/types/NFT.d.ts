@@ -22,40 +22,135 @@ import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 
 interface NFTInterface extends ethers.utils.Interface {
   functions: {
-    "CANNOT_TRANSFER_TO_ZERO_ADDRESS()": FunctionFragment;
-    "NOT_CURRENT_OWNER()": FunctionFragment;
+    "allowManaged(uint32)": FunctionFragment;
+    "allowMinting(uint32)": FunctionFragment;
+    "annotations(uint256)": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
+    "baseURI()": FunctionFragment;
+    "batchId(uint256)": FunctionFragment;
+    "batchLimit(uint256)": FunctionFragment;
+    "batchLimitFromId(uint32)": FunctionFragment;
+    "batchOwner(uint256)": FunctionFragment;
+    "batchOwnerFromId(uint32)": FunctionFragment;
+    "batchTokenFromId(uint32)": FunctionFragment;
+    "batchTokenOf(uint256)": FunctionFragment;
+    "batches(uint32)": FunctionFragment;
+    "canMint(uint256)": FunctionFragment;
+    "contents(uint256)": FunctionFragment;
+    "denyManaged(uint32)": FunctionFragment;
+    "denyMinting(uint32)": FunctionFragment;
+    "generateId(uint32,uint32,uint32)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
+    "getController(uint32)": FunctionFragment;
+    "getSequence(uint256)": FunctionFragment;
+    "getTokenController(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
-    "mint(address,uint256,string)": FunctionFragment;
+    "isRedeemed(uint256)": FunctionFragment;
+    "mint(address,uint32,uint32,uint32,string,string,string,string,string,string)": FunctionFragment;
     "name()": FunctionFragment;
-    "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
+    "parseId(uint256)": FunctionFragment;
+    "redeem(uint256)": FunctionFragment;
+    "redeemed(uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
+    "setBaseURI(string)": FunctionFragment;
+    "setController(uint32,address)": FunctionFragment;
+    "setManager(uint8,address)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
+    "tokenByIndex(uint256)": FunctionFragment;
+    "tokenOfOwnerByIndex(address,uint256)": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
+    "totalSupply()": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
-    "transferOwnership(address)": FunctionFragment;
   };
 
   encodeFunctionData(
-    functionFragment: "CANNOT_TRANSFER_TO_ZERO_ADDRESS",
-    values?: undefined
+    functionFragment: "allowManaged",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "NOT_CURRENT_OWNER",
-    values?: undefined
+    functionFragment: "allowMinting",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "annotations",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "approve",
     values: [string, BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+  encodeFunctionData(functionFragment: "baseURI", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "batchId",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchLimit",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchLimitFromId",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchOwner",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchOwnerFromId",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchTokenFromId",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchTokenOf",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batches",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "canMint",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "contents",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "denyManaged",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "denyMinting",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "generateId",
+    values: [BigNumberish, BigNumberish, BigNumberish]
+  ): string;
   encodeFunctionData(
     functionFragment: "getApproved",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getController",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getSequence",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getTokenController",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
@@ -63,13 +158,39 @@ interface NFTInterface extends ethers.utils.Interface {
     values: [string, string]
   ): string;
   encodeFunctionData(
+    functionFragment: "isRedeemed",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "mint",
-    values: [string, BigNumberish, string]
+    values: [
+      string,
+      BigNumberish,
+      BigNumberish,
+      BigNumberish,
+      string,
+      string,
+      string,
+      string,
+      string,
+      string
+    ]
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "parseId",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "redeem",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "redeemed",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
@@ -80,46 +201,114 @@ interface NFTInterface extends ethers.utils.Interface {
     functionFragment: "setApprovalForAll",
     values: [string, boolean]
   ): string;
+  encodeFunctionData(functionFragment: "setBaseURI", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "setController",
+    values: [BigNumberish, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setManager",
+    values: [BigNumberish, string]
+  ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
   ): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "tokenByIndex",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenOfOwnerByIndex",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "tokenURI",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalSupply",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "transferFrom",
     values: [string, string, BigNumberish]
   ): string;
-  encodeFunctionData(
-    functionFragment: "transferOwnership",
-    values: [string]
-  ): string;
 
   decodeFunctionResult(
-    functionFragment: "CANNOT_TRANSFER_TO_ZERO_ADDRESS",
+    functionFragment: "allowManaged",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "NOT_CURRENT_OWNER",
+    functionFragment: "allowMinting",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "annotations",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "baseURI", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "batchId", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "batchLimit", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "batchLimitFromId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "batchOwner", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "batchOwnerFromId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "batchTokenFromId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "batchTokenOf",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "batches", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "canMint", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "contents", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "denyManaged",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "denyMinting",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "generateId", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getController",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getSequence",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getTokenController",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "isApprovedForAll",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "isRedeemed", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "parseId", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "redeem", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "redeemed", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "safeTransferFrom",
     data: BytesLike
@@ -128,31 +317,43 @@ interface NFTInterface extends ethers.utils.Interface {
     functionFragment: "setApprovalForAll",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "setBaseURI", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setController",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "setManager", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "transferFrom",
+    functionFragment: "tokenByIndex",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "transferOwnership",
+    functionFragment: "tokenOfOwnerByIndex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "totalSupply",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "transferFrom",
     data: BytesLike
   ): Result;
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
     "ApprovalForAll(address,address,bool)": EventFragment;
-    "OwnershipTransferred(address,address)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
 }
 
@@ -170,231 +371,857 @@ export class NFT extends Contract {
   interface: NFTInterface;
 
   functions: {
-    CANNOT_TRANSFER_TO_ZERO_ADDRESS(
+    allowManaged(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "allowManaged(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    allowMinting(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "allowMinting(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    annotations(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
 
-    "CANNOT_TRANSFER_TO_ZERO_ADDRESS()"(
+    "annotations(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
-
-    NOT_CURRENT_OWNER(overrides?: CallOverrides): Promise<[string]>;
-
-    "NOT_CURRENT_OWNER()"(overrides?: CallOverrides): Promise<[string]>;
 
     approve(
-      _approved: string,
-      _tokenId: BigNumberish,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "approve(address,uint256)"(
-      _approved: string,
-      _tokenId: BigNumberish,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    balanceOf(_owner: string, overrides?: CallOverrides): Promise<[BigNumber]>;
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
     "balanceOf(address)"(
-      _owner: string,
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    baseURI(overrides?: CallOverrides): Promise<[string]>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<[string]>;
+
+    batchId(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number]>;
+
+    "batchId(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number]>;
+
+    batchLimit(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number]>;
+
+    "batchLimit(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number]>;
+
+    batchLimitFromId(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number]>;
+
+    "batchLimitFromId(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number]>;
+
+    batchOwner(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    "batchOwner(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    batchOwnerFromId(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    "batchOwnerFromId(uint32)"(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    batchTokenFromId(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    "batchTokenFromId(uint32)"(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    batchTokenOf(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    "batchTokenOf(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    batches(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      [
+        number,
+        string,
+        string,
+        BigNumber,
+        number,
+        number,
+        string,
+        boolean,
+        boolean
+      ] & {
+        batch: number;
+        name: string;
+        created: string;
+        time: BigNumber;
+        limit: number;
+        minted: number;
+        controller: string;
+        manageable: boolean;
+        mintable: boolean;
+      }
+    >;
+
+    "batches(uint32)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      [
+        number,
+        string,
+        string,
+        BigNumber,
+        number,
+        number,
+        string,
+        boolean,
+        boolean
+      ] & {
+        batch: number;
+        name: string;
+        created: string;
+        time: BigNumber;
+        limit: number;
+        minted: number;
+        controller: string;
+        manageable: boolean;
+        mintable: boolean;
+      }
+    >;
+
+    canMint(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
+    "canMint(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
+    contents(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      [
+        number,
+        number,
+        number,
+        string,
+        string,
+        string,
+        string,
+        string,
+        string
+      ] & {
+        batch: number;
+        sequence: number;
+        limit: number;
+        name: string;
+        page: string;
+        description: string;
+        link: string;
+        content: string;
+        created: string;
+      }
+    >;
+
+    "contents(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      [
+        number,
+        number,
+        number,
+        string,
+        string,
+        string,
+        string,
+        string,
+        string
+      ] & {
+        batch: number;
+        sequence: number;
+        limit: number;
+        name: string;
+        page: string;
+        description: string;
+        link: string;
+        content: string;
+        created: string;
+      }
+    >;
+
+    denyManaged(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "denyManaged(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    denyMinting(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "denyMinting(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    generateId(
+      _batchId: BigNumberish,
+      _batchLimit: BigNumberish,
+      _sequence: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    "generateId(uint32,uint32,uint32)"(
+      _batchId: BigNumberish,
+      _batchLimit: BigNumberish,
+      _sequence: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
     getApproved(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
 
     "getApproved(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    getController(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    "getController(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    getSequence(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number]>;
+
+    "getSequence(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number]>;
+
+    getTokenController(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    "getTokenController(uint256)"(
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
 
     isApprovedForAll(
-      _owner: string,
-      _operator: string,
+      owner: string,
+      operator: string,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
     "isApprovedForAll(address,address)"(
-      _owner: string,
-      _operator: string,
+      owner: string,
+      operator: string,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    mint(
-      _to: string,
-      _tokenId: BigNumberish,
-      _uri: string,
+    isRedeemed(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
+    "isRedeemed(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
+    "mint(address,uint32,uint32,uint32,string,string,string,string,string,string)"(
+      to: string,
+      batch: BigNumberish,
+      sequence: BigNumberish,
+      limit: BigNumberish,
+      name: string,
+      page: string,
+      description: string,
+      link: string,
+      content: string,
+      created: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    "mint(address,uint256,string)"(
-      _to: string,
-      _tokenId: BigNumberish,
-      _uri: string,
+    "mint(address,uint32,uint32,string,string,uint64)"(
+      to: string,
+      batch: BigNumberish,
+      limit: BigNumberish,
+      name: string,
+      created: string,
+      time: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    name(overrides?: CallOverrides): Promise<[string] & { _name: string }>;
+    name(overrides?: CallOverrides): Promise<[string]>;
 
-    "name()"(overrides?: CallOverrides): Promise<[string] & { _name: string }>;
-
-    owner(overrides?: CallOverrides): Promise<[string]>;
-
-    "owner()"(overrides?: CallOverrides): Promise<[string]>;
+    "name()"(overrides?: CallOverrides): Promise<[string]>;
 
     ownerOf(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[string] & { _owner: string }>;
+    ): Promise<[string]>;
 
     "ownerOf(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[string] & { _owner: string }>;
+    ): Promise<[string]>;
+
+    parseId(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number, number, number]>;
+
+    "parseId(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number, number, number]>;
+
+    redeem(
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "redeem(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    redeemed(arg0: BigNumberish, overrides?: CallOverrides): Promise<[boolean]>;
+
+    "redeemed(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
 
     "safeTransferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "safeTransferFrom(address,address,uint256,bytes)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       _data: BytesLike,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     setApprovalForAll(
-      _operator: string,
-      _approved: boolean,
+      operator: string,
+      approved: boolean,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setApprovalForAll(address,bool)"(
-      _operator: string,
-      _approved: boolean,
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    setBaseURI(
+      URI: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "setBaseURI(string)"(
+      URI: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    setController(
+      batch: BigNumberish,
+      controller: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "setController(uint32,address)"(
+      batch: BigNumberish,
+      controller: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    setManager(
+      _id: BigNumberish,
+      _address: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "setManager(uint8,address)"(
+      _id: BigNumberish,
+      _address: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     supportsInterface(
-      _interfaceID: BytesLike,
+      interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
     "supportsInterface(bytes4)"(
-      _interfaceID: BytesLike,
+      interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    symbol(overrides?: CallOverrides): Promise<[string] & { _symbol: string }>;
+    symbol(overrides?: CallOverrides): Promise<[string]>;
 
-    "symbol()"(
+    "symbol()"(overrides?: CallOverrides): Promise<[string]>;
+
+    tokenByIndex(
+      index: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[string] & { _symbol: string }>;
+    ): Promise<[BigNumber]>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
     tokenURI(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
 
     "tokenURI(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     transferFrom(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "transferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    transferOwnership(
-      _newOwner: string,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "transferOwnership(address)"(
-      _newOwner: string,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
   };
 
-  CANNOT_TRANSFER_TO_ZERO_ADDRESS(overrides?: CallOverrides): Promise<string>;
+  allowManaged(
+    batch: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
 
-  "CANNOT_TRANSFER_TO_ZERO_ADDRESS()"(
+  "allowManaged(uint32)"(
+    batch: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  allowMinting(
+    batch: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "allowMinting(uint32)"(
+    batch: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  annotations(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+  "annotations(uint256)"(
+    arg0: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
 
-  NOT_CURRENT_OWNER(overrides?: CallOverrides): Promise<string>;
-
-  "NOT_CURRENT_OWNER()"(overrides?: CallOverrides): Promise<string>;
-
   approve(
-    _approved: string,
-    _tokenId: BigNumberish,
+    to: string,
+    tokenId: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "approve(address,uint256)"(
-    _approved: string,
-    _tokenId: BigNumberish,
+    to: string,
+    tokenId: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  balanceOf(_owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+  balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   "balanceOf(address)"(
-    _owner: string,
+    owner: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  baseURI(overrides?: CallOverrides): Promise<string>;
+
+  "baseURI()"(overrides?: CallOverrides): Promise<string>;
+
+  batchId(tokenId: BigNumberish, overrides?: CallOverrides): Promise<number>;
+
+  "batchId(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<number>;
+
+  batchLimit(tokenId: BigNumberish, overrides?: CallOverrides): Promise<number>;
+
+  "batchLimit(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<number>;
+
+  batchLimitFromId(
+    batch: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<number>;
+
+  "batchLimitFromId(uint32)"(
+    batch: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<number>;
+
+  batchOwner(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+  "batchOwner(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  batchOwnerFromId(
+    _batchId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  "batchOwnerFromId(uint32)"(
+    _batchId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  batchTokenFromId(
+    _batchId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "batchTokenFromId(uint32)"(
+    _batchId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  batchTokenOf(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "batchTokenOf(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  batches(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<
+    [
+      number,
+      string,
+      string,
+      BigNumber,
+      number,
+      number,
+      string,
+      boolean,
+      boolean
+    ] & {
+      batch: number;
+      name: string;
+      created: string;
+      time: BigNumber;
+      limit: number;
+      minted: number;
+      controller: string;
+      manageable: boolean;
+      mintable: boolean;
+    }
+  >;
+
+  "batches(uint32)"(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<
+    [
+      number,
+      string,
+      string,
+      BigNumber,
+      number,
+      number,
+      string,
+      boolean,
+      boolean
+    ] & {
+      batch: number;
+      name: string;
+      created: string;
+      time: BigNumber;
+      limit: number;
+      minted: number;
+      controller: string;
+      manageable: boolean;
+      mintable: boolean;
+    }
+  >;
+
+  canMint(tokenId: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
+
+  "canMint(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
+  contents(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<
+    [number, number, number, string, string, string, string, string, string] & {
+      batch: number;
+      sequence: number;
+      limit: number;
+      name: string;
+      page: string;
+      description: string;
+      link: string;
+      content: string;
+      created: string;
+    }
+  >;
+
+  "contents(uint256)"(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<
+    [number, number, number, string, string, string, string, string, string] & {
+      batch: number;
+      sequence: number;
+      limit: number;
+      name: string;
+      page: string;
+      description: string;
+      link: string;
+      content: string;
+      created: string;
+    }
+  >;
+
+  denyManaged(
+    batch: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "denyManaged(uint32)"(
+    batch: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  denyMinting(
+    batch: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "denyMinting(uint32)"(
+    batch: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  generateId(
+    _batchId: BigNumberish,
+    _batchLimit: BigNumberish,
+    _sequence: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "generateId(uint32,uint32,uint32)"(
+    _batchId: BigNumberish,
+    _batchLimit: BigNumberish,
+    _sequence: BigNumberish,
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
   getApproved(
-    _tokenId: BigNumberish,
+    tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
 
   "getApproved(uint256)"(
-    _tokenId: BigNumberish,
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  getController(
+    batch: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  "getController(uint32)"(
+    batch: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  getSequence(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<number>;
+
+  "getSequence(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<number>;
+
+  getTokenController(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  "getTokenController(uint256)"(
+    tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
 
   isApprovedForAll(
-    _owner: string,
-    _operator: string,
+    owner: string,
+    operator: string,
     overrides?: CallOverrides
   ): Promise<boolean>;
 
   "isApprovedForAll(address,address)"(
-    _owner: string,
-    _operator: string,
+    owner: string,
+    operator: string,
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  mint(
-    _to: string,
-    _tokenId: BigNumberish,
-    _uri: string,
+  isRedeemed(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
+  "isRedeemed(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
+  "mint(address,uint32,uint32,uint32,string,string,string,string,string,string)"(
+    to: string,
+    batch: BigNumberish,
+    sequence: BigNumberish,
+    limit: BigNumberish,
+    name: string,
+    page: string,
+    description: string,
+    link: string,
+    content: string,
+    created: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  "mint(address,uint256,string)"(
-    _to: string,
-    _tokenId: BigNumberish,
-    _uri: string,
+  "mint(address,uint32,uint32,string,string,uint64)"(
+    to: string,
+    batch: BigNumberish,
+    limit: BigNumberish,
+    name: string,
+    created: string,
+    time: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -402,51 +1229,105 @@ export class NFT extends Contract {
 
   "name()"(overrides?: CallOverrides): Promise<string>;
 
-  owner(overrides?: CallOverrides): Promise<string>;
-
-  "owner()"(overrides?: CallOverrides): Promise<string>;
-
-  ownerOf(_tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+  ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
   "ownerOf(uint256)"(
-    _tokenId: BigNumberish,
+    tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
 
+  parseId(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<[number, number, number]>;
+
+  "parseId(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<[number, number, number]>;
+
+  redeem(
+    tokenId: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "redeem(uint256)"(
+    tokenId: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  redeemed(arg0: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
+
+  "redeemed(uint256)"(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
   "safeTransferFrom(address,address,uint256)"(
-    _from: string,
-    _to: string,
-    _tokenId: BigNumberish,
+    from: string,
+    to: string,
+    tokenId: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "safeTransferFrom(address,address,uint256,bytes)"(
-    _from: string,
-    _to: string,
-    _tokenId: BigNumberish,
+    from: string,
+    to: string,
+    tokenId: BigNumberish,
     _data: BytesLike,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   setApprovalForAll(
-    _operator: string,
-    _approved: boolean,
+    operator: string,
+    approved: boolean,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setApprovalForAll(address,bool)"(
-    _operator: string,
-    _approved: boolean,
+    operator: string,
+    approved: boolean,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  setBaseURI(URI: string, overrides?: Overrides): Promise<ContractTransaction>;
+
+  "setBaseURI(string)"(
+    URI: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  setController(
+    batch: BigNumberish,
+    controller: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "setController(uint32,address)"(
+    batch: BigNumberish,
+    controller: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  setManager(
+    _id: BigNumberish,
+    _address: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "setManager(uint8,address)"(
+    _id: BigNumberish,
+    _address: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   supportsInterface(
-    _interfaceID: BytesLike,
+    interfaceId: BytesLike,
     overrides?: CallOverrides
   ): Promise<boolean>;
 
   "supportsInterface(bytes4)"(
-    _interfaceID: BytesLike,
+    interfaceId: BytesLike,
     overrides?: CallOverrides
   ): Promise<boolean>;
 
@@ -454,100 +1335,391 @@ export class NFT extends Contract {
 
   "symbol()"(overrides?: CallOverrides): Promise<string>;
 
-  tokenURI(_tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+  tokenByIndex(
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "tokenByIndex(uint256)"(
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  tokenOfOwnerByIndex(
+    owner: string,
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "tokenOfOwnerByIndex(address,uint256)"(
+    owner: string,
+    index: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
   "tokenURI(uint256)"(
-    _tokenId: BigNumberish,
+    tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
 
+  totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
+
   transferFrom(
-    _from: string,
-    _to: string,
-    _tokenId: BigNumberish,
+    from: string,
+    to: string,
+    tokenId: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "transferFrom(address,address,uint256)"(
-    _from: string,
-    _to: string,
-    _tokenId: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  transferOwnership(
-    _newOwner: string,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  "transferOwnership(address)"(
-    _newOwner: string,
+    from: string,
+    to: string,
+    tokenId: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    CANNOT_TRANSFER_TO_ZERO_ADDRESS(overrides?: CallOverrides): Promise<string>;
+    allowManaged(batch: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
-    "CANNOT_TRANSFER_TO_ZERO_ADDRESS()"(
+    "allowManaged(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    allowMinting(batch: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    "allowMinting(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    annotations(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+    "annotations(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
 
-    NOT_CURRENT_OWNER(overrides?: CallOverrides): Promise<string>;
-
-    "NOT_CURRENT_OWNER()"(overrides?: CallOverrides): Promise<string>;
-
     approve(
-      _approved: string,
-      _tokenId: BigNumberish,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
     "approve(address,uint256)"(
-      _approved: string,
-      _tokenId: BigNumberish,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    balanceOf(_owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "balanceOf(address)"(
-      _owner: string,
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    baseURI(overrides?: CallOverrides): Promise<string>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<string>;
+
+    batchId(tokenId: BigNumberish, overrides?: CallOverrides): Promise<number>;
+
+    "batchId(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<number>;
+
+    batchLimit(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<number>;
+
+    "batchLimit(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<number>;
+
+    batchLimitFromId(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<number>;
+
+    "batchLimitFromId(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<number>;
+
+    batchOwner(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "batchOwner(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    batchOwnerFromId(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "batchOwnerFromId(uint32)"(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    batchTokenFromId(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "batchTokenFromId(uint32)"(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    batchTokenOf(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "batchTokenOf(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    batches(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      [
+        number,
+        string,
+        string,
+        BigNumber,
+        number,
+        number,
+        string,
+        boolean,
+        boolean
+      ] & {
+        batch: number;
+        name: string;
+        created: string;
+        time: BigNumber;
+        limit: number;
+        minted: number;
+        controller: string;
+        manageable: boolean;
+        mintable: boolean;
+      }
+    >;
+
+    "batches(uint32)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      [
+        number,
+        string,
+        string,
+        BigNumber,
+        number,
+        number,
+        string,
+        boolean,
+        boolean
+      ] & {
+        batch: number;
+        name: string;
+        created: string;
+        time: BigNumber;
+        limit: number;
+        minted: number;
+        controller: string;
+        manageable: boolean;
+        mintable: boolean;
+      }
+    >;
+
+    canMint(tokenId: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
+
+    "canMint(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    contents(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      [
+        number,
+        number,
+        number,
+        string,
+        string,
+        string,
+        string,
+        string,
+        string
+      ] & {
+        batch: number;
+        sequence: number;
+        limit: number;
+        name: string;
+        page: string;
+        description: string;
+        link: string;
+        content: string;
+        created: string;
+      }
+    >;
+
+    "contents(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<
+      [
+        number,
+        number,
+        number,
+        string,
+        string,
+        string,
+        string,
+        string,
+        string
+      ] & {
+        batch: number;
+        sequence: number;
+        limit: number;
+        name: string;
+        page: string;
+        description: string;
+        link: string;
+        content: string;
+        created: string;
+      }
+    >;
+
+    denyManaged(batch: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    "denyManaged(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    denyMinting(batch: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    "denyMinting(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    generateId(
+      _batchId: BigNumberish,
+      _batchLimit: BigNumberish,
+      _sequence: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "generateId(uint32,uint32,uint32)"(
+      _batchId: BigNumberish,
+      _batchLimit: BigNumberish,
+      _sequence: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     getApproved(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
 
     "getApproved(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    getController(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "getController(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    getSequence(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<number>;
+
+    "getSequence(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<number>;
+
+    getTokenController(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "getTokenController(uint256)"(
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
 
     isApprovedForAll(
-      _owner: string,
-      _operator: string,
+      owner: string,
+      operator: string,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
     "isApprovedForAll(address,address)"(
-      _owner: string,
-      _operator: string,
+      owner: string,
+      operator: string,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    mint(
-      _to: string,
-      _tokenId: BigNumberish,
-      _uri: string,
+    isRedeemed(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    "isRedeemed(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    "mint(address,uint32,uint32,uint32,string,string,string,string,string,string)"(
+      to: string,
+      batch: BigNumberish,
+      sequence: BigNumberish,
+      limit: BigNumberish,
+      name: string,
+      page: string,
+      description: string,
+      link: string,
+      content: string,
+      created: string,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "mint(address,uint256,string)"(
-      _to: string,
-      _tokenId: BigNumberish,
-      _uri: string,
+    "mint(address,uint32,uint32,string,string,uint64)"(
+      to: string,
+      batch: BigNumberish,
+      limit: BigNumberish,
+      name: string,
+      created: string,
+      time: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -555,51 +1727,99 @@ export class NFT extends Contract {
 
     "name()"(overrides?: CallOverrides): Promise<string>;
 
-    owner(overrides?: CallOverrides): Promise<string>;
-
-    "owner()"(overrides?: CallOverrides): Promise<string>;
-
-    ownerOf(_tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+    ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
     "ownerOf(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
 
+    parseId(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number, number, number]>;
+
+    "parseId(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[number, number, number]>;
+
+    redeem(tokenId: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    "redeem(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    redeemed(arg0: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
+
+    "redeemed(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
     "safeTransferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
     "safeTransferFrom(address,address,uint256,bytes)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       _data: BytesLike,
       overrides?: CallOverrides
     ): Promise<void>;
 
     setApprovalForAll(
-      _operator: string,
-      _approved: boolean,
+      operator: string,
+      approved: boolean,
       overrides?: CallOverrides
     ): Promise<void>;
 
     "setApprovalForAll(address,bool)"(
-      _operator: string,
-      _approved: boolean,
+      operator: string,
+      approved: boolean,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setBaseURI(URI: string, overrides?: CallOverrides): Promise<void>;
+
+    "setBaseURI(string)"(URI: string, overrides?: CallOverrides): Promise<void>;
+
+    setController(
+      batch: BigNumberish,
+      controller: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "setController(uint32,address)"(
+      batch: BigNumberish,
+      controller: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setManager(
+      _id: BigNumberish,
+      _address: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "setManager(uint8,address)"(
+      _id: BigNumberish,
+      _address: string,
       overrides?: CallOverrides
     ): Promise<void>;
 
     supportsInterface(
-      _interfaceID: BytesLike,
+      interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
     "supportsInterface(bytes4)"(
-      _interfaceID: BytesLike,
+      interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
@@ -607,131 +1827,333 @@ export class NFT extends Contract {
 
     "symbol()"(overrides?: CallOverrides): Promise<string>;
 
-    tokenURI(
-      _tokenId: BigNumberish,
+    tokenByIndex(
+      index: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
     "tokenURI(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
 
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     transferFrom(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
     "transferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    transferOwnership(
-      _newOwner: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "transferOwnership(address)"(
-      _newOwner: string,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
   };
 
   filters: {
     Approval(
-      _owner: string | null,
-      _approved: string | null,
-      _tokenId: BigNumberish | null
+      owner: string | null,
+      approved: string | null,
+      tokenId: BigNumberish | null
     ): EventFilter;
 
     ApprovalForAll(
-      _owner: string | null,
-      _operator: string | null,
-      _approved: null
-    ): EventFilter;
-
-    OwnershipTransferred(
-      previousOwner: string | null,
-      newOwner: string | null
+      owner: string | null,
+      operator: string | null,
+      approved: null
     ): EventFilter;
 
     Transfer(
-      _from: string | null,
-      _to: string | null,
-      _tokenId: BigNumberish | null
+      from: string | null,
+      to: string | null,
+      tokenId: BigNumberish | null
     ): EventFilter;
   };
 
   estimateGas: {
-    CANNOT_TRANSFER_TO_ZERO_ADDRESS(
+    allowManaged(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "allowManaged(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    allowMinting(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "allowMinting(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    annotations(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "CANNOT_TRANSFER_TO_ZERO_ADDRESS()"(
+    "annotations(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
-    NOT_CURRENT_OWNER(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "NOT_CURRENT_OWNER()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     approve(
-      _approved: string,
-      _tokenId: BigNumberish,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
     "approve(address,uint256)"(
-      _approved: string,
-      _tokenId: BigNumberish,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    balanceOf(_owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "balanceOf(address)"(
-      _owner: string,
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    baseURI(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    batchId(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "batchId(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    batchLimit(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "batchLimit(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    batchLimitFromId(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "batchLimitFromId(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    batchOwner(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "batchOwner(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    batchOwnerFromId(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "batchOwnerFromId(uint32)"(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    batchTokenFromId(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "batchTokenFromId(uint32)"(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    batchTokenOf(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "batchTokenOf(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    batches(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "batches(uint32)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    canMint(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "canMint(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    contents(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "contents(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    denyManaged(batch: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
+
+    "denyManaged(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    denyMinting(batch: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
+
+    "denyMinting(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    generateId(
+      _batchId: BigNumberish,
+      _batchLimit: BigNumberish,
+      _sequence: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "generateId(uint32,uint32,uint32)"(
+      _batchId: BigNumberish,
+      _batchLimit: BigNumberish,
+      _sequence: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     getApproved(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     "getApproved(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getController(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getController(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getSequence(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getSequence(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getTokenController(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "getTokenController(uint256)"(
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     isApprovedForAll(
-      _owner: string,
-      _operator: string,
+      owner: string,
+      operator: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     "isApprovedForAll(address,address)"(
-      _owner: string,
-      _operator: string,
+      owner: string,
+      operator: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    mint(
-      _to: string,
-      _tokenId: BigNumberish,
-      _uri: string,
+    isRedeemed(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "isRedeemed(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "mint(address,uint32,uint32,uint32,string,string,string,string,string,string)"(
+      to: string,
+      batch: BigNumberish,
+      sequence: BigNumberish,
+      limit: BigNumberish,
+      name: string,
+      page: string,
+      description: string,
+      link: string,
+      content: string,
+      created: string,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    "mint(address,uint256,string)"(
-      _to: string,
-      _tokenId: BigNumberish,
-      _uri: string,
+    "mint(address,uint32,uint32,string,string,uint64)"(
+      to: string,
+      batch: BigNumberish,
+      limit: BigNumberish,
+      name: string,
+      created: string,
+      time: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -739,54 +2161,105 @@ export class NFT extends Contract {
 
     "name()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    owner(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     ownerOf(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     "ownerOf(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    parseId(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "parseId(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    redeem(tokenId: BigNumberish, overrides?: Overrides): Promise<BigNumber>;
+
+    "redeem(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    redeemed(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "redeemed(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256,bytes)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       _data: BytesLike,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
     setApprovalForAll(
-      _operator: string,
-      _approved: boolean,
+      operator: string,
+      approved: boolean,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setApprovalForAll(address,bool)"(
-      _operator: string,
-      _approved: boolean,
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    setBaseURI(URI: string, overrides?: Overrides): Promise<BigNumber>;
+
+    "setBaseURI(string)"(
+      URI: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    setController(
+      batch: BigNumberish,
+      controller: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "setController(uint32,address)"(
+      batch: BigNumberish,
+      controller: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    setManager(
+      _id: BigNumberish,
+      _address: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "setManager(uint8,address)"(
+      _id: BigNumberish,
+      _address: string,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
     supportsInterface(
-      _interfaceID: BytesLike,
+      interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     "supportsInterface(bytes4)"(
-      _interfaceID: BytesLike,
+      interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -794,111 +2267,331 @@ export class NFT extends Contract {
 
     "symbol()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     tokenURI(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     "tokenURI(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     transferFrom(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
     "transferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    transferOwnership(
-      _newOwner: string,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    "transferOwnership(address)"(
-      _newOwner: string,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    CANNOT_TRANSFER_TO_ZERO_ADDRESS(
+    allowManaged(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "allowManaged(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    allowMinting(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "allowMinting(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    annotations(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "CANNOT_TRANSFER_TO_ZERO_ADDRESS()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    NOT_CURRENT_OWNER(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "NOT_CURRENT_OWNER()"(
+    "annotations(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     approve(
-      _approved: string,
-      _tokenId: BigNumberish,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "approve(address,uint256)"(
-      _approved: string,
-      _tokenId: BigNumberish,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     balanceOf(
-      _owner: string,
+      owner: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     "balanceOf(address)"(
-      _owner: string,
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    baseURI(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "baseURI()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    batchId(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "batchId(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    batchLimit(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "batchLimit(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    batchLimitFromId(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "batchLimitFromId(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    batchOwner(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "batchOwner(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    batchOwnerFromId(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "batchOwnerFromId(uint32)"(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    batchTokenFromId(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "batchTokenFromId(uint32)"(
+      _batchId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    batchTokenOf(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "batchTokenOf(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    batches(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "batches(uint32)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    canMint(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "canMint(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    contents(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "contents(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    denyManaged(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "denyManaged(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    denyMinting(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "denyMinting(uint32)"(
+      batch: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    generateId(
+      _batchId: BigNumberish,
+      _batchLimit: BigNumberish,
+      _sequence: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "generateId(uint32,uint32,uint32)"(
+      _batchId: BigNumberish,
+      _batchLimit: BigNumberish,
+      _sequence: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     getApproved(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     "getApproved(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getController(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getController(uint32)"(
+      batch: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getSequence(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getSequence(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getTokenController(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "getTokenController(uint256)"(
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     isApprovedForAll(
-      _owner: string,
-      _operator: string,
+      owner: string,
+      operator: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     "isApprovedForAll(address,address)"(
-      _owner: string,
-      _operator: string,
+      owner: string,
+      operator: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    mint(
-      _to: string,
-      _tokenId: BigNumberish,
-      _uri: string,
+    isRedeemed(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "isRedeemed(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "mint(address,uint32,uint32,uint32,string,string,string,string,string,string)"(
+      to: string,
+      batch: BigNumberish,
+      sequence: BigNumberish,
+      limit: BigNumberish,
+      name: string,
+      page: string,
+      description: string,
+      link: string,
+      content: string,
+      created: string,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "mint(address,uint256,string)"(
-      _to: string,
-      _tokenId: BigNumberish,
-      _uri: string,
+    "mint(address,uint32,uint32,string,string,uint64)"(
+      to: string,
+      batch: BigNumberish,
+      limit: BigNumberish,
+      name: string,
+      created: string,
+      time: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
@@ -906,54 +2599,114 @@ export class NFT extends Contract {
 
     "name()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     ownerOf(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     "ownerOf(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    parseId(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "parseId(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    redeem(
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "redeem(uint256)"(
+      tokenId: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    redeemed(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "redeemed(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     "safeTransferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "safeTransferFrom(address,address,uint256,bytes)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       _data: BytesLike,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     setApprovalForAll(
-      _operator: string,
-      _approved: boolean,
+      operator: string,
+      approved: boolean,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setApprovalForAll(address,bool)"(
-      _operator: string,
-      _approved: boolean,
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    setBaseURI(
+      URI: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "setBaseURI(string)"(
+      URI: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    setController(
+      batch: BigNumberish,
+      controller: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "setController(uint32,address)"(
+      batch: BigNumberish,
+      controller: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    setManager(
+      _id: BigNumberish,
+      _address: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "setManager(uint8,address)"(
+      _id: BigNumberish,
+      _address: string,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     supportsInterface(
-      _interfaceID: BytesLike,
+      interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     "supportsInterface(bytes4)"(
-      _interfaceID: BytesLike,
+      interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -961,37 +2714,53 @@ export class NFT extends Contract {
 
     "symbol()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    tokenByIndex(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenByIndex(uint256)"(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    tokenOfOwnerByIndex(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: string,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     tokenURI(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     "tokenURI(uint256)"(
-      _tokenId: BigNumberish,
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     transferFrom(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "transferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _tokenId: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    transferOwnership(
-      _newOwner: string,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "transferOwnership(address)"(
-      _newOwner: string,
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
   };

@@ -18,13 +18,18 @@ const _abi = [
     inputs: [
       {
         internalType: "string",
-        name: "_nftName",
+        name: "name",
         type: "string",
       },
       {
         internalType: "string",
-        name: "_nftSymbol",
+        name: "symbol",
         type: "string",
+      },
+      {
+        internalType: "address",
+        name: "manager0",
+        type: "address",
       },
     ],
     stateMutability: "nonpayable",
@@ -36,19 +41,19 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
-        name: "_owner",
+        name: "owner",
         type: "address",
       },
       {
         indexed: true,
         internalType: "address",
-        name: "_approved",
+        name: "approved",
         type: "address",
       },
       {
         indexed: true,
         internalType: "uint256",
-        name: "_tokenId",
+        name: "tokenId",
         type: "uint256",
       },
     ],
@@ -61,19 +66,19 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
-        name: "_owner",
+        name: "owner",
         type: "address",
       },
       {
         indexed: true,
         internalType: "address",
-        name: "_operator",
+        name: "operator",
         type: "address",
       },
       {
         indexed: false,
         internalType: "bool",
-        name: "_approved",
+        name: "approved",
         type: "bool",
       },
     ],
@@ -86,38 +91,19 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
-        name: "previousOwner",
+        name: "from",
         type: "address",
       },
       {
         indexed: true,
         internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "OwnershipTransferred",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_from",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_to",
+        name: "to",
         type: "address",
       },
       {
         indexed: true,
         internalType: "uint256",
-        name: "_tokenId",
+        name: "tokenId",
         type: "uint256",
       },
     ],
@@ -125,21 +111,40 @@ const _abi = [
     type: "event",
   },
   {
-    inputs: [],
-    name: "CANNOT_TRANSFER_TO_ZERO_ADDRESS",
-    outputs: [
+    inputs: [
       {
-        internalType: "string",
-        name: "",
-        type: "string",
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
       },
     ],
-    stateMutability: "view",
+    name: "allowManaged",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [],
-    name: "NOT_CURRENT_OWNER",
+    inputs: [
+      {
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+    ],
+    name: "allowMinting",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "annotations",
     outputs: [
       {
         internalType: "string",
@@ -154,12 +159,12 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_approved",
+        name: "to",
         type: "address",
       },
       {
         internalType: "uint256",
-        name: "_tokenId",
+        name: "tokenId",
         type: "uint256",
       },
     ],
@@ -172,7 +177,7 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_owner",
+        name: "owner",
         type: "address",
       },
     ],
@@ -188,10 +193,348 @@ const _abi = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "baseURI",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "uint256",
-        name: "_tokenId",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "batchId",
+    outputs: [
+      {
+        internalType: "uint32",
+        name: "",
+        type: "uint32",
+      },
+    ],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "batchLimit",
+    outputs: [
+      {
+        internalType: "uint32",
+        name: "",
+        type: "uint32",
+      },
+    ],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+    ],
+    name: "batchLimitFromId",
+    outputs: [
+      {
+        internalType: "uint32",
+        name: "",
+        type: "uint32",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "batchOwner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint32",
+        name: "_batchId",
+        type: "uint32",
+      },
+    ],
+    name: "batchOwnerFromId",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint32",
+        name: "_batchId",
+        type: "uint32",
+      },
+    ],
+    name: "batchTokenFromId",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "batchTokenOf",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint32",
+        name: "",
+        type: "uint32",
+      },
+    ],
+    name: "batches",
+    outputs: [
+      {
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "created",
+        type: "string",
+      },
+      {
+        internalType: "uint64",
+        name: "time",
+        type: "uint64",
+      },
+      {
+        internalType: "uint32",
+        name: "limit",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "minted",
+        type: "uint32",
+      },
+      {
+        internalType: "address",
+        name: "controller",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "manageable",
+        type: "bool",
+      },
+      {
+        internalType: "bool",
+        name: "mintable",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "canMint",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "contents",
+    outputs: [
+      {
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "sequence",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "limit",
+        type: "uint32",
+      },
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "page",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "description",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "link",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "content",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "created",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+    ],
+    name: "denyManaged",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+    ],
+    name: "denyMinting",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint32",
+        name: "_batchId",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "_batchLimit",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "_sequence",
+        type: "uint32",
+      },
+    ],
+    name: "generateId",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
         type: "uint256",
       },
     ],
@@ -209,13 +552,70 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+    ],
+    name: "getController",
+    outputs: [
+      {
         internalType: "address",
-        name: "_owner",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "getSequence",
+    outputs: [
+      {
+        internalType: "uint32",
+        name: "",
+        type: "uint32",
+      },
+    ],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "getTokenController",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
         type: "address",
       },
       {
         internalType: "address",
-        name: "_operator",
+        name: "operator",
         type: "address",
       },
     ],
@@ -233,19 +633,111 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "isRedeemed",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
-        name: "_to",
+        name: "to",
         type: "address",
       },
       {
-        internalType: "uint256",
-        name: "_tokenId",
-        type: "uint256",
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "sequence",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "limit",
+        type: "uint32",
       },
       {
         internalType: "string",
-        name: "_uri",
+        name: "name",
         type: "string",
+      },
+      {
+        internalType: "string",
+        name: "page",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "description",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "link",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "content",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "created",
+        type: "string",
+      },
+    ],
+    name: "mint",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "limit",
+        type: "uint32",
+      },
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "created",
+        type: "string",
+      },
+      {
+        internalType: "uint64",
+        name: "time",
+        type: "uint64",
       },
     ],
     name: "mint",
@@ -259,7 +751,7 @@ const _abi = [
     outputs: [
       {
         internalType: "string",
-        name: "_name",
+        name: "",
         type: "string",
       },
     ],
@@ -267,8 +759,14 @@ const _abi = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "owner",
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "ownerOf",
     outputs: [
       {
         internalType: "address",
@@ -283,16 +781,58 @@ const _abi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "_tokenId",
+        name: "tokenId",
         type: "uint256",
       },
     ],
-    name: "ownerOf",
+    name: "parseId",
     outputs: [
       {
-        internalType: "address",
-        name: "_owner",
-        type: "address",
+        internalType: "uint32",
+        name: "",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "",
+        type: "uint32",
+      },
+      {
+        internalType: "uint32",
+        name: "",
+        type: "uint32",
+      },
+    ],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "redeem",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "redeemed",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
       },
     ],
     stateMutability: "view",
@@ -302,17 +842,17 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_from",
+        name: "from",
         type: "address",
       },
       {
         internalType: "address",
-        name: "_to",
+        name: "to",
         type: "address",
       },
       {
         internalType: "uint256",
-        name: "_tokenId",
+        name: "tokenId",
         type: "uint256",
       },
     ],
@@ -325,17 +865,17 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_from",
+        name: "from",
         type: "address",
       },
       {
         internalType: "address",
-        name: "_to",
+        name: "to",
         type: "address",
       },
       {
         internalType: "uint256",
-        name: "_tokenId",
+        name: "tokenId",
         type: "uint256",
       },
       {
@@ -353,12 +893,12 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_operator",
+        name: "operator",
         type: "address",
       },
       {
         internalType: "bool",
-        name: "_approved",
+        name: "approved",
         type: "bool",
       },
     ],
@@ -370,8 +910,57 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "string",
+        name: "URI",
+        type: "string",
+      },
+    ],
+    name: "setBaseURI",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint32",
+        name: "batch",
+        type: "uint32",
+      },
+      {
+        internalType: "address",
+        name: "controller",
+        type: "address",
+      },
+    ],
+    name: "setController",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint8",
+        name: "_id",
+        type: "uint8",
+      },
+      {
+        internalType: "address",
+        name: "_address",
+        type: "address",
+      },
+    ],
+    name: "setManager",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "bytes4",
-        name: "_interfaceID",
+        name: "interfaceId",
         type: "bytes4",
       },
     ],
@@ -392,7 +981,7 @@ const _abi = [
     outputs: [
       {
         internalType: "string",
-        name: "_symbol",
+        name: "",
         type: "string",
       },
     ],
@@ -403,7 +992,50 @@ const _abi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "_tokenId",
+        name: "index",
+        type: "uint256",
+      },
+    ],
+    name: "tokenByIndex",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "index",
+        type: "uint256",
+      },
+    ],
+    name: "tokenOfOwnerByIndex",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
         type: "uint256",
       },
     ],
@@ -419,37 +1051,37 @@ const _abi = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "_to",
-        type: "address",
-      },
+    inputs: [],
+    name: "totalSupply",
+    outputs: [
       {
         internalType: "uint256",
-        name: "_tokenId",
+        name: "",
         type: "uint256",
       },
     ],
-    name: "transferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "view",
     type: "function",
   },
   {
     inputs: [
       {
         internalType: "address",
-        name: "_newOwner",
+        name: "from",
         type: "address",
       },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
     ],
-    name: "transferOwnership",
+    name: "transferFrom",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

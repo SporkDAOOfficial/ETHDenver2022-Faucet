@@ -8,11 +8,11 @@ import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } fro
 import { UserRejectedRequestError as UserRejectedRequestErrorFrame } from "@web3-react/frame-connector";
 import { Web3Provider } from "@ethersproject/providers";
 import { formatEther } from "@ethersproject/units";
-import _ from "lodash";
-import {
-  useEagerConnect,
-  useInactiveListener,
-} from "../../lib/hooks/provider-hooks";
+// import _ from "lodash";
+// import {
+//   useEagerConnect,
+//   useInactiveListener,
+// } from "../../lib/hooks/provider-hooks";
 import {
   injected,
   walletconnect,
@@ -22,11 +22,10 @@ import {
   portis,
   network,
   // torus,
-} from "../../lib/wallet/connectors";
-import { Spinner } from "./spinner";
+} from "./lib/connectors";
+import { Spinner } from "./Spinner";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 
-import Modal from "antd/lib/modal/Modal";
 // import './wallet.scss';
 
 // import { METAMASK } from 'web3modal/dist/providers/injected';

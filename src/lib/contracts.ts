@@ -26,7 +26,7 @@ export interface Contracts {
 
 }
 
-function useDContracts() : Contracts | null {
+function useNFTContracts() : Contracts | null {
 	const context = useWeb3React<Web3Provider>();
 	const { library, active, chainId } = context;
 	const contract = useMemo((): Contracts | null => {
@@ -58,4 +58,4 @@ function useDContracts() : Contracts | null {
 	return contract;
 }
 
-export { useDContracts };
+export { useNFTContracts };

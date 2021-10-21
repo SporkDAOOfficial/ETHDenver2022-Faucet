@@ -10,7 +10,7 @@ import { providerOptions } from "./lib/providers";
 import { Web3Provider } from '@ethersproject/providers';
 import { useWeb3React } from '@web3-react/core';
 import { useNFTContracts } from "lib/contracts";
-
+import Wallet from "Wallet";
 
 
 
@@ -83,6 +83,7 @@ const Home = (): JSX.Element => {
       <main className="bg-white flex-grow relative">
           <div className="main-content shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-6 py-10 sm:px-4">
             {/* <Welcome disconnect={disconnect} /> */}
+            <Wallet />
           </div>
       </main>
     </div>

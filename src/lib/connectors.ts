@@ -1,7 +1,7 @@
 import { InjectedConnector as MetaMask } from '@web3-react/injected-connector';
 import { NetworkConnector as Network } from '@web3-react/network-connector';
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
-import { WalletLinkConnector } from '@web3-react/walletlink-connector';
+// import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
+// import { WalletLinkConnector } from '@web3-react/walletlink-connector';
 import { LedgerConnector } from '@web3-react/ledger-connector';
 import { TrezorConnector } from '@web3-react/trezor-connector';
 import { FrameConnector } from '@web3-react/frame-connector';
@@ -26,18 +26,18 @@ export const network = new Network({
   defaultChainId: 1,
 });
 
-export const walletconnect = new WalletConnectConnector({
-  rpc: { 1: RPC_URLS[1] },
-  bridge: 'https://bridge.walletconnect.org',
-  qrcode: true,
-  pollingInterval: POLLING_INTERVAL,
-  supportedChainIds: [1, 42],
-});
+// export const walletconnect = new WalletConnectConnector({
+//   rpc: { 1: RPC_URLS[1] },
+//   bridge: 'https://bridge.walletconnect.org',
+//   qrcode: true,
+//   pollingInterval: POLLING_INTERVAL,
+//   supportedChainIds: [1, 42],
+// });
 
-export const walletlink = new WalletLinkConnector({
-  url: RPC_URLS[1],
-  appName:'Dectracorp',
-});
+// export const walletlink = new WalletLinkConnector({
+//   url: RPC_URLS[1],
+//   appName:'Dectracorp',
+// });
 
 export const ledger = new LedgerConnector({
   chainId: 1,

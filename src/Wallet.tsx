@@ -4,19 +4,19 @@ import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
 } from "@web3-react/injected-connector";
-import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from "@web3-react/walletconnect-connector";
+// import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from "@web3-react/walletconnect-connector";
 import { UserRejectedRequestError as UserRejectedRequestErrorFrame } from "@web3-react/frame-connector";
 import { Web3Provider } from "@ethersproject/providers";
 import { formatEther } from "@ethersproject/units";
-// import _ from "lodash";
-// import {
-//   useEagerConnect,
-//   useInactiveListener,
-// } from "../../lib/hooks/provider-hooks";
+import _ from "lodash";
+import {
+  useEagerConnect,
+  useInactiveListener,
+} from "./lib/provider-hooks";
 import {
   injected,
-  walletconnect,
-  walletlink,
+  // walletconnect,
+  // walletlink,
   fortmatic,
   // magic,
   portis,
@@ -35,8 +35,8 @@ import { AbstractConnector } from "@web3-react/abstract-connector";
 enum ConnectorNames {
   MetaMask = "MetaMask",
   Network = "Network",
-  WalletConnect = "WalletConnect",
-  WalletLink = "WalletLink",
+  // WalletConnect = "WalletConnect",
+  // WalletLink = "WalletLink",
   // Ledger = 'Ledger',
   // Trezor = 'Trezor',
   // Frame = 'Frame',
@@ -49,8 +49,8 @@ const connectorsByName: {
 } = {
   [ConnectorNames.MetaMask]: injected,
 
-  [ConnectorNames.WalletConnect]: walletconnect,
-  [ConnectorNames.WalletLink]: walletlink,
+  // [ConnectorNames.WalletConnect]: walletconnect,
+  // [ConnectorNames.WalletLink]: walletlink,
   [ConnectorNames.Network]: network,
 
   // [ConnectorNames.Ledger]: ledger,
@@ -67,7 +67,6 @@ function getErrorMessage(error: Error) {
     return "You're connected to an unsupported network.";
   } else if (
     error instanceof UserRejectedRequestErrorInjected ||
-    error instanceof UserRejectedRequestErrorWalletConnect ||
     error instanceof UserRejectedRequestErrorFrame
   ) {
     return "Please authorize this website to access your Ethereum account.";

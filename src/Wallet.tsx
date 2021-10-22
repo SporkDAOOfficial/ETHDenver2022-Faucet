@@ -15,8 +15,8 @@ import {
 } from "./lib/provider-hooks";
 import {
   injected,
-  // walletconnect,
-  // walletlink,
+  walletconnect,
+  walletlink,
   fortmatic,
   // magic,
   portis,
@@ -28,15 +28,12 @@ import { AbstractConnector } from "@web3-react/abstract-connector";
 
 // import './wallet.scss';
 
-// import { METAMASK } from 'web3modal/dist/providers/injected';
-
-// import ConnectToWallet from '../../ConnectToWallet/ConnectToWallet.js'
 
 enum ConnectorNames {
   MetaMask = "MetaMask",
   Network = "Network",
-  // WalletConnect = "WalletConnect",
-  // WalletLink = "WalletLink",
+  WalletConnect = "WalletConnect",
+  WalletLink = "WalletLink",
   // Ledger = 'Ledger',
   // Trezor = 'Trezor',
   // Frame = 'Frame',
@@ -49,8 +46,8 @@ const connectorsByName: {
 } = {
   [ConnectorNames.MetaMask]: injected,
 
-  // [ConnectorNames.WalletConnect]: walletconnect,
-  // [ConnectorNames.WalletLink]: walletlink,
+  [ConnectorNames.WalletConnect]: walletconnect,
+  [ConnectorNames.WalletLink]: walletlink,
   [ConnectorNames.Network]: network,
 
   // [ConnectorNames.Ledger]: ledger,

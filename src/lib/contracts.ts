@@ -18,6 +18,8 @@ import { NFT__factory, NFT } from "types";
  
 export interface ContractAddresses {
     opolisNFT: string;
+	opolisNFT1: string;
+
 }
 
 export interface Contracts {
@@ -57,5 +59,5 @@ function useNFTContracts() : Contracts | null {
 	}, [active, library, chainId]);
 	return contract;
 }
-
+console.log((() => useNFTContracts()))
 export { useNFTContracts };

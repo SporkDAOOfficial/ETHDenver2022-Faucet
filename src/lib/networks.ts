@@ -7,7 +7,7 @@ export enum NETWORK_TYPES {
   POLYGON = "POLYGON",
 }
 
-export const defaultNetworkId: number = Number(137);
+export const defaultNetworkId: number = Number(1);
 
 export const chainIdToNetworkType = (chainId: number): NETWORK_TYPES => {
   switch (chainId) {

@@ -1,7 +1,7 @@
 import { InjectedConnector as MetaMask } from "@web3-react/injected-connector";
 import { NetworkConnector as Network } from "@web3-react/network-connector";
-// import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
-// import { WalletLinkConnector } from '@web3-react/walletlink-connector';
+import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
+import { WalletLinkConnector } from '@web3-react/walletlink-connector';
 import { LedgerConnector } from "@web3-react/ledger-connector";
 import { TrezorConnector } from "@web3-react/trezor-connector";
 import { FrameConnector } from "@web3-react/frame-connector";
@@ -12,33 +12,33 @@ import { TorusConnector } from "@web3-react/torus-connector";
 
 const POLLING_INTERVAL = 12000;
 const RPC_URLS: { [chainId: number]: string } = {
-  1: process.env.REACT_APP_RPC_URL_1 as string,
+  // 1: process.env.REACT_APP_RPC_URL_1 as string,
   // 4: process.env.NEXT_PUBLIC_REACT_APP_RPC_URL_4 as string,
-  42: process.env.REACT_APP_RPC_URL_42 as string,
+  // 42: process.env.REACT_APP_RPC_URL_42 as string,
   137: process.env.REACT_APP_RPC_URL_137 as string,
 };
 
 export const injected = new MetaMask({
-  supportedChainIds: [1, 4, 42, 1337, 137, 31337],
+  supportedChainIds: [4, 1337, 137, 31337],
 });
 
 export const network = new Network({
-  urls: { 1: RPC_URLS[1], 42: RPC_URLS[42], 137: RPC_URLS[137] },
+  urls: { 137: RPC_URLS[137] },
   defaultChainId: 137,
 });
 
-// export const walletconnect = new WalletConnectConnector({
-//   rpc: { 1: RPC_URLS[1] },
-//   bridge: 'https://bridge.walletconnect.org',
-//   qrcode: true,
-//   pollingInterval: POLLING_INTERVAL,
-//   supportedChainIds: [1, 42],
-// });
+export const walletconnect = new WalletConnectConnector({
+  rpc: { 1: RPC_URLS[1] },
+  bridge: 'https://bridge.walletconnect.org',
+  qrcode: true,
+  pollingInterval: POLLING_INTERVAL,
+  supportedChainIds: [1, 42, 137],
+});
 
-// export const walletlink = new WalletLinkConnector({
-//   url: RPC_URLS[1],
-//   appName:'Dectracorp',
-// });
+export const walletlink = new WalletLinkConnector({
+  url: process.env.REACT_APP_RPC_URL_137 as string,
+  appName:'opolis',
+});
 
 export const ledger = new LedgerConnector({
   chainId: 1,

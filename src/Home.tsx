@@ -1,6 +1,6 @@
 import { providers } from "ethers";
 import { useCallback, useEffect, useReducer, useState } from "react";
-import Web3Modal from "web3modal";
+// import Web3Modal from "web3modal";
 import { ellipseAddress } from "./lib/utils";
 import { ButtonIcon } from "./ButtonIcon";
 import { Welcome } from "./Welcome";
@@ -8,7 +8,7 @@ import { providerOptions } from "./lib/providers";
 
 
 import { Web3Provider } from '@ethersproject/providers';
-import { useWeb3React } from '@web3-react/core';
+import { useWeb3React, Web3ReactProvider } from '@web3-react/core';
 import { useNFTContracts } from "lib/contracts";
 import Wallet from "Wallet";
 
@@ -89,5 +89,22 @@ const Home = (): JSX.Element => {
     </div>
   );
 };
+// Web3 Wallet
+function getLibrary(provider: any): Web3Provider {
+  console.log(
+		'line 28',
+	);
+	const library = new Web3Provider(provider);
+	library.pollingInterval = 12000;
+	return library;
+}
 
-export default Home;
+function wrappedApp() {
+  return (
+      <Web3ReactProvider getLibrary={getLibrary}>
+          <Home />
+      </Web3ReactProvider>
+  );
+}
+
+export default wrappedApp;

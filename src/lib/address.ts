@@ -8,3 +8,4 @@ const addresses: { [network in NETWORK_TYPES]: ContractAddresses } = {
 } as any;
 
 export default addresses;
+ 

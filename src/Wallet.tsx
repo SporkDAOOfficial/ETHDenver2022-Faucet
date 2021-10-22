@@ -12,7 +12,7 @@ import _ from "lodash";
 import {
   useEagerConnect,
   useInactiveListener,
-} from "./lib/provider-hooks";
+} from "./lib/hooks/provider-hooks";
 import {
   injected,
   walletconnect,
@@ -22,7 +22,7 @@ import {
   portis,
   network,
   // torus,
-} from "./lib/connectors";
+} from "./lib/contracts/connectors";
 import { Spinner } from "./Spinner";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 

@@ -1,4 +1,4 @@
-import { providers } from "ethers";
+import { BigNumber, BigNumberish, ethers, providers } from "ethers";
 import { useCallback, useEffect, useReducer, useState } from "react";
 // import Web3Modal from "web3modal";
 import { ellipseAddress } from "./lib/utils";
@@ -9,7 +9,7 @@ import { providerOptions } from "./lib/providers";
 
 import { Web3Provider } from '@ethersproject/providers';
 import { useWeb3React, Web3ReactProvider } from '@web3-react/core';
-import { useNFTContracts } from "lib/contracts";
+import { useNFTContracts } from "lib/contracts/contracts";
 import Wallet from "Wallet";
 
 
@@ -17,7 +17,7 @@ import Wallet from "Wallet";
 const Home = (): JSX.Element => {
   const context = useWeb3React<Web3Provider>();
 	const { account, active, library } = useWeb3React(); 
-  const [_balance, setBalance] = useState<number | undefined | any>()
+  const [_balance, setBalance] = useState<BigNumberish | BigNumber | undefined | any>()
 
   const contract = useNFTContracts();
 
@@ -25,15 +25,14 @@ const Home = (): JSX.Element => {
 		if (!account) {
 			return;
 		}
-		const fetchTokenBalance =  (async () => {
-
-			const balance = await contract?.opolisNFT.balanceOf(account);
-      setBalance(balance)
-		})();
-		//fetchTokenBalance();
+		const fetchTokenBalance =  async () => {
+			const balance: BigNumberish | BigNumber | any = await contract?.opolisNFT.balanceOf(account);
+      setBalance(ethers.utils.formatUnits(balance))
+		};
+		fetchTokenBalance();
 	}, [account]);
 
-  console.log(_balance, 'balance of nfts')
+  console.log(Number(_balance).toLocaleString(), 'balance of nfts')
   console.log(account, active, library, '89') 
 
 
@@ -89,6 +88,8 @@ const Home = (): JSX.Element => {
     </div>
   );
 };
+
+
 // Web3 Wallet
 function getLibrary(provider: any): Web3Provider {
   console.log(

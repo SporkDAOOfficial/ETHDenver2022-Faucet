@@ -20,6 +20,7 @@ module.exports = {
         haze: "var(--brand-haze)",
         sky: "var(--brand-sky)",
         mist: "var(--brand-mist)",
+        error: "var(--form-error)",
       },
       fontFamily: {
         sans: ['"Source Sans Pro"', ...defaultTheme.fontFamily.sans],

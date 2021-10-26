@@ -1,7 +1,7 @@
 import { InjectedConnector as MetaMask } from "@web3-react/injected-connector";
 import { NetworkConnector as Network } from "@web3-react/network-connector";
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
-import { WalletLinkConnector } from '@web3-react/walletlink-connector';
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
+import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 import { LedgerConnector } from "@web3-react/ledger-connector";
 import { TrezorConnector } from "@web3-react/trezor-connector";
 import { FrameConnector } from "@web3-react/frame-connector";
@@ -29,7 +29,7 @@ export const network = new Network({
 
 export const walletconnect = new WalletConnectConnector({
   rpc: { 1: RPC_URLS[1] },
-  bridge: 'https://bridge.walletconnect.org',
+  bridge: "https://bridge.walletconnect.org",
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,
   supportedChainIds: [1, 42, 137],
@@ -37,7 +37,7 @@ export const walletconnect = new WalletConnectConnector({
 
 export const walletlink = new WalletLinkConnector({
   url: process.env.REACT_APP_RPC_URL_137 as string,
-  appName:'opolis',
+  appName: "opolis",
 });
 
 export const ledger = new LedgerConnector({

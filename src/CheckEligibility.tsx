@@ -1,15 +1,35 @@
-import { useState } from "react";
+import { useWeb3React } from "@web3-react/core";
+import { useEffect, useState } from "react";
 import { Confirmed } from "./Confirmed";
 import { Unconfirmed } from "./Unconfirmed";
+import { BigNumber, BigNumberish, ethers } from "ethers";
+import { useNFTContracts } from "lib/contracts/contracts";
+import { formattedNFTBalance } from "lib/utils";
 
-interface FuncProps {
-  disconnect: () => void;
-}
+export const CheckEligibility = () => {
+  const { account } = useWeb3React();
+  const [_balance, setBalance] = useState<
+    BigNumberish | BigNumber | undefined | any
+  >();
 
-export const Welcome: React.FC<FuncProps> = (props: FuncProps) => {
+  const contract = useNFTContracts();
+
+  useEffect(() => {
+    if (!account) {
+      return;
+    }
+    (async () => {
+      const balance: BigNumberish | BigNumber | any =
+        await contract?.opolisNFT.balanceOf(account);
+      setBalance(ethers.utils.formatUnits(balance));
+    })();
+  }, [account, contract?.opolisNFT]);
+
   const [confirmed, setConfirmed] = useState<boolean | null>(null);
+
   async function confirmEligibility() {
-    setConfirmed(false);
+    const balance = formattedNFTBalance(_balance);
+    setConfirmed(balance > 0);
   }
 
   return confirmed == null ? (
@@ -35,6 +55,6 @@ export const Welcome: React.FC<FuncProps> = (props: FuncProps) => {
   ) : confirmed ? (
     <Confirmed />
   ) : (
-    <Unconfirmed disconnect={props.disconnect} />
+    <Unconfirmed />
   );
 };

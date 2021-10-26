@@ -1,8 +1,10 @@
-interface FuncProps {
-  disconnect: () => void;
-}
+import { Web3Provider } from "@ethersproject/providers";
+import { useWeb3React } from "@web3-react/core";
 
-export const Unconfirmed: React.FC<FuncProps> = (props: FuncProps) => {
+export const Unconfirmed = () => {
+  const context = useWeb3React<Web3Provider>();
+  const { connector, chainId, activate, deactivate, active, error } = context;
+
   return (
     <>
       <header className="text-center mb-4">
@@ -23,7 +25,7 @@ export const Unconfirmed: React.FC<FuncProps> = (props: FuncProps) => {
         <p className="text-center my-4">or</p>
         <button
           className="btn-primary mx-auto block mb-6"
-          onClick={props.disconnect}
+          onClick={() => deactivate()}
         >
           Change wallet
         </button>

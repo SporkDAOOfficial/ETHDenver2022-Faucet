@@ -1,4 +1,4 @@
-export function Spinner({ color, ...rest }: any) {
+export function Spinner({ color = "black", ...rest }: any) {
   //change this
   return (
     <svg

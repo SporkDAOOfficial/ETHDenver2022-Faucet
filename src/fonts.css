@@ -39,11 +39,17 @@
   font-weight: 400;
 }
 
-.header4 {
+.header4,
+.heade5 {
   font-size: calc((18 / var(--base-font-size) * 1rem));
   line-height: calc(24 / var(--base-font-size) * 1rem);
   letter-spacing: 1px;
   color: black;
+  font-weight: 700;
+}
+
+.header5 {
+  font-family: "Source Sans Pro", sans-serif;
   font-weight: 700;
 }
 
@@ -65,8 +71,13 @@
   color: var(--brand-slate);
 }
 
-.section-description {
+.section-description,
+.web3-block-description {
   font-size: calc((13 / var(--base-font-size) * 1rem));
   line-height: calc(18 / var(--base-font-size) * 1rem);
   color: var(--brand-whale);
+}
+
+.web3-block-description {
+  opacity: 0.6;
 }

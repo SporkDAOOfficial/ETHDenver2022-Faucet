@@ -48,6 +48,9 @@
     "web3modal": "^1.9.4"
   },
   "scripts": {
+    "build:styles": "postcss src/styles/index.tailwind.css -o src/styles/index.css",
+    "prebuild": "yarn build:styles",
+    "prestart": "yarn build:styles",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
@@ -75,7 +78,8 @@
   "devDependencies": {
     "@typechain/ethers-v5": "^5.0.0",
     "autoprefixer": "^9",
-    "postcss": "^7",
+    "postcss": "^8.3.11",
+    "postcss-cli": "^9.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "true-myth": "^4.1.1",
     "typechain": "^4.0.3"

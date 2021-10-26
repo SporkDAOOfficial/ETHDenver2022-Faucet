@@ -36,7 +36,7 @@
 }
 
 main {
-  background-image: url("./assets/bg.png");
+  background-image: url("../assets/bg.png");
   background-position: -100px center;
 }
 

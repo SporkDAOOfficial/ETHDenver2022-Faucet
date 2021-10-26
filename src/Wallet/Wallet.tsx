@@ -19,7 +19,7 @@ import {
   portis,
   torus,
 } from "../lib/contracts/connectors";
-import { Spinner } from "../Spinner";
+import { Spinner } from "../components/Spinner";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 import { walletMeta } from "assets/walletMeta";
 

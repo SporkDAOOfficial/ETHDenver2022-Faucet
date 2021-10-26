@@ -2,7 +2,7 @@
 FROM node:14-alpine as builder
 
 # Install build dependencies
-RUN apk --update add git python
+RUN apk --update add git python make alpine-sdk
 
 # Create a workspace
 RUN mkdir -p /workspace

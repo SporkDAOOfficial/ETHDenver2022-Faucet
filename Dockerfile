@@ -2,7 +2,7 @@
 FROM node:14-alpine as builder
 
 # Install build dependencies
-RUN apk --update add git python make alpine-sdk linux-headers eudev-dev
+RUN apk --update add git python make alpine-sdk linux-headers eudev-dev libusb-dev
 
 # Create a workspace
 RUN mkdir -p /workspace

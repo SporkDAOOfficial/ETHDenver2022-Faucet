@@ -10,8 +10,8 @@ on:
 
 jobs:
 
-  build-images:
-    name: Build Docker Image
+  build-deploy-images:
+    name: Build and Deploy Docker Image
     runs-on: ubuntu-latest
     steps:
       # Check out code
@@ -38,11 +38,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/dev' || startsWith(github.ref, 'refs/tags/v')) }}
           tags: ghcr.io/opolis/nft-promo:${{ steps.version.outputs.tag }}
 
-  deploy:
-    name: Deploy Docker Image
-    runs-on: ubuntu-latest
-    steps:
-      - name: deploy to cluster
+      # Roll the deployment
+      - name: Deploy to Cluster
         uses: steebchen/kubectl@v2.0.0
         with: # defaults to latest kubectl binary version
           config: ${{ secrets.KUBECONFIG }}

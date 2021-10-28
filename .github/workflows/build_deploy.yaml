@@ -41,6 +41,10 @@ jobs:
       # Roll the deployment
       - name: Deploy to Cluster
         uses: steebchen/kubectl@v2.0.0
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         with: # defaults to latest kubectl binary version
           config: ${{ secrets.KUBECONFIG }}
-          command: rollout restart deployment nft-promo
+          command: rollout restart deployment -n deo nft-promo

@@ -68,7 +68,7 @@ export const magic = new MagicConnector({
 });
 
 export const portis = new PortisConnector({
-  dAppId: process.env.WALLET_PORTIS_ID as string,
+  dAppId: process.env.REACT_APP_PORTIS_ID as string,
   networks: [1, 100],
 });
 

@@ -4,15 +4,11 @@ import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
 } from "@web3-react/injected-connector";
-// import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from "@web3-react/walletconnect-connector";
 import { UserRejectedRequestError as UserRejectedRequestErrorFrame } from "@web3-react/frame-connector";
 import { Web3Provider } from "@ethersproject/providers";
 
 import _ from "lodash";
-import {
-  useEagerConnect,
-  useInactiveListener,
-} from "../lib/hooks/provider-hooks";
+
 import {
   injected,
   walletconnect,
@@ -23,7 +19,7 @@ import { Spinner } from "../components/Spinner";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 import { walletMeta } from "assets/walletMeta";
 
-enum ConnectorNames {
+export enum ConnectorNames {
   MetaMask = "MetaMask",
   WalletConnect = "WalletConnect",
   Portis = "Portis",
@@ -87,35 +83,28 @@ function Header() {
 
 export default function Wallet() {
   const context = useWeb3React<Web3Provider>();
-  const { connector, chainId, activate, deactivate, active, error } = context;
+  const { connector, activate, error } = context;
 
   // handle logic to recognize the connector currently being activated
   const [activatingConnector, setActivatingConnector] = useState<any>();
 
   useEffect(() => {
     if (activatingConnector && activatingConnector === connector) {
+      console.log("disconnect happening");
       setActivatingConnector(undefined);
     }
   }, [activatingConnector, connector]);
 
-  // handle logic to eagerly connect to the injected ethereum provider, if it exists and has granted access already
-  const triedEager = useEagerConnect();
-
-  // handle logic to connect in reaction to certain events on the injected ethereum provider, if it exists
-  useInactiveListener(!triedEager || !!activatingConnector);
-
   return (
     <>
       <Header />
-
       <>
         <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-2 grid-rows-2 flex-1">
           {(_.keys(connectorsByName) as ConnectorNames[]).map((name) => {
             const currentConnector = connectorsByName[name];
             const activating = currentConnector === activatingConnector;
             const connected = currentConnector === connector;
-            const disabled =
-              !triedEager || !!activatingConnector || connected || !!error;
+            const disabled = !!activatingConnector || connected || !!error;
             const nameLookupKey = name.toLowerCase();
 
             return (
@@ -130,7 +119,7 @@ export default function Wallet() {
                   }}
                 >
                   {activating && (
-                    <Spinner className="top-1/2 left-1/2 absolute transform -translate-x-1/2 -translate-y-1/2 h-8" />
+                    <Spinner className="top-1/2 left-1/2 absolute transform -translate-x-1/2 -translate-y-1/2 h-8 z-10" />
                   )}
                   <img
                     src={walletMeta[nameLookupKey]?.uri}
@@ -148,65 +137,6 @@ export default function Wallet() {
             );
           })}
         </div>
-        {/* {!!(library && account) &&
-					connector === connectorsByName[ConnectorNames.Network] &&
-					chainId && (
-						<div key="switch-network-button" className="button-target">
-							<button
-								onClick={() => {
-									(connector as any).changeChainId(chainId === 1 ? 4 : 1);
-								}}
-							>
-								Switch Networks
-							</button>
-						</div>
-					)} */}
-        {/* {connector === connectorsByName[ConnectorNames.WalletConnect] && (
-					<div key="kill-walletconnect" className="button-target">
-						<button
-							onClick={() => {
-								(connector as any).close();
-							}}
-						>
-							Kill WalletConnect Session
-						</button>
-					</div>
-				)} */}
-        {/* {connector === connectorsByName[ConnectorNames.Fortmatic] && (
-					<div key="kill-fortmatic" className="button-target">
-						<button
-							onClick={() => {
-								(connector as any).close();
-							}}
-						>
-							Kill Fortmatic Session
-						</button>
-					</div>
-				)} */}
-        {connector === connectorsByName[ConnectorNames.Portis] && (
-          <>
-            {chainId !== undefined && (
-              <div key="switch-network-button-portis" className="button-target">
-                <button
-                  onClick={() => {
-                    (connector as any).changeNetwork(chainId === 1 ? 100 : 1);
-                  }}
-                >
-                  Switch Networks
-                </button>
-              </div>
-            )}
-            <div key="kill-portis" className="button-target">
-              <button
-                onClick={() => {
-                  (connector as any).close();
-                }}
-              >
-                Kill Portis Session
-              </button>
-            </div>
-          </>
-        )}
       </>
     </>
   );

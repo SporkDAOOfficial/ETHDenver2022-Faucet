@@ -4,11 +4,14 @@ import { Confirmed } from "./Confirmed";
 import { Unconfirmed } from "./Unconfirmed";
 import { BigNumber, BigNumberish, ethers } from "ethers";
 import { useNFTContracts } from "lib/contracts/contracts";
-import { formattedNFTBalance } from "lib/utils";
 
 export const CheckEligibility = () => {
   const { account } = useWeb3React();
-  const [_balance, setBalance] = useState<
+  const [_balance1, setBalance1] = useState<
+    BigNumberish | BigNumber | undefined | any
+  >();
+
+  const [_balance2, setBalance2] = useState<
     BigNumberish | BigNumber | undefined | any
   >();
 
@@ -19,17 +22,44 @@ export const CheckEligibility = () => {
       return;
     }
     (async () => {
-      const balance: BigNumberish | BigNumber | any =
-        await contract?.opolisNFT.balanceOf(account);
-      setBalance(ethers.utils.formatUnits(balance));
+      try {
+        const balance: BigNumberish | BigNumber | any =
+          await contract?.opolisNFT1.balanceOf(account);
+
+        if (typeof account !== "undefined") {
+          setBalance1(ethers.utils.formatUnits(balance));
+        } else {
+          setConfirmed(false);
+        }
+      } catch (e) {
+        setConfirmed(false);
+      }
+
+      // console.log("balance1", balance.toLocaleString());
     })();
-  }, [account, contract?.opolisNFT]);
+
+    (async () => {
+      try {
+        const balance: BigNumberish | BigNumber | any =
+          await contract?.opolisNFT2.balanceOf(account);
+
+        if (typeof account !== "undefined") {
+          setBalance2(ethers.utils.formatUnits(balance));
+        } else {
+          setConfirmed(false);
+        }
+      } catch (e) {
+        setConfirmed(false);
+      }
+
+      // console.log("balance2", balance.toLocaleString());
+    })();
+  }, [account, contract?.opolisNFT1, contract?.opolisNFT2]);
 
   const [confirmed, setConfirmed] = useState<boolean | null>(null);
 
   async function confirmEligibility() {
-    const balance = formattedNFTBalance(_balance);
-    setConfirmed(balance > 0);
+    setConfirmed(_balance1 > 0 && _balance2 > 0);
   }
 
   return confirmed == null ? (

@@ -2,34 +2,28 @@
 import { useMemo } from "react";
 
 // - Utils
-import { Maybe } from "true-myth";
 import addresses from "./address";
 
 // - Web3 Import
-import * as ethers from "ethers";
-import { Web3Provider } from "@ethersproject/providers";
-import { useWeb3React } from "@web3-react/core";
-import {
-  chainIdToNetworkType,
-  defaultNetworkId,
-  NETWORK_TYPES,
-} from "./networks";
-
+import { chainIdToNetworkType, defaultNetworkId } from "./networks";
 import { NFT__factory, NFT } from "types";
+import { ethers } from "ethers";
+import { useWeb3React } from "@web3-react/core";
+import { Web3Provider } from "@ethersproject/providers";
 
 export interface ContractAddresses {
-  opolisNFT: string;
   opolisNFT1: string;
+  opolisNFT2: string;
 }
-
 export interface Contracts {
   // add types from type chain run typegen script
-  opolisNFT: NFT;
+  opolisNFT1: NFT;
+  opolisNFT2: NFT;
 }
 
 function useNFTContracts(): Contracts | null {
   const context = useWeb3React<Web3Provider>();
-  const { library, active, chainId } = context;
+  const { library, chainId } = context;
   const contract = useMemo((): Contracts | null => {
     let contracts;
     let signer: ethers.VoidSigner | ethers.Signer = new ethers.VoidSigner(
@@ -53,10 +47,11 @@ function useNFTContracts(): Contracts | null {
     }
 
     return {
-      opolisNFT: NFT__factory.connect(contracts.opolisNFT, signer),
+      opolisNFT1: NFT__factory.connect(contracts.opolisNFT1, signer),
+      opolisNFT2: NFT__factory.connect(contracts.opolisNFT2, signer),
     };
   }, [library, chainId]);
   return contract;
 }
-console.log(() => useNFTContracts());
+
 export { useNFTContracts };

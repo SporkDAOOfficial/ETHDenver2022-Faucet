@@ -3,7 +3,7 @@ import { useWeb3React } from "@web3-react/core";
 
 export const Unconfirmed = () => {
   const context = useWeb3React<Web3Provider>();
-  const { connector, chainId, activate, deactivate, active, error } = context;
+  const { deactivate } = context;
 
   return (
     <>

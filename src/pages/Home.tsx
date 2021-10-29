@@ -8,17 +8,9 @@ import { Logo } from "components/Logo";
 import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
 import { useEffect, useState } from "react";
 
-function DeactivateButton() {
-  const { deactivate } = useWeb3React();
-  return <button onClick={() => deactivate()}>deactivate</button>;
-}
-
 const Home = (): JSX.Element => {
   const context = useWeb3React<Web3Provider>();
-  const { active, account, library, connector, deactivate } = context;
-
-  console.log(active, account, library);
-
+  const { active, account, library, connector } = context;
   const [activatingConnector, setActivatingConnector] = useState<any>();
 
   useEffect(() => {
@@ -40,7 +32,15 @@ const Home = (): JSX.Element => {
                 <>
                   <br />
                   <span className="text-gray-400 text-center block">
-                    ({library?.connection?.url})
+                    {library?.connection?.url} {" | "}
+                    <button
+                      onClick={() => {
+                        setActivatingConnector(undefined);
+                        context.deactivate();
+                      }}
+                    >
+                      deactivate
+                    </button>
                   </span>
                 </>
               )}

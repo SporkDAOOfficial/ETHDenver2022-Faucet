@@ -9,12 +9,7 @@ import { Web3Provider } from "@ethersproject/providers";
 
 import _ from "lodash";
 
-import {
-  injected,
-  walletconnect,
-  portis,
-  torus,
-} from "../lib/contracts/connectors";
+import { injected, walletconnect } from "../lib/contracts/connectors";
 import { Spinner } from "../components/Spinner";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 import { walletMeta } from "assets/walletMeta";
@@ -22,8 +17,6 @@ import { walletMeta } from "assets/walletMeta";
 export enum ConnectorNames {
   MetaMask = "MetaMask",
   WalletConnect = "WalletConnect",
-  Portis = "Portis",
-  Torus = "Torus",
 }
 
 const connectorsByName: {
@@ -32,9 +25,6 @@ const connectorsByName: {
   [ConnectorNames.MetaMask]: injected,
 
   [ConnectorNames.WalletConnect]: walletconnect,
-
-  [ConnectorNames.Torus]: torus,
-  [ConnectorNames.Portis]: portis,
 };
 
 function getErrorMessage(error: Error) {
@@ -61,8 +51,8 @@ function Header() {
     // <>
     //   <h4>{active ? "🟢" : error ? "🔴" : "🟠"}</h4>
     // </>
-    <header className="text-center mb-3">
-      <h2 className="header2">Sign in with Web3</h2>
+    <header className="text-center">
+      <h2 className="header1">Sign in with Web3</h2>
       {active ||
         (error && (
           <div className="text-error">
@@ -99,7 +89,7 @@ export default function Wallet() {
     <>
       <Header />
       <>
-        <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-2 grid-rows-2 flex-1">
+        <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-2 flex-1">
           {(_.keys(connectorsByName) as ConnectorNames[]).map((name) => {
             const currentConnector = connectorsByName[name];
             const activating = currentConnector === activatingConnector;
@@ -126,7 +116,7 @@ export default function Wallet() {
                     alt=""
                     role="presentation"
                     className="mx-auto mb-2"
-                    style={{ maxHeight: "50px" }}
+                    style={{ maxHeight: "70px" }}
                   />
                   <h3 className="header5 font-sans">{name}</h3>
                   <h4 className="web3-block-description">

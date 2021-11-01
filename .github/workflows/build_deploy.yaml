@@ -20,7 +20,7 @@ jobs:
 
       - name: Write Env File
         shell: bash
-        run: echo "${{ secrets.BUILD_ENV }}" | base64 -d > .env.local && ls -al
+        run: echo "${{ secrets.BUILD_ENV }}" | base64 -d > .env && ls -al
 
       # Determine tag we will use for images
       - name: Get Image Version

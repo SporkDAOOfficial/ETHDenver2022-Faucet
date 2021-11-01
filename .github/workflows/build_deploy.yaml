@@ -2,11 +2,11 @@ name: Build and Deploy Docker Image
 
 on:
   pull_request:
-    branches: [ dev ]
+    branches: [ main ]
   push:
     tags:
       - 'v*'
-    branches: [ '*' ]
+    branches: [ 'main' ]
 
 jobs:
 

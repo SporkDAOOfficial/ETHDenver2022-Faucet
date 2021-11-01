@@ -1,3 +1,5 @@
+import ConfettiExplosion from "@reonomy/react-confetti-explosion";
+
 export const Confirmed = (): JSX.Element => {
   return (
     <>
@@ -9,9 +11,17 @@ export const Confirmed = (): JSX.Element => {
         </h3>
       </header>
       <div>
-        <button className="btn-primary mx-auto block mb-6">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-screen-md">
+          <ConfettiExplosion duration={2000} />
+        </div>
+        <a
+          className="btn-primary mx-auto block mb-6 text-center"
+          href={process.env.REACT_APP_CALENDLY_CONFIRMED}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           Schedule an Onboarding Call
-        </button>
+        </a>
         <p className="section-description text-center px-4 md:px-24">
           Offer valid to new members who collect both Opolis NFTs at the NFT.NYC
           event and join Opolis between November 1, 2021 - January 1, 2022. See

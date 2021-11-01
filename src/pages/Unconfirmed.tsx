@@ -14,9 +14,14 @@ export const Unconfirmed = () => {
         </h3>
       </header>
       <div>
-        <button className="btn-primary mx-auto block mb-6">
+        <a
+          className="btn-primary mx-auto block mb-6 text-center"
+          href={process.env.REACT_APP_CALENDLY_UNCONFIRMED}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           Schedule call anyway
-        </button>
+        </a>
         <p className="section-description text-center px-4 md:px-24">
           It looks like you don’t have both NFT’s in your wallet. That’s okay,
           you can still sign-up for the best payroll and benefits service for

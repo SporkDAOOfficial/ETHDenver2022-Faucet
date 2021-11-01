@@ -40,8 +40,8 @@
 }
 
 .header4,
-.heade5 {
-  font-size: calc((18 / var(--base-font-size) * 1rem));
+.header5 {
+  font-size: calc(18 / var(--base-font-size) * 1rem);
   line-height: calc(24 / var(--base-font-size) * 1rem);
   letter-spacing: 1px;
   color: black;

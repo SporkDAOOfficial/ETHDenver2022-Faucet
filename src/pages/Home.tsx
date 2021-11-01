@@ -20,7 +20,7 @@ const Home = (): JSX.Element => {
   }, [activatingConnector, connector]);
 
   return (
-    <div className="App bg-blackish min-h-screen flex flex-col">
+    <div className="App bg-blackish min-h-screen flex flex-col overflow-y-auto sm:overflow-hidden">
       <header className="flex justify-between items-center p-4">
         <Logo />
 

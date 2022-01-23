@@ -21,7 +21,7 @@ export interface Contracts {
   opolisNFT2: NFT;
 }
 
-function useNFTContracts(): Contracts | null {
+function useTokenFaucet(): Contracts | null {
   const context = useWeb3React<Web3Provider>();
   const { library, chainId } = context;
   const contract = useMemo((): Contracts | null => {
@@ -47,11 +47,10 @@ function useNFTContracts(): Contracts | null {
     }
 
     return {
-      opolisNFT1: NFT__factory.connect(contracts.opolisNFT1, signer),
-      opolisNFT2: NFT__factory.connect(contracts.opolisNFT2, signer),
+      tokenFaucet: NFT__factory.connect(contracts.tokenFaucet, signer),
     };
   }, [library, chainId]);
   return contract;
 }
 
-export { useNFTContracts };
+export { useTokenFaucet };

@@ -3,7 +3,7 @@ import { ellipseAddress } from "../lib/utils";
 import { Web3Provider } from "@ethersproject/providers";
 
 import Wallet from "Wallet/Wallet";
-import { CheckEligibility } from "pages/CheckEligibility";
+import { CheckEligibility } from "pages/RequestTokens";
 import { Logo } from "components/Logo";
 import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
 import { useEffect, useState } from "react";

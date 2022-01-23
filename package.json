@@ -11,6 +11,7 @@
     "@ethersproject/providers": "^5.5.0",
     "@ethersproject/strings": "^5.1.0",
     "@ethersproject/units": "^5.1.0",
+    "@openzeppelin/contracts": "^4.4.2",
     "@portis/web3": "^4.0.6",
     "@reonomy/react-confetti-explosion": "^1.0.3",
     "@testing-library/jest-dom": "^5.11.4",
@@ -79,6 +80,7 @@
   "devDependencies": {
     "@typechain/ethers-v5": "^5.0.0",
     "autoprefixer": "^9",
+    "hardhat": "^2.8.2",
     "postcss": "^8.3.11",
     "postcss-cli": "^9.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",

@@ -9,22 +9,19 @@ import { Web3Provider } from "@ethersproject/providers";
 
 import _ from "lodash";
 
-import { injected, walletconnect } from "../lib/contracts/connectors";
+import { injected } from "../lib/contracts/connectors";
 import { Spinner } from "../components/Spinner";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 import { walletMeta } from "assets/walletMeta";
 
 export enum ConnectorNames {
   MetaMask = "MetaMask",
-  WalletConnect = "WalletConnect",
 }
 
 const connectorsByName: {
   [connectorName in ConnectorNames]: AbstractConnector;
 } = {
   [ConnectorNames.MetaMask]: injected,
-
-  [ConnectorNames.WalletConnect]: walletconnect,
 };
 
 function getErrorMessage(error: Error) {

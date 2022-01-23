@@ -4,7 +4,7 @@ export enum NETWORK_TYPES {
   ROPSTEN = "ROPSTEN",
   LOCAL = "LOCAL",
   KOVAN = "KOVAN",
-  POLYGON = "POLYGON",
+  GNOSISCHAIN = "GNOSIS CHAIN",
 }
 
 export const defaultNetworkId: number = Number(1);
@@ -19,8 +19,8 @@ export const chainIdToNetworkType = (chainId: number): NETWORK_TYPES => {
       return NETWORK_TYPES.RINKEBY;
     case 42:
       return NETWORK_TYPES.KOVAN;
-    case 137:
-      return NETWORK_TYPES.POLYGON;
+    case 100:
+      return NETWORK_TYPES.GNOSISCHAIN;
     default:
       return NETWORK_TYPES.LOCAL;
   }

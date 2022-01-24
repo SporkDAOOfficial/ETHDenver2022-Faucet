@@ -30,7 +30,7 @@ export const CheckEligibility = () => {
 
       // console.log("balance1", balance.toLocaleString());
     })();
-  }, [account, contract?.opolisNFT1, contract?.opolisNFT2]);
+  }, [account, contract?.tokenFaucet]);
 
   const [confirmed, setConfirmed] = useState<boolean | null>(null);
 

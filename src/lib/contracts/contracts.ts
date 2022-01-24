@@ -6,19 +6,19 @@ import addresses from "./address";
 
 // - Web3 Import
 import { chainIdToNetworkType, defaultNetworkId } from "./networks";
-import { NFT__factory, NFT } from "types";
+import { Faucet__factory, Faucet, ERC20__factory, ERC20 } from "../../types/ethers-contracts";
 import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 
 export interface ContractAddresses {
-  opolisNFT1: string;
-  opolisNFT2: string;
+  tokenFaucet: string;
+  //foodToken: string;
 }
 export interface Contracts {
   // add types from type chain run typegen script
-  opolisNFT1: NFT;
-  opolisNFT2: NFT;
+  tokenFaucet: Faucet;
+  //foodToken: ERC20;
 }
 
 function useTokenFaucet(): Contracts | null {
@@ -47,7 +47,7 @@ function useTokenFaucet(): Contracts | null {
     }
 
     return {
-      tokenFaucet: NFT__factory.connect(contracts.tokenFaucet, signer),
+      tokenFaucet: Faucet__factory.connect(contracts.tokenFaucet, signer),
     };
   }, [library, chainId]);
   return contract;

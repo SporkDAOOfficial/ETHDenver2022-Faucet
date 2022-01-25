@@ -7,14 +7,14 @@
 .header2,
 .header3,
 .header4 {
-  font-family: "Playfair Display", serif;
+  font-family: canada-type-gibson, sans-serif;
 }
 
 .paragraph-xl,
 .paragraph1,
 .paragraph2,
 .section-description {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: canada-type-gibson, sans-serif;
   font-weight: 400;
 }
 

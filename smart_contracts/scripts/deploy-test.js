@@ -12,7 +12,7 @@ async function main() {
   // If this script is run directly using `node` you may want to call compile
   // manually to make sure everything is compiled
   // await hre.run('compile');
-  const ADMIN = ""; 
+  const ADMIN = "0x3b8372cDffE05b7fE7Fa1b638b66c754c77Ac555"; 
   const ALLOWED_HITS = 2; 
   const FOOD_TOKENS = 5; 
 

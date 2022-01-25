@@ -1,3 +1,7 @@
+.App {
+  background: center / cover no-repeat url("../assets/background_eth.png");
+}
+
 .btn-primary {
   --btn-block-padding: calc(4 / var(--base-font-size) * 1rem);
   --btn-font-size: calc(15 / var(--base-font-size) * 1rem);
@@ -6,7 +10,7 @@
   line-height: calc(23 / var(--base-font-size) * 1rem);
   padding-block: var(--btn-block-padding);
   padding-inline: calc(16 / var(--base-font-size) * 1rem);
-  background-color: var(--brand-orange);
+  background-color: var(--brand-iris);
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
   border-radius: 100px;
@@ -36,8 +40,7 @@
 }
 
 main {
-  background-image: url("../assets/bg.png");
-  background-position: -100px center;
+  
 }
 
 .main-content {

@@ -19,7 +19,7 @@ const RPC_URLS: { [chainId: number]: string } = {
 };
 
 export const injected = new MetaMask({
-  supportedChainIds: [4, 1337, 137, 31337],
+  supportedChainIds: [4, 1337, 137, 31337, 421611],
 });
 
 export const network = new Network({

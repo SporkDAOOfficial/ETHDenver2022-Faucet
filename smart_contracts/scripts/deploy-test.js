@@ -3,7 +3,9 @@
 //
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
+require('dotenv').config();
 const hre = require("hardhat");
+const { ADMIN_WALLET } = process.env;
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -12,7 +14,7 @@ async function main() {
   // If this script is run directly using `node` you may want to call compile
   // manually to make sure everything is compiled
   // await hre.run('compile');
-  const ADMIN = "0x3b8372cDffE05b7fE7Fa1b638b66c754c77Ac555"; 
+  const ADMIN = ADMIN_WALLET; 
   const ALLOWED_HITS = 2; 
   const FOOD_TOKENS = 5; 
 

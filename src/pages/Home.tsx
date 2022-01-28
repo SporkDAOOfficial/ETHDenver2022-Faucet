@@ -3,7 +3,6 @@ import { ellipseAddress } from "../lib/utils";
 import { Web3Provider } from "@ethersproject/providers";
 
 import Wallet from "Wallet/Wallet";
-import { CheckEligibility } from "pages/RequestTokens";
 import { Logo } from "components/Logo";
 import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
 import { useEffect, useState } from "react";
@@ -18,6 +17,15 @@ const Home = (): JSX.Element => {
       setActivatingConnector(undefined);
     }
   }, [activatingConnector, connector]);
+
+console.log('active')
+console.log(active)
+console.log('account')
+console.log(account)
+console.log('library')
+console.log(library)
+console.log('connector')
+console.log(connector)
 
   return (
     <div className="App min-h-screen flex flex-col overflow-y-auto sm:overflow-hidden">
@@ -51,7 +59,8 @@ const Home = (): JSX.Element => {
       </header>
       <main className="flex-grow relative">
         <div className="main-content shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-6 py-10 sm:px-4 rounded flex flex-col">
-          {active ? <CheckEligibility /> : <Wallet />}
+          <Wallet />
+          <br /><span>{active.toString()}</span>
         </div>
       </main>
     </div>

@@ -18,15 +18,6 @@ const Home = (): JSX.Element => {
     }
   }, [activatingConnector, connector]);
 
-console.log('active')
-console.log(active)
-console.log('account')
-console.log(account)
-console.log('library')
-console.log(library)
-console.log('connector')
-console.log(connector)
-
   return (
     <div className="App min-h-screen flex flex-col overflow-y-auto sm:overflow-hidden">
       <header className="flex justify-between items-center p-4">
@@ -60,7 +51,6 @@ console.log(connector)
       <main className="flex-grow relative">
         <div className="main-content shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-6 py-10 sm:px-4 rounded flex flex-col">
           <Wallet />
-          <br /><span>{active.toString()}</span>
         </div>
       </main>
     </div>

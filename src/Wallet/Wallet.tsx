@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
+// import { NetworkConnector } from "@web3-react/network-connector"
 import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
@@ -42,7 +43,18 @@ function getErrorMessage(error: Error) {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function Header() {
-  const { active, error, deactivate } = useWeb3React();
+  const {
+    account,
+    // activate,
+    active,
+    chainId,
+    // library,
+    connector,
+    deactivate,
+    error,
+    // provider,
+    // setError,
+  } = useWeb3React();
 
   return (
     // <>
@@ -72,6 +84,37 @@ export default function Wallet() {
   const context = useWeb3React<Web3Provider>();
   const { connector, activate, error } = context;
 
+  const connectArbitrum = async () => {
+    const provider = await connector?.getProvider()
+    if (provider) {
+      try {
+        await provider.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0x66EEB' }],
+        });
+      } catch (switchError: any) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        if (switchError.code === 4902) {
+          try {
+            await provider.request({
+              method: 'wallet_addEthereumChain',
+              params: [
+                {
+                  chainId: '0x66EEB',
+                  chainName: 'Arbitrum Testnet',
+                  rpcUrls: ['https://rinkeby.arbitrum.io/rpc'],
+                },
+              ],
+            });
+          } catch (addError) {
+            // handle "add" error
+          }
+        }
+        // handle other "switch" errors
+      }
+    }
+  }
+
   // handle logic to recognize the connector currently being activated
   const [activatingConnector, setActivatingConnector] = useState<any>();
 
@@ -96,30 +139,27 @@ export default function Wallet() {
 
             return (
               <div className="mx-auto block w-full h-full" key={name}>
-                <button
-                  className="network-btns text-center relative block w-full h-full"
-                  type="button"
-                  disabled={disabled}
-                  onClick={() => {
-                    setActivatingConnector(currentConnector);
-                    activate(connectorsByName[name]);
-                  }}
-                >
-                  {activating && (
-                    <Spinner className="top-1/2 left-1/2 absolute transform -translate-x-1/2 -translate-y-1/2 h-8 z-10" />
-                  )}
-                  <img
-                    src={walletMeta[nameLookupKey]?.uri}
-                    alt=""
-                    role="presentation"
-                    className="mx-auto mb-2"
-                    style={{ maxHeight: "70px" }}
-                  />
-                  <h3 className="header5 font-sans">{name}</h3>
-                  <h4 className="web3-block-description">
-                    {walletMeta[nameLookupKey]?.description}
-                  </h4>
-                </button>
+                { 
+                  (error instanceof UnsupportedChainIdError) 
+                    ? <button onClick={connectArbitrum} type="button"
+                        className="border-2 border-blue-500 font-bold text-blue-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white mr-6">
+                          Connect to Arbitrum
+                      </button>
+                    : <button className="network-btns text-center relative block w-full h-full" type="button"
+                        disabled={disabled}
+                        onClick={() => {
+                          setActivatingConnector(currentConnector);
+                          activate(connectorsByName[name]);
+                        }}
+                      >
+                        {activating && (
+                          <Spinner className="top-1/2 left-1/2 absolute transform -translate-x-1/2 -translate-y-1/2 h-8 z-10" />
+                        )}
+                        <img className="mx-auto mb-2" src={walletMeta[nameLookupKey]?.uri} alt="" role="presentation" style={{ maxHeight: "70px" }} />
+                        <h3 className="header5 font-sans">{name}</h3>
+                        <h4 className="web3-block-description">{walletMeta[nameLookupKey]?.description}</h4>
+                      </button>
+                }
               </div>
             );
           })}

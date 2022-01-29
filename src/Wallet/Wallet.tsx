@@ -42,34 +42,16 @@ function getErrorMessage(error: Error) {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Header = () => {
-  const {
-    account,
-    // activate,
-    active,
-    chainId,
-    // library,
-    connector,
-    deactivate,
-    error,
-    // provider,
-    // setError,
-  } = useWeb3React();
+  const { active, deactivate, error } = useWeb3React();
 
   return (
-    // <>
-    //   <h4>{active ? "🟢" : error ? "🔴" : "🟠"}</h4>
-    // </>
     <header className="text-center">
       <h2 className="header1">Sign in with Web3</h2>
       {active ||
         (error && (
           <div className="text-error">
             <p>{getErrorMessage(error)}</p>
-            <button
-              className="text-black hover:underline"
-              aria-label="Deactivate and start over"
-              onClick={() => deactivate()}
-            >
+            <button onClick={() => deactivate()} className="text-black hover:underline" aria-label="Deactivate and start over" >
               Click here
             </button>{" "}
             to start over.
@@ -81,7 +63,7 @@ const Header = () => {
 
 const Wallet = () => {
   const context = useWeb3React<Web3Provider>();
-  const { connector, active, activate, error } = context;
+  const { connector, activate, error } = context;
 
   // handle logic to recognize the connector currently being activated
   const [activatingConnector, setActivatingConnector] = useState<any>();

@@ -23,7 +23,7 @@ export default function ArbitrumConnect() {
               params: [
                 {
                   chainId: '0x66EEB',
-                  chainName: 'Arbitrum Testnet',
+                  chainName: 'Arbitrum Rinkeby',
                   rpcUrls: ['https://rinkeby.arbitrum.io/rpc'],
                   blockExplorerUrls: ['https://rinkeby-explorer.arbitrum.io'],
                 },

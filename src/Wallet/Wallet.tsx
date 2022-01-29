@@ -82,7 +82,7 @@ function Header() {
 
 export default function Wallet() {
   const context = useWeb3React<Web3Provider>();
-  const { connector, activate, error } = context;
+  const { connector, active, activate, error } = context;
 
   const connectArbitrum = async () => {
     const provider = await connector?.getProvider()
@@ -103,6 +103,7 @@ export default function Wallet() {
                   chainId: '0x66EEB',
                   chainName: 'Arbitrum Testnet',
                   rpcUrls: ['https://rinkeby.arbitrum.io/rpc'],
+                  blockExplorerUrls: ['https://rinkeby-explorer.arbitrum.io'],
                 },
               ],
             });
@@ -143,22 +144,24 @@ export default function Wallet() {
                   (error instanceof UnsupportedChainIdError) 
                     ? <button onClick={connectArbitrum} type="button"
                         className="border-2 border-blue-500 font-bold text-blue-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white mr-6">
-                          Connect to Arbitrum
+                          Connect Arbitrum Rinkeby
                       </button>
-                    : <button className="network-btns text-center relative block w-full h-full" type="button"
-                        disabled={disabled}
-                        onClick={() => {
-                          setActivatingConnector(currentConnector);
-                          activate(connectorsByName[name]);
-                        }}
-                      >
-                        {activating && (
-                          <Spinner className="top-1/2 left-1/2 absolute transform -translate-x-1/2 -translate-y-1/2 h-8 z-10" />
-                        )}
-                        <img className="mx-auto mb-2" src={walletMeta[nameLookupKey]?.uri} alt="" role="presentation" style={{ maxHeight: "70px" }} />
-                        <h3 className="header5 font-sans">{name}</h3>
-                        <h4 className="web3-block-description">{walletMeta[nameLookupKey]?.description}</h4>
-                      </button>
+                    : (active === true)
+                      ? <span>You are Connected</span>
+                      : <button className="network-btns text-center relative block w-full h-full" type="button"
+                          disabled={disabled}
+                          onClick={() => {
+                            setActivatingConnector(currentConnector);
+                            activate(connectorsByName[name]);
+                          }}
+                        >
+                          {activating && (
+                            <Spinner className="top-1/2 left-1/2 absolute transform -translate-x-1/2 -translate-y-1/2 h-8 z-10" />
+                          )}
+                          <img className="mx-auto mb-2" src={walletMeta[nameLookupKey]?.uri} alt="" role="presentation" style={{ maxHeight: "70px" }} />
+                          <h3 className="header5 font-sans">{name}</h3>
+                          <h4 className="web3-block-description">{walletMeta[nameLookupKey]?.description}</h4>
+                        </button>
                 }
               </div>
             );

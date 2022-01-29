@@ -50,8 +50,10 @@ const Home = (): JSX.Element => {
         <div className="main-content shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-6 py-10 sm:px-4 rounded flex flex-col">
           {(error instanceof UnsupportedChainIdError) 
             ? <ArbitrumConnect />
-            : <Wallet />
-          }
+            : (active === true)
+                ? <span>You are Connected</span>
+                : <Wallet />
+            }
         </div>
       </main>
     </div>

@@ -4,7 +4,7 @@ import { Web3Provider } from "@ethersproject/providers";
 
 export default function ArbitrumConnect() {
   const context = useWeb3React<Web3Provider>();
-  const { connector, active, error } = context;
+  const { connector } = context;
 
   const connectArbitrum = async () => {
     const provider = await connector?.getProvider()

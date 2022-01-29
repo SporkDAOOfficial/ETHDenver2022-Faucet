@@ -52,7 +52,7 @@ export default function ArbitrumConnect() {
     <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-2 flex-1">
       <div className="mx-auto block w-full h-full">
         <button onClick={connectArbitrum} type="button"
-          className="border-2 border-rose-400 font-bold text-rose-400 px-4 py-3 transition duration-300 ease-in-out hover:bg-rose-400 hover:text-white mr-6">
+          className="border-2 border-purple-800 font-bold text-purple-800 px-4 py-3 transition duration-300 ease-in-out hover:bg-purple-800 hover:text-white mr-6">
           Connect Arbitrum Rinkeby
         </button>
       </div>

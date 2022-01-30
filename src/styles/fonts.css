@@ -73,11 +73,11 @@
 
 .section-description,
 .web3-block-description {
-  font-size: calc((13 / var(--base-font-size) * 1rem));
-  line-height: calc(18 / var(--base-font-size) * 1rem);
+  font-size: calc((13 / var(--base-font-size) * 1.25rem));
+  line-height: calc(18 / var(--base-font-size) * 1.25rem);
   color: var(--brand-whale);
 }
 
 .web3-block-description {
-  opacity: 0.6;
+  opacity: 0.75;
 }

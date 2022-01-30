@@ -6,11 +6,14 @@ import { Web3Provider } from "@ethersproject/providers";
 import { Logo } from "components/Logo";
 import Wallet from "Wallet/Wallet";
 import ArbitrumConnect from "Wallet/ArbitrumConnect";
+import GetTokens from "Wallet/GetTokens";
 
 const Home = (): JSX.Element => {
   const context = useWeb3React<Web3Provider>();
   const { active, error, account, library, connector } = context;
   const [activatingConnector, setActivatingConnector] = useState<any>();
+  const unsupportedChain = error instanceof UnsupportedChainIdError
+  console.log(unsupportedChain)
 
   useEffect(() => {
     if (activatingConnector && activatingConnector === connector) {
@@ -48,12 +51,13 @@ const Home = (): JSX.Element => {
       </header>
       <main className="flex-grow relative">
         <div className="main-content shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-6 py-10 sm:px-4 rounded flex flex-col">
-          {(error instanceof UnsupportedChainIdError) 
-            ? <ArbitrumConnect />
-            : (active === true)
-                ? <span>You are Connected</span>
-                : <Wallet />
-            }
+          { 
+            unsupportedChain
+              ? <ArbitrumConnect />
+              : !active
+                  ? <Wallet />
+                  : active && <GetTokens />
+          }
         </div>
       </main>
     </div>

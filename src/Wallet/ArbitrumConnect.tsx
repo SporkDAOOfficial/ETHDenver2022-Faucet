@@ -23,9 +23,14 @@ export default function ArbitrumConnect() {
               params: [
                 {
                   chainId: '0x66EEB',
-                  chainName: 'Arbitrum Rinkeby',
-                  rpcUrls: ['https://rinkeby.arbitrum.io/rpc'],
                   blockExplorerUrls: ['https://rinkeby-explorer.arbitrum.io'],
+                  chainName: 'Arbitrum Rinkeby',
+                  nativeCurrency: {
+                    decimals: 18,
+                    name: 'Ether',
+                    symbol: 'ETH'
+                  },
+                  rpcUrls: ['https://rinkeby.arbitrum.io/rpc']
                 },
               ],
             });

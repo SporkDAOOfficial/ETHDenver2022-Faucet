@@ -9,6 +9,7 @@
     "hardhat": "^2.8.2"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.4.2"
+    "@openzeppelin/contracts": "^4.4.2",
+    "react-device-detect": "^2.1.2"
   }
 }

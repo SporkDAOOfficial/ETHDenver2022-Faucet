@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
-import { useWeb3React } from "@web3-react/core";
-import { Web3Provider } from "@ethersproject/providers";
+// import { ethers } from 'ethers'
+// import FaucetTest from 
+  // '../../smart_contracts/artifacts/contracts/Faucet.sol/FaucetTest.json'
+// const faucetAddress = "0x52A67B01f029ED2EfEa7E17Dbb56397a612bf245"
+
+import { useTokenFaucet } from "lib/contracts/contracts";
 
 const GetTokens = () => {
-  const context = useWeb3React<Web3Provider>();
-  const { connector } = context;
 
-  const getIt = () => {
-    console.log("git it")
+  const contract = useTokenFaucet();
+
+  async function getIt() {
+    console.log('getting tokens?')
+    try {
+      const retVal = await contract?.tokenFaucet.hitMe();
+      console.log(retVal)
+    } catch (error) {
+      console.log(`contract.hitMe error: ${error}`)
+    }
   }
 
   return (

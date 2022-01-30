@@ -22,20 +22,22 @@ export default function ArbitrumConnect() {
               method: 'wallet_addEthereumChain',
               params: [
                 {
-                  chainId: '0x66EEB',
+                  chainId: '0x66EEB', // A 0x-prefixed hexadecimal string
                   blockExplorerUrls: ['https://rinkeby-explorer.arbitrum.io'],
                   chainName: 'Arbitrum Rinkeby',
                   nativeCurrency: {
                     decimals: 18,
                     name: 'Ether',
-                    symbol: 'ETH'
+                    symbol: 'ETH' // 2-6 characters long
                   },
                   rpcUrls: ['https://rinkeby.arbitrum.io/rpc']
                 },
               ],
             });
-          } catch (addError) {
-            // handle "add" error
+          } catch (addError: any) {
+            // user rejects the request to "add chain" or param values are wrong, maybe you didn't use hex above for `chainId`?
+            console.log(`wallet_addEthereumChain Error: ${addError.message}`)
+            console.log(addError)
           }
         }
         // handle other "switch" errors

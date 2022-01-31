@@ -1,1 +1,1 @@
-export const faucetAddress = "";
+export const faucetAddress = "0x3B44F3d1408894431adA109852a49409BD691CD8";

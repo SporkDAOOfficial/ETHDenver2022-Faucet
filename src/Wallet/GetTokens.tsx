@@ -10,7 +10,7 @@ const GetTokens = () => {
 
   const contract = useTokenFaucet();
 
-  async function getIt() {
+  async function getSum() {
     console.log('getting tokens?')
     try {
       const retVal = await contract?.tokenFaucet.hitMe();
@@ -23,7 +23,7 @@ const GetTokens = () => {
   return (
     <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-2 flex-1">
       <div className="mx-auto block w-full h-full">
-        <button onClick={getIt} type="button"
+        <button onClick={getSum} type="button"
           className="border-2 border-purple-800 font-bold text-purple-800 px-4 py-3 transition duration-300 ease-in-out hover:bg-purple-800 hover:text-white mr-6">
           Get Sum Tokenz
         </button>

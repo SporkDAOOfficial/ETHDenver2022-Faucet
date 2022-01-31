@@ -9,14 +9,14 @@ body {
 .btn-primary {
   --btn-block-padding: calc(4 / var(--base-font-size) * 1rem);
   --btn-font-size: calc(15 / var(--base-font-size) * 1rem);
-
+  /* background-color: var(--brand-violet); */
+  background-color: #291940;
   font-size: var(--btn-font-size);
   line-height: calc(23 / var(--base-font-size) * 1rem);
   padding-block: var(--btn-block-padding);
   padding-inline: calc(16 / var(--base-font-size) * 1rem);
-  background-color: var(--brand-iris);
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: 600;
+  font-family: canada-type-gibson, sans-serif;
+  font-weight: 500;
   border-radius: 100px;
   cursor: pointer;
   appearance: none;
@@ -26,7 +26,6 @@ body {
 .main-content .btn-primary {
   --btn-block-padding: calc(14 / var(--base-font-size) * 1rem);
   --btn-font-size: calc(18 / var(--base-font-size) * 1rem);
-
   width: calc(298 / var(--base-font-size) * 1rem);
   max-width: 100%;
 }
@@ -39,18 +38,28 @@ body {
 
 .btn-primary[disabled],
 .btn-primary:disabled {
-  background-color: var(--brand-orange-faded);
+  background-color: var(--brand-violet);
   cursor: not-allowed;
 }
 
-main {
-  
+.main-content {
+  width: calc(400 / var(--base-font-size) * 1rem);
+  /* min-height: calc(387 / var(--base-font-size) * 1rem); */
+  height: calc(375 / var(--base-font-size) * 1rem);
+  max-width: 100%;
+  border-radius: 15px;
+  border: 3px solid var(--brand-rose);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.main-content {
-  width: calc(513 / var(--base-font-size) * 1rem);
-  min-height: calc(387 / var(--base-font-size) * 1rem);
-  max-width: 100%;
+.walletButtonContainer {
+  width: fit-content;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.walletButtonContainer img {
+  max-height: 100px;
 }
 
 .walletButtonContainer button {
@@ -70,5 +79,5 @@ main {
 }
 
 .walletButtonContainer:hover button:hover img {
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
 }

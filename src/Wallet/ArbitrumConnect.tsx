@@ -28,7 +28,7 @@ export default function ArbitrumConnect() {
                   nativeCurrency: {
                     decimals: 18,
                     name: 'Ether',
-                    symbol: 'ETH' // 2-6 characters long
+                    symbol: 'ARETH' // 2-6 characters long
                   },
                   rpcUrls: ['https://rinkeby.arbitrum.io/rpc']
                 },

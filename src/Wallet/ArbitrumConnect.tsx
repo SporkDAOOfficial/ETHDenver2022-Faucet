@@ -12,7 +12,7 @@ export default function ArbitrumConnect() {
       try {
         await provider.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x66EEB' }],
+          params: [{ chainId: '0x66eeb' }],
         });
       } catch (switchError: any) {
         // This error code indicates that the chain has not been added to MetaMask.
@@ -22,7 +22,7 @@ export default function ArbitrumConnect() {
               method: 'wallet_addEthereumChain',
               params: [
                 {
-                  chainId: '0x66EEB', // A 0x-prefixed hexadecimal string
+                  chainId: '0x66eeb', // A 0x-prefixed hexadecimal string
                   blockExplorerUrls: ['https://rinkeby-explorer.arbitrum.io'],
                   chainName: 'Arbitrum Rinkeby',
                   nativeCurrency: {

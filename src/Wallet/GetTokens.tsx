@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 // import { ethers } from 'ethers'
 // import FaucetTest from 
   // '../../smart_contracts/artifacts/contracts/Faucet.sol/FaucetTest.json'
-// const faucetAddress = "0x52A67B01f029ED2EfEa7E17Dbb56397a612bf245"
+// const faucetAddress = "0x3B44F3d1408894431adA109852a49409BD691CD8"
 
 import { useTokenFaucet } from "lib/contracts/contracts";
 

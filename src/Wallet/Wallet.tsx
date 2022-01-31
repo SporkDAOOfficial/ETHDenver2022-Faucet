@@ -6,6 +6,7 @@ import {
 } from "@web3-react/injected-connector";
 import { UserRejectedRequestError as UserRejectedRequestErrorFrame } from "@web3-react/frame-connector";
 import { Web3Provider } from "@ethersproject/providers";
+import { motion } from "framer-motion";
 
 import _ from "lodash";
 
@@ -78,7 +79,7 @@ const Wallet = () => {
   return (
     <>
       <Header />
-      <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-2 flex-1">
+      <div className="walletButtonContainer">
         {(_.keys(connectorsByName) as ConnectorNames[]).map((name) => {
           const currentConnector = connectorsByName[name];
           const activating = currentConnector === activatingConnector;
@@ -88,7 +89,8 @@ const Wallet = () => {
 
           return (
             <div className="mx-auto block w-full h-full text-center" key={name}>
-              <button className="network-btns text-center relative block w-full h-full" type="button"
+              <button
+                className="network-btns text-center relative block w-full h-full" type="button"
                 disabled={disabled}
                 onClick={() => {
                   setActivatingConnector(currentConnector);
@@ -96,11 +98,21 @@ const Wallet = () => {
                 }}
               >
                 {activating && (
-                  <Spinner className="top-1/2 left-1/2 absolute transform -translate-x-1/2 -translate-y-1/2 h-8 z-10" />
+                  <Spinner
+                    className="top-1/2 left-1/2 absolute transform -translate-x-1/2 -translate-y-1/2 h-8 z-10"
+                  />
                 )}
-                <img className="mx-auto mb-2" src={walletMeta[nameLookupKey]?.uri} alt="" role="presentation" style={{ maxHeight: "70px" }} />
-                <h3 className="header5 font-sans">{name}</h3>
-                <h4 className="web3-block-description">{walletMeta[nameLookupKey]?.description}</h4>
+                <motion.img
+                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.075 }}
+                  className="mx-auto mb-10" src={walletMeta[nameLookupKey]?.uri} alt="" role="presentation" />
+                {/* <h3 className="header5 font-sans">{name}</h3> */}
+                <motion.h4
+                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="btn-primary">
+                  {walletMeta[nameLookupKey]?.description}
+                </motion.h4>
               </button>
             </div>
           );

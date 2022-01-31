@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 // import { ethers } from 'ethers'
-// import FaucetTest from 
+// import FaucetTest from
   // '../../smart_contracts/artifacts/contracts/Faucet.sol/FaucetTest.json'
 // const faucetAddress = "0x52A67B01f029ED2EfEa7E17Dbb56397a612bf245"
 
@@ -21,7 +21,7 @@ const GetTokens = () => {
   }
 
   return (
-    <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-2 flex-1">
+    <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-4 flex-1">
       <div className="mx-auto block w-full h-full">
         <button onClick={getIt} type="button"
           className="border-2 border-purple-800 font-bold text-purple-800 px-4 py-3 transition duration-300 ease-in-out hover:bg-purple-800 hover:text-white mr-6">

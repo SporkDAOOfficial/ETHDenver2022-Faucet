@@ -22,6 +22,7 @@
   font-size: calc((36 / var(--base-font-size) * 1rem));
   line-height: calc(48 / var(--base-font-size) * 1rem);
   color: var(--brand-blackish);
+  font-family: canada-type-gibson, sans-serif;
   font-weight: 700;
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Web3ReactProvider } from "@web3-react/core";
-import { Web3Provider } from "@ethersproject/providers";
+// import { Web3ReactProvider } from "@web3-react/core";
+// import { Web3Provider } from "@ethersproject/providers";
 
 import "./styles/index.css";
 import "./styles/palette.css";
@@ -13,11 +13,11 @@ import Home from "./pages/Home";
 import { ViewProvider } from "context/AppContext";
 
 // Web3 Wallet
-function getLibrary(provider: any): Web3Provider {
-  const library = new Web3Provider(provider);
-  library.pollingInterval = 12000;
-  return library;
-}
+// function getLibrary(provider: any): Web3Provider {
+//   const library = new Web3Provider(provider);
+//   library.pollingInterval = 12000;
+//   return library;
+// }
 
 ReactDOM.render(
   // <React.StrictMode>

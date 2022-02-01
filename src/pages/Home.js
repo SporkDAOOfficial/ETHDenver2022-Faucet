@@ -6,6 +6,7 @@ import { Web3Provider } from "@ethersproject/providers";
 import { ViewContext } from "../context/AppContext"
 
 import { Logo } from "components/Logo";
+import Pill from "components/Pill";
 import Wallet from "Wallet/Wallet";
 import ArbitrumConnect from "Wallet/ArbitrumConnect";
 import GetTokens from "Wallet/GetTokens";
@@ -30,7 +31,9 @@ const Home = () => {
       <header className="flex justify-between items-center p-4">
         <Logo />
         <div className="signin-button flex flex-col gap-y-1">
-          {account && (
+          <Pill />
+
+          {/* {account && (
             <span className="text-white" title={account}>
               {ellipseAddress(account)}
               {!!library?.connection?.url && (
@@ -50,12 +53,12 @@ const Home = () => {
                 </>
               )}
             </span>
-          )}
+          )} */}
         </div>
       </header>
       <main className="flex-grow relative">
         <div className="main-content shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-6 py-10 sm:px-4 rounded flex flex-col">
-          { 
+          {
             unsupportedChain
               ? <ArbitrumConnect />
               : !active

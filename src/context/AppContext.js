@@ -18,9 +18,7 @@ export const bigNumberify = (amt) => {
   return ethers.utils.parseEther(amt)
 }
 
-export const formatAddress = (addr) => {
-  return addr && `${addr.substr(0, 6)}...${addr.substr(-4)}`
-}
+
 
 export const smolNumberify = (amt, decimals = 18) => {
   return parseFloat(ethers.utils.formatUnits(amt, decimals))
@@ -42,7 +40,7 @@ export const ViewProvider = ({ children }) => {
           address: accounts[0],
           // balance: parseInt(smolNumberify(balance))
         }
-        //dispatch({ type: 'SET_ACCOUNT', payload: connectedAccount })
+        dispatch({ type: 'SET_ACCOUNT', payload: connectedAccount })
       } catch (e) {
         console.log(e)
       }
@@ -79,24 +77,24 @@ export const ViewProvider = ({ children }) => {
     if (window.ethereum) {
       connectUser()
 
-      if (window.ethereum) {
-        if (window.ethereum.isMetaMask) {
-          window.ethereum.on('accountsChanged', () => {
-            connectUser()
-            window.location.replace('/')
-          })
-          window.ethereum.on('chainChanged', () => {
-            connectUser()
-            window.location.replace('/')
-          })
-        }
-      } else {
-        // dispatch({
-        //   type: 'INSTALL_METAMASK',
-        //   instal: {}
-        // })
-        console.log("dispatch goes here")
-      }
+      // if (window.ethereum) {
+      //   if (window.ethereum.isMetaMask) {
+      //     window.ethereum.on('accountsChanged', () => {
+      //       connectUser()
+      //       window.location.replace('/')
+      //     })
+      //     window.ethereum.on('chainChanged', () => {
+      //       connectUser()
+      //       window.location.replace('/')
+      //     })
+      //   }
+      // } else {
+      //   // dispatch({
+      //   //   type: 'INSTALL_METAMASK',
+      //   //   instal: {}
+      //   // })
+      //   console.log("dispatch goes here")
+      // }
 
     }
   }, [connectUser, dispatch])
@@ -118,7 +116,7 @@ export const ViewProvider = ({ children }) => {
   return (
     <ViewContext.Provider
       value={{
-        state, 
+        state,
         dispatch,
         contracts,
         isLoading,

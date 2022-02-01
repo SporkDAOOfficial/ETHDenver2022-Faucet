@@ -7,9 +7,7 @@ import { ethers } from 'ethers'
 import { useImmerReducer } from 'use-immer'
 
 import { initialState } from './initialState.js'
-
 import { reducer } from '../reducers'
-// import { smolNumberify } from '../utils'
 
 export const ViewContext = createContext(initialState)
 
@@ -17,9 +15,6 @@ export const ViewContext = createContext(initialState)
 export const bigNumberify = (amt) => {
   return ethers.utils.parseEther(amt)
 }
-
-
-
 export const smolNumberify = (amt, decimals = 18) => {
   return parseFloat(ethers.utils.formatUnits(amt, decimals))
 }
@@ -31,11 +26,9 @@ export const ViewProvider = ({ children }) => {
   const faucetAddress = '0x3B44F3d1408894431adA109852a49409BD691CD8'
 
   const setAccount = useCallback(async (provider, accounts, networkName, chainId, faucetAddress) => {
-    console.log("set account beginning")
     if (accounts.length > 0) {
       try {
         // const balance = await faucetAddress.balanceOf(accounts[0])
-        console.log("connecting account")
         const connectedAccount = {
           address: accounts[0],
           // balance: parseInt(smolNumberify(balance))
@@ -45,7 +38,7 @@ export const ViewProvider = ({ children }) => {
         console.log(e)
       }
     } else {
-      //dispatch({ type: 'SET_ACCOUNT', payload: initialState.user })
+      dispatch({ type: 'SET_ACCOUNT', payload: initialState.user })
     }
   }, [dispatch])
 

@@ -14,7 +14,6 @@ const GetTokens = () => {
       const hitMe = await faucet.hitMe()
       dispatch({ type: 'SET_LOADING', payload: true })
       await hitMe.wait()
-      dispatch({ type: 'SET_CLAIMED', payload: true })
       const buffiTokenAdded = await window.ethereum.request({
         method: 'wallet_watchAsset',
         params: {
@@ -29,6 +28,7 @@ const GetTokens = () => {
       })
 
       if (buffiTokenAdded) {
+        dispatch({ type: 'SET_CLAIMED', payload: true })
         console.log('Buffitoken Added!')
       } else {
         console.log('Something went terribly wrong')

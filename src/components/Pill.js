@@ -11,7 +11,7 @@ const Pill = () => {
   const { address } = user
 
   return address
-    ? <div className="pill">
+    ? <div className="pill signin-button flex flex-col gap-y-1">
       <p>{formatAddress(address)}</p>
       <div>
         <img src={logout} alt="Logout"/>

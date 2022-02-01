@@ -88,12 +88,10 @@ body {
   align-items: center;
   background-color: var(--brand-white);
   border: 2px solid var(--brand-white);
-  /* box-shadow: rgb(256, 256, 256) 0px 0px 0px 2px; */
   color: var(--brand-white);
   font-family: canada-type-gibson, sans-serif;
   border-radius: 25px;
   overflow: hidden;
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
   user-select: none;
 }
 
@@ -106,5 +104,5 @@ body {
 
 .pill div {
   padding: 0 0.75em 0 0.5em;
-  /* border-left: 1px solid rgba(26, 30, 31, 0.5); */
+  cursor: pointer;
 }

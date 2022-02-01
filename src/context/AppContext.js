@@ -57,7 +57,10 @@ export const ViewProvider = ({ children }) => {
           payload: {
             provider,
             signer,
-            name
+            chainId,
+            name,
+            buffiTruck,
+            faucet
           }
         })
       }
@@ -69,17 +72,9 @@ export const ViewProvider = ({ children }) => {
   useEffect(() => {
     if (window.ethereum) {
       connectUser()
-
       // if (window.ethereum) {
       //   if (window.ethereum.isMetaMask) {
-      //     window.ethereum.on('accountsChanged', () => {
-      //       connectUser()
-      //       window.location.replace('/')
-      //     })
-      //     window.ethereum.on('chainChanged', () => {
-      //       connectUser()
-      //       window.location.replace('/')
-      //     })
+      //
       //   }
       // } else {
       //   // dispatch({
@@ -88,8 +83,17 @@ export const ViewProvider = ({ children }) => {
       //   // })
       //   console.log("dispatch goes here")
       // }
-
     }
+
+    window.ethereum.on('accountsChanged', () => {
+      connectUser()
+    })
+    window.ethereum.on('chainChanged', () => {
+      connectUser()
+    })
+    window.ethereum.on('disconnect', () => {
+      dispatch({ type: 'SET_ACCOUNT', payload: initialState.user })
+    })
   }, [connectUser, dispatch])
 
   const { contracts, isLoading, isConnected, name, chainId, provider, user, feedback } = state

@@ -1,24 +1,28 @@
-import { useEffect, useState } from "react";
-import { useWeb3React } from "@web3-react/core";
-import { Web3Provider } from "@ethersproject/providers";
+import { useEffect, useState, useContext } from "react";
+// import { useWeb3React } from "@web3-react/core";
+// import { Web3Provider } from "@ethersproject/providers";
+
+import { ViewContext } from "../context/AppContext"
 
 export default function ArbitrumConnect() {
-  const context = useWeb3React<Web3Provider>();
-  const { connector } = context;
+  // const context = useWeb3React<Web3Provider>();
+  // const { connector } = context;
+
+  const { provider } = useContext(ViewContext)
 
   const connectArbitrum = async () => {
-    const provider = await connector?.getProvider()
+    // const provider = await connector?.getProvider()
     if (provider) {
       try {
-        await provider.request({
+        await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: '0x66eeb' }],
         });
-      } catch (switchError: any) {
+      } catch (switchError) {
         // This error code indicates that the chain has not been added to MetaMask.
         if (switchError.code === 4902) {
           try {
-            await provider.request({
+            await window.ethereum.request({
               method: 'wallet_addEthereumChain',
               params: [
                 {
@@ -34,7 +38,7 @@ export default function ArbitrumConnect() {
                 },
               ],
             });
-          } catch (addError: any) {
+          } catch (addError) {
             // user rejects the request to "add chain" or param values are wrong, maybe you didn't use hex above for `chainId`?
             console.log(`wallet_addEthereumChain Error: ${addError.message}`)
             console.log(addError)
@@ -46,14 +50,14 @@ export default function ArbitrumConnect() {
   }
 
   // handle logic to recognize the connector currently being activated
-  const [activatingConnector, setActivatingConnector] = useState<any>();
-
-  useEffect(() => {
-    if (activatingConnector && activatingConnector === connector) {
-      console.log("disconnect happening");
-      setActivatingConnector(undefined);
-    }
-  }, [activatingConnector, connector]);
+  // const [activatingConnector, setActivatingConnector] = useState<any>();
+  //
+  // useEffect(() => {
+  //   if (activatingConnector && activatingConnector === connector) {
+  //     console.log("disconnect happening");
+  //     setActivatingConnector(undefined);
+  //   }
+  // }, [activatingConnector, connector]);
 
   return (
     <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-2 flex-1">

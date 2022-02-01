@@ -10,6 +10,7 @@ import "./styles/elements.css";
 
 import reportWebVitals from "./reportWebVitals";
 import Home from "./pages/Home";
+import { ViewProvider } from "context/AppContext";
 
 // Web3 Wallet
 function getLibrary(provider: any): Web3Provider {
@@ -19,11 +20,12 @@ function getLibrary(provider: any): Web3Provider {
 }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Web3ReactProvider getLibrary={getLibrary}>
+  // <React.StrictMode>
+    <ViewProvider>
       <Home />
-    </Web3ReactProvider>
-  </React.StrictMode>,
+    </ViewProvider>
+  // </React.StrictMode>
+  ,
   document.getElementById("root")
 );
 

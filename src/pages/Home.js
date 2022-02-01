@@ -1,19 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { ellipseAddress } from "../lib/utils";
 import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
+
+import { ViewContext } from "../context/AppContext"
 
 import { Logo } from "components/Logo";
 import Wallet from "Wallet/Wallet";
 import ArbitrumConnect from "Wallet/ArbitrumConnect";
 import GetTokens from "Wallet/GetTokens";
 
-const Home = (): JSX.Element => {
-  const context = useWeb3React<Web3Provider>();
+const Home = () => {
+  const context = useWeb3React();
   const { active, error, account, library, connector } = context;
-  const [activatingConnector, setActivatingConnector] = useState<any>();
+  const [activatingConnector, setActivatingConnector] = useState();
   const unsupportedChain = error instanceof UnsupportedChainIdError
   console.log(unsupportedChain)
+
+	const { user, provider, contracts, state, dispatch, chainId } = useContext(ViewContext)
 
   useEffect(() => {
     if (activatingConnector && activatingConnector === connector) {
@@ -55,8 +59,8 @@ const Home = (): JSX.Element => {
             unsupportedChain
               ? <ArbitrumConnect />
               : !active
-                  ? <Wallet />
-                  : active && <GetTokens />
+                ? <Wallet />
+                : active && <GetTokens />
           }
         </div>
       </main>

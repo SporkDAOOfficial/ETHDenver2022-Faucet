@@ -29,6 +29,24 @@ body {
   max-width: 100%;
 }
 
+.btn-secondary {
+  --btn-block-padding: calc(14 / var(--base-font-size) * 1rem);
+  --btn-font-size: calc(18 / var(--base-font-size) * 1rem);
+  width: calc(298 / var(--base-font-size) * 1rem);
+  max-width: 100%;
+  font-size: var(--btn-font-size);
+  line-height: calc(23 / var(--base-font-size) * 1rem);
+  padding-block: var(--btn-block-padding);
+  padding-inline: calc(16 / var(--base-font-size) * 1rem);
+  font-family: canada-type-gibson, sans-serif;
+  font-weight: 500;
+  border-radius: 100px;
+  cursor: pointer;
+  appearance: none;
+  color: white;
+  background-color: var(--brand-rose);
+}
+
 .btn-primary.with-icon {
   display: flex;
   align-items: center;

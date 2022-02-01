@@ -28,7 +28,7 @@ export const ViewProvider = ({ children }) => {
   const setAccount = useCallback(async (provider, accounts, networkName, chainId, faucetAddress) => {
     if (accounts.length > 0) {
       try {
-        // const balance = await faucetAddress.balanceOf(accounts[0])
+        // const balance = await buffiTruck.balanceOf(accounts[0])
         const connectedAccount = {
           address: accounts[0],
           // balance: parseInt(smolNumberify(balance))
@@ -49,7 +49,9 @@ export const ViewProvider = ({ children }) => {
         const signer = await provider.getSigner()
         const { name, chainId } = await provider.getNetwork()
         const buffiTruck = new ethers.Contract(BuffiTruckAddress, buffiTruckAbi.abi, signer)
+        console.log(buffiTruck)
         const faucet = new ethers.Contract(faucetAddress, faucetAbi.abi, signer)
+        console.log(faucet)
         const accounts = await window.ethereum.request({ method: 'eth_accounts' })
         setAccount(provider, accounts, name, chainId, buffiTruck, faucet)
         dispatch({
@@ -96,7 +98,7 @@ export const ViewProvider = ({ children }) => {
     })
   }, [connectUser, dispatch])
 
-  const { contracts, isLoading, isConnected, name, chainId, provider, user, feedback } = state
+  const { contracts, isLoading, isConnected, name, chainId, provider, user, feedback, claimed } = state
 
   const connect = async () => {
     console.log("beginning of connect()")
@@ -123,6 +125,7 @@ export const ViewProvider = ({ children }) => {
         name,
         chainId,
         feedback,
+        claimed,
         actions: { connect }
       }}>
       {children}

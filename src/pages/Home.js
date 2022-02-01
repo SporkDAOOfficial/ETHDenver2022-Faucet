@@ -9,7 +9,6 @@ import ArbitrumConnect from "Wallet/ArbitrumConnect";
 import GetTokens from "Wallet/GetTokens";
 
 const Home = () => {
-
 	const { user, provider, chainId } = useContext(ViewContext)
   const { address } = user
 

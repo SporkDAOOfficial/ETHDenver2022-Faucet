@@ -1,17 +1,15 @@
-import { useEffect, useState, useContext } from "react";
-// import { useWeb3React } from "@web3-react/core";
-// import { Web3Provider } from "@ethersproject/providers";
+import { useContext } from "react";
 
+import { motion } from 'framer-motion'
+
+import arbitrumLogo from '../assets/arbitrum-logo.svg'
 import { ViewContext } from "../context/AppContext"
 
 export default function ArbitrumConnect() {
-  // const context = useWeb3React<Web3Provider>();
-  // const { connector } = context;
 
   const { provider } = useContext(ViewContext)
 
   const connectArbitrum = async () => {
-    // const provider = await connector?.getProvider()
     if (provider) {
       try {
         await window.ethereum.request({
@@ -49,24 +47,28 @@ export default function ArbitrumConnect() {
     }
   }
 
-  // handle logic to recognize the connector currently being activated
-  // const [activatingConnector, setActivatingConnector] = useState<any>();
-  //
-  // useEffect(() => {
-  //   if (activatingConnector && activatingConnector === connector) {
-  //     console.log("disconnect happening");
-  //     setActivatingConnector(undefined);
-  //   }
-  // }, [activatingConnector, connector]);
-
   return (
-    <div className="walletButtonContainer grid gap-y-4 sm:grid-cols-2 flex-1">
-      <div className="mx-auto block w-full h-full">
-        <button onClick={connectArbitrum} type="button"
-          className="border-2 border-purple-800 font-bold text-purple-800 px-4 py-3 transition duration-300 ease-in-out hover:bg-purple-800 hover:text-white mr-6">
-          Connect Arbitrum Rinkeby
+    <>
+    <header className="text-center">
+      <h2 className="header1">Oops</h2>
+      <p>You aren't connected to Arbitrum Rinkeby</p>
+    </header>
+    <div className="walletButtonContainer">
+      <div className="mx-auto block w-full h-full text-center">
+        <button onClick={connectArbitrum} disabled={false} type="button" className="network-btns text-center relative block w-full h-full">
+          <motion.img
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.075 }}
+            className="mx-auto mb-10" src={arbitrumLogo} alt="" role="presentation" />
+            <motion.h4
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
+              className="btn-primary">
+                Connect Network
+              </motion.h4>
         </button>
       </div>
     </div>
+    </>
   );
 }

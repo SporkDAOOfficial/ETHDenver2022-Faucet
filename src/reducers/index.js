@@ -20,12 +20,6 @@ export const reducer = (state, action) => {
         return
       }
 
-      case 'CONNECTED_CONTRACTS': {
-        // state.contracts.spread = action.payload.spread
-        // state.contracts.dai = action.payload.dai
-        return
-      }
-
       case 'SET_ACCOUNT': {
         state.user = action.payload
         state.isLoading = false

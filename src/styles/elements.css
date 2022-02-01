@@ -99,7 +99,7 @@ body {
 
 .pill p {
   background-color: var(--brand-violet);
-  padding: 0.5em 1.25em 0.25em;
+  padding: 0.5em 1.25em 0.4em;
   border-radius: 25px;
   font-size: 1.1em;
 }

@@ -1,12 +1,10 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 
 import logout from '../assets/logout.svg'
 import { ViewContext } from "../context/AppContext"
 
 
-const formatAddress = (addr) => {
-  return addr && `${addr.substr(0, 6)}...${addr.substr(-4)}`
-}
+const formatAddress = (addr) => addr && `${addr.substr(0, 6)}...${addr.substr(-4)}`
 
 const Pill = () => {
   const { user } = useContext(ViewContext)

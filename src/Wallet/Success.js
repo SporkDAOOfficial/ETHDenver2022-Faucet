@@ -26,7 +26,7 @@ const Wallet = () => {
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.05 }}
               className="btn-secondary">
-              We're going to Eth Denver
+              Let's go to ETHDenver!
             </motion.a>
           </button>
         </div>

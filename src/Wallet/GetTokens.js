@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { motion } from 'framer-motion'
 import { ViewContext } from "../context/AppContext"
 
-import buffiGwei from '../assets/buffigwei-1.png'
+import buffiGwei from '../assets/buffToken.png'
 
 const GetTokens = () => {
   const { contracts, isLoading, dispatch } = useContext(ViewContext)

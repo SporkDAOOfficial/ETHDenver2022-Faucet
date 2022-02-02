@@ -40,7 +40,7 @@ const GetTokens = () => {
   return (
     <>
       <header className="text-center">
-        <h2 className="header1">Claim your BuffiGWEI Tokens</h2>
+        <h2 className="header1">Claim BuffiGWEI Tokens</h2>
       </header>
       <div className="walletButtonContainer">
         <div className="mx-auto block w-full h-full">

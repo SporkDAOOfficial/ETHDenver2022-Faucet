@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { motion } from "framer-motion";
 import { ViewContext } from "../context/AppContext"
 
-import buffifeti from '../assets/buffifeti.png'
+import buffiFetti from '../assets/buffifeti.png'
 
 const Wallet = () => {
   const { actions } = useContext(ViewContext)
@@ -19,7 +19,7 @@ const Wallet = () => {
             <motion.img
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.075 }}
-              className="mx-auto mb-10" src={buffifeti} alt="Buffifeti" role="presentation" />
+              className="mx-auto mb-10" src={buffiFetti} alt="Buffifeti" role="presentation" />
             <motion.a
               rel='noopener noreferrer'
               href='https://www.ethdenver.com/'

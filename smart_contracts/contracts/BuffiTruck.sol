@@ -16,8 +16,9 @@ contract BuffiTruckTest is ERC20 {
         _;
     }
 
-    constructor(address _minter) ERC20("BuffiTruck Token", "BUFF") {
-        _minter = minter; 
+    constructor(address _minter, uint amount) ERC20("BuffiTruck Token", "BUFF") {
+        minter = _minter; 
+        _mint(minter, amount);
     }
 
     function mint(address dest, uint amount) external onlyMinter returns (uint){

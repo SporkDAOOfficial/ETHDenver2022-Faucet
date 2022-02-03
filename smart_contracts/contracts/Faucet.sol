@@ -20,8 +20,9 @@ contract FaucetTest is ReentrancyGuard {
     address public token; //ERC20 to be distributed
     address public admin; //Owner for admin function
     uint8 public allowedHits; //Max times an address can call faucet function
-    uint public feedMe; //Amount of food tokens provided
+    uint[] public lvls; //Different categories
 
+    mapping (uint => uint) public myFood; //Tracking number of tokens per 
     mapping (address => uint) public hits; //Tracking number of calls
 
     modifier onlyAdmin {
@@ -33,20 +34,28 @@ contract FaucetTest is ReentrancyGuard {
         address _admin,
         address _token,
         uint8 _allowedHits,
-        uint _feedMe
+        uint[] memory _lvls,
+        uint[] memory _tokensPerLvl
     ) {
+        require(_lvls.length == _tokensPerLvl.length, "!match");
         admin = _admin;
         token = _token;
         allowedHits = _allowedHits;
-        feedMe = _feedMe;
+        
+        for (uint i=0; i< _lvls.length; i++){
+            myFood[_lvls[i]] = _tokensPerLvl[i];
+            lvls.push(_lvls[i]);
+        }
     }
 
     /// @notice main faucet function to send an amount of tokens to a wallet
 
-    function hitMe() external payable nonReentrant returns (address) {
+    function hitMe(uint lvl) external nonReentrant returns (address) {
         if(hits[msg.sender] >= allowedHits) revert AlreadyHit();
-
-        IERC20(token).safeTransfer(msg.sender, feedMe);
+        if(myFood[lvl] < 1) revert NotPermitted();
+        
+        uint myTokens = myFood[lvl];
+        IERC20(token).safeTransfer(msg.sender, myTokens);
 
         hits[msg.sender] += 1; 
         
@@ -63,11 +72,15 @@ contract FaucetTest is ReentrancyGuard {
     }
 
     /// @notice Admin function to reset the amount of food tokens distributed
-    /// @param _feedMe New ERC20 distribution amount
+    /// @param _lvls New Lvlv
+    /// @param _lvlTokens New ERC20 distribution amount for Lvls
 
-    function resetGasAndTokens(uint _feedMe) external onlyAdmin returns (uint) {
-        console.log("Changing gas and tokens to '%s' to '%s'", _feedMe);
-        feedMe = _feedMe;
-        return  feedMe;
+    function addNewLevels(uint[] memory _lvls, uint[] memory _lvlTokens) external onlyAdmin {
+        require(_lvls.length == _lvlTokens.length, "!match");
+            
+        for (uint i=0; i< _lvls.length; i++){
+            myFood[_lvls[i]] = _lvlTokens[i];
+            lvls.push(_lvls[i]);
+        }
     }
 }

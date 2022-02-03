@@ -11,7 +11,8 @@ Basic UX Flow:
 2. Click button to add Arbitrum Rinkeby as a network and switch the MetaMask mobile app to that network --> page updates --> 
 3. Click botton to: 
    3a. Get 0.01 Aribtrum Rinkeby ETH from an ETH faucet @Arbitrum Team: Need help setting this piece up
-   3b. Call the hitMe() method in the Faucet contract to recieve food truck tokens 
+   3b. Call the hitMe(lvl) method in the Faucet contract to recieve food truck tokens 
+   *Note: for the test the lvl = 1, 2, or 3 and should give out 2, 4, 6 tokens respectively. 
 4. If successful, navigate to a page where there's a buttton to add the food truck tokens to their MetaMask wallet UI 
 5. Final view that has a link to a page on the ETHDenver website. @ETHDenver Team: Will need help with this. 
 
@@ -53,7 +54,7 @@ This will open the app on your local host.
 
 Addresses if you want to use existing contracts: 
 
-BuffiTrust Token: 0x4e1B69d5385A226097cfE5A9a215807B56d577c0
-Faucet: 0x52A67B01f029ED2EfEa7E17Dbb56397a612bf245
+BuffiTruck Token: 0x2b49696fEBD8A340E1Ee93000776E3d67EA1762f
+Faucet: 0x31772D8D44b8193296035e0037e727f4f2cA7970
 
 @Dev - Bill can mint tokens and sent them to the faucet contract or your wallet. 

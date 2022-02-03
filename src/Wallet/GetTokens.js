@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { motion } from 'framer-motion'
 import { ViewContext } from "../context/AppContext"
 
-import buffiGwei from '../assets/buffToken.png'
+import buffiGweiImg from '../assets/buffToken.png'
+import getBuffImg from '../assets/buffigwei-1.png'
 
 const GetTokens = () => {
   const { contracts, isLoading, dispatch } = useContext(ViewContext)
@@ -21,7 +22,7 @@ const GetTokens = () => {
             address: '0xD1924Dc661A3E0563deFE8E8028485211799e2b0',
             symbol: "BUFF",
             decimals: 18,
-            image: buffiGwei
+            image: buffiGweiImg
           }
         }
       })
@@ -29,6 +30,7 @@ const GetTokens = () => {
       if (buffiTokenAdded) {
         dispatch({ type: 'SET_CLAIMED', payload: true })
         console.log('Buffitoken Added!')
+        
       } else {
         console.log('Something went terribly wrong')
       }
@@ -48,7 +50,7 @@ const GetTokens = () => {
             <motion.img
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.075 }}
-              className="mx-auto mb-10" src={buffiGwei} alt="" role="presentation" />
+              className="mx-auto mb-10" src={getBuffImg} alt="" role="presentation" />
             <motion.h4
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.05 }}

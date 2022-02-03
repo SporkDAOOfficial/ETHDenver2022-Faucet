@@ -39,6 +39,8 @@ const Home = () => {
     onPageLoad()
   }, [])
 
+  data && console.log(data)
+
   return (
     <div className="App min-h-screen flex flex-col overflow-y-auto sm:overflow-hidden">
       {claimed && (

@@ -1,9 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/dinadeljanin/dev/web3/ETHDenver2022-Faucet/smart_contracts/contracts/BuffiTruck.sol": {
-      "lastModificationDate": 1643142181139,
-      "contentHash": "9413fc31d0acb47eecd94c01f19e4aa9",
+    "/Users/williamwarren/Desktop/ETHDenver-Faucet/smart_contracts/contracts/BuffiTruck.sol": {
+      "lastModificationDate": 1643507067185,
+      "contentHash": "10d99178d4e0ef8a753e96450b8d06e3",
       "sourceName": "contracts/BuffiTruck.sol",
       "solcConfig": {
         "version": "0.8.5",
@@ -293,9 +293,9 @@
         "Address"
       ]
     },
-    "/Users/dinadeljanin/dev/web3/ETHDenver2022-Faucet/smart_contracts/contracts/Faucet.sol": {
-      "lastModificationDate": 1643142181139,
-      "contentHash": "6165111cb211c31ea7c14be50651ec2e",
+    "/Users/williamwarren/Desktop/ETHDenver-Faucet/smart_contracts/contracts/Faucet.sol": {
+      "lastModificationDate": 1643917077119,
+      "contentHash": "93ffbaed4809b65fb38962a8dc803bb7",
       "sourceName": "contracts/Faucet.sol",
       "solcConfig": {
         "version": "0.8.5",

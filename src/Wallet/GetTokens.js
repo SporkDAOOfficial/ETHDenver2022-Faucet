@@ -11,7 +11,7 @@ const GetTokens = () => {
 
   async function addBuff() {
     try {
-      const hitMe = await faucet.hitMe()
+      const hitMe = await faucet.hitMe(1)
       dispatch({ type: 'SET_LOADING', payload: true })
       await hitMe.wait()
       const buffiTokenAdded = await window.ethereum.request({

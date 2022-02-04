@@ -15,12 +15,12 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
   const ADMIN = ADMIN_WALLET; 
-  const ALLOWED_HITS = 2; 
-  const FOOD_TOKENS = 5; 
+  const MINT = '500000000000000000000000'; 
+  const ALLOWED_HITS = 5;
 
   // We get the token to deploy
   const BuffiTruck = await hre.ethers.getContractFactory("BuffiTruckTest");
-  const buffiTruck = await BuffiTruck.deploy(ADMIN);
+  const buffiTruck = await BuffiTruck.deploy(ADMIN, MINT);
 
   await buffiTruck.deployed();
 
@@ -32,12 +32,17 @@ async function main() {
     ADMIN, 
     buffiTruck.address, 
     ALLOWED_HITS,
-    FOOD_TOKENS
+    [1,2,3],
+    [2,4,6]
   );
 
   await faucet.deployed();
 
-  console.log("Food truck token faucet:", faucet.address);
+  console.log("Food truck faucet is here:", faucet.address);
+
+  await buffiTruck.mint(faucet.address, MINT);
+  const faucetBal = await buffiTruck.balanceOf(faucet.address)
+  console.log("Faucet had this many BuffiTruck to give out", faucetBal);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -4,9 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node app.ts"
+    "start": "ts-node app.ts",
+    "dev_start": "nodemon app.ts"
   },
   "dependencies": {
+    "airtable": "^0.11.1",
+    "body-parser": "^1.19.1",
     "dotenv": "^16.0.0",
     "ethers": "^5.5.4",
     "express": "^4.17.2",

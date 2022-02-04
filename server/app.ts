@@ -4,10 +4,12 @@ import { Wallet, Contract, providers, utils } from "ethers";
 // TODO: ensure these are up to date
 import { abi as faucetAbi } from "./abi/Faucet.json";
 import { abi as tokenAbi } from "./abi/BuffiTruck.json";
+import Airtable from "airtable";
+import bodyParser from "body-parser";
 
 dotenv.config();
 
-// check env variables
+// check env vars
 [
   "RPC_URL",
   "ADMIN_PK",
@@ -21,6 +23,9 @@ dotenv.config();
     throw new Error("Missing environmental variable " + envVar);
   }
 });
+const atBase = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+  process.env.AIRTABLE_BASE_ID as string
+);
 
 // instantiate provider / signer / contract
 const provider = new providers.JsonRpcProvider(process.env.RPC_URL);
@@ -28,8 +33,16 @@ const adminSigner = new Wallet(process.env.ADMIN_PK as string, provider);
 const FAUCET_ADDRESS = process.env.FAUCET_ADDRESS as string;
 const faucetContract = new Contract(FAUCET_ADDRESS, faucetAbi, adminSigner);
 
+// setup express
 const app = express();
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+app.use(bodyParser.json());
 
+// output useful eth/token balances
 const logBalances = async () => {
   const adminBalance = await provider.getBalance(adminSigner.address);
   console.log();
@@ -54,38 +67,93 @@ const logBalances = async () => {
   );
 };
 
-const handleCodeAuth = (code: string): boolean => {
-  return true;
-};
-
-app.post("/:code/:address", async (req, res) => {
+app.post("/", async (req, res) => {
   try {
-    const { code, address } = req.params;
+    const { code, address } = req.body;
 
     // validate params
-    if (!code.length) {
-      res.status(500).send("No code provided");
+    if (!code || !code.length) {
+      res.status(500).json("No code provided");
     }
 
     if (!utils.isAddress(address)) {
       res.status(500).send(`Provided address invalid: ${address}`);
     }
 
-    // handle code
+    // handle code auth: get record with code
+    return atBase(process.env.AIRTABLE_TABLE as string)
+      .select({
+        filterByFormula: `({Code} = '${code}')`
+      })
+      .firstPage(async (err, records) => {
+        if (err) {
+          return res.status(500).send({
+            text: "Error retrieving code",
+            err: err.toString()
+          });
+        }
 
-    // check result of handle code (500 if error)
+        if (!records || !records.length) {
+          return res.status(500).send({
+            text: "code not found in db"
+          });
+        }
 
-    // check if already in whitelist
+        if(records.length > 1){
+          console.warn(`Record with code ${code} appears ${records.length } times in db...`);
+          
+        }
 
-    // if not, add to whitelist
+        const record = records[0];
+        if (record.get("Faucet")) {
+          return res.status(500).send({
+            text: "Code already claimed in db"
+          });
+        }
+        // update record:
+        return atBase(process.env.AIRTABLE_TABLE as string).update(
+          [
+            {
+              id: record.id as string,
+              fields: {
+                Faucet: true,
+                ETH_Address: address
+              }
+            }
+          ],
+          async (err: any) => {
+            if (err) {
+              return res.status(500).json({
+                text: "failed to update record",
+                err: err.toString()
+              });
+            }
+            try {
+              const txResponse = await faucetContract.setAllowedWallet();
+              await txResponse.wait();
 
-    const txResponse = faucetContract.setAllowedWallet();
-    await txResponse.wait();
-    // tier
-    // res.status(200)with the receipt
+              return res.status(200).json({
+                code: code,
+                tier: record.get("Tier ")
+              });
+            } catch (err) {
+              return res.status(500).json({
+                text: "Error:",
+                // @ts-ignore
+                err: err.toString()
+              });
+            }
+          }
+        );
+      });
 
-    res.status(500).send("already a thing");
-  } catch (err) {}
+  } catch (err) {
+    return res.status(500).json({
+      text: "Error:",
+      // @ts-ignore
+      err: err.toString()
+    });
+  }
 });
 
 app.get("/ping", (req, res) => {
@@ -97,9 +165,3 @@ app.listen(process.env.PORT, () => {
   // show balances on startup:
   logBalances();
 });
-
-// TODO?:  sanityScript: ensure all claimed codes are indeed in whitelist
-
-// if (require.main === module){
-
-// }

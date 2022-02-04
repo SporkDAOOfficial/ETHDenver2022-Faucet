@@ -14,5 +14,7 @@
 
 `yarn start`
 
-Visit `http://localhost:<port>/ping`
+Get `http://localhost:<port>/ping`
 
+Post `http://localhost:<port>/`
+with `code` and `address` in body

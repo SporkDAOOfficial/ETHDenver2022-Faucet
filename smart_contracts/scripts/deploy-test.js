@@ -15,12 +15,13 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
   const ADMIN = ADMIN_WALLET; 
+  const MINTER="0x7136fbDdD4DFfa2369A9283B6E90A040318011Ca";
   const MINT = '500000000000000000000000'; 
-  const ALLOWED_HITS = 5;
+  const ALLOWED_HITS = 10;
 
   // We get the token to deploy
   const BuffiTruck = await hre.ethers.getContractFactory("BuffiTruckTest");
-  const buffiTruck = await BuffiTruck.deploy(ADMIN, MINT);
+  const buffiTruck = await BuffiTruck.deploy(MINTER, MINT);
 
   await buffiTruck.deployed();
 

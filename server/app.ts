@@ -31,7 +31,10 @@ const atBase = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
 const provider = new providers.JsonRpcProvider(process.env.RPC_URL);
 const adminSigner = new Wallet(process.env.ADMIN_PK as string, provider);
 const FAUCET_ADDRESS = process.env.FAUCET_ADDRESS as string;
-const faucetContract = new Contract(FAUCET_ADDRESS, faucetAbi, adminSigner);
+const faucetContract = new Contract(FAUCET_ADDRESS, new utils.Interface([
+  "function setAllowedWallet(address addr) external",
+  "function token() view returns(address)"
+]), adminSigner);
 
 // setup express
 const app = express();
@@ -129,9 +132,11 @@ app.post("/", async (req, res) => {
               });
             }
             try {
-              const txResponse = await faucetContract.setAllowedWallet();
-              await txResponse.wait();
-
+              const txResponse = await faucetContract.setAllowedWallet(address);
+              const txRec = await txResponse.wait();
+              
+              console.log('Successfully added', code, txRec.transactionHash);
+              
               return res.status(200).json({
                 code: code,
                 tier: record.get("Tier ")

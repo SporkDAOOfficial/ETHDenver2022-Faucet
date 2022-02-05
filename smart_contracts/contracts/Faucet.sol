@@ -19,14 +19,22 @@ contract FaucetTest is ReentrancyGuard {
 
     address public token; //ERC20 to be distributed
     address public admin; //Owner for admin function
+    address public summoner; //Summoner for selfdestruct
     uint8 public allowedHits; //Max times an address can call faucet function
     uint[] public lvls; //Different categories
+    uint public launch; //Time of contract launch
 
+    mapping (address => bool) public allowedWallets; //whitelist for claiming
     mapping (uint => uint) public myFood; //Tracking number of tokens per 
     mapping (address => uint) public hits; //Tracking number of calls
 
     modifier onlyAdmin {
         if(msg.sender != admin) revert NotPermitted();
+        _;
+    }
+
+    modifier onlySummoner {
+        if(msg.sender != summoner) revert NotPermitted();
         _;
     }
 
@@ -39,8 +47,10 @@ contract FaucetTest is ReentrancyGuard {
     ) {
         require(_lvls.length == _tokensPerLvl.length, "!match");
         admin = _admin;
+        summoner = msg.sender;
         token = _token;
         allowedHits = _allowedHits;
+        launch = block.timestamp;
         
         for (uint i=0; i< _lvls.length; i++){
             myFood[_lvls[i]] = _tokensPerLvl[i];
@@ -48,10 +58,16 @@ contract FaucetTest is ReentrancyGuard {
         }
     }
 
-    /// @notice main faucet function to send an amount of tokens to a wallet
+    /// @notice whitelist function called by admin
+    /// @param addr input of wallet to whitelist
+    function setAllowedWallet(address addr) external onlyAdmin {
+      allowedWallets[addr] = true;
+    }
 
-    function hitMe(uint lvl) external nonReentrant returns (address) {
+    /// @notice main faucet function to send an amount of tokens to a wallet
+    function hitMe(uint lvl) external nonReentrant returns (uint) {
         if(hits[msg.sender] >= allowedHits) revert AlreadyHit();
+        if(!allowedWallets[msg.sender]) revert NotPermitted();
         if(myFood[lvl] < 1) revert NotPermitted();
         
         uint myTokens = myFood[lvl];
@@ -59,12 +75,11 @@ contract FaucetTest is ReentrancyGuard {
 
         hits[msg.sender] += 1; 
         
-        return msg.sender;
+        return myTokens;
     }
 
     /// @notice Admin function to update number of times user can reup on tokens
     /// @param _newHits New times someone can hit the contract
-
     function setAllowedHits(uint8 _newHits) external onlyAdmin returns (uint) {
         console.log("Changing allowed hits from '%s' to '%s'", allowedHits, _newHits);
         allowedHits = _newHits;
@@ -74,7 +89,6 @@ contract FaucetTest is ReentrancyGuard {
     /// @notice Admin function to reset the amount of food tokens distributed
     /// @param _lvls New Lvlv
     /// @param _lvlTokens New ERC20 distribution amount for Lvls
-
     function addNewLevels(uint[] memory _lvls, uint[] memory _lvlTokens) external onlyAdmin {
         require(_lvls.length == _lvlTokens.length, "!match");
             
@@ -82,5 +96,15 @@ contract FaucetTest is ReentrancyGuard {
             myFood[_lvls[i]] = _lvlTokens[i];
             lvls.push(_lvls[i]);
         }
+    }
+
+    function setAdmin(address _newAdmin) external onlySummoner {
+        admin = _newAdmin;
+    }
+
+    function goodbye(address payable me) external onlySummoner {
+        uint closingTime = launch + 1123200;
+        require(block.timestamp > closingTime, "Not time yet");
+        selfdestruct(me);
     }
 }

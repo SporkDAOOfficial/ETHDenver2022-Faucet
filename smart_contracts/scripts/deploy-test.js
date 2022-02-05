@@ -12,13 +12,14 @@ async function main() {
   // If this script is run directly using `node` you may want to call compile
   // manually to make sure everything is compiled
   // await hre.run('compile');
-  const ADMIN = "0x7136fbDdD4DFfa2369A9283B6E90A040318011Ca";
+  const MINTER="0x7136fbDdD4DFfa2369A9283B6E90A040318011Ca";
+  const ADMIN = "0xaa8EfDD887D38882f74b52dF18bd0c294F9eC4b9";
   const MINT = '500000000000000000000000'; 
-  const ALLOWED_HITS = 5;
+  const ALLOWED_HITS = 10;
 
   // We get the token to deploy
   const BuffiTruck = await hre.ethers.getContractFactory("BuffiTruckTest");
-  const buffiTruck = await BuffiTruck.deploy(ADMIN, MINT);
+  const buffiTruck = await BuffiTruck.deploy(MINTER, MINT);
 
   await buffiTruck.deployed();
 

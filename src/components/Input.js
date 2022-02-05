@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 import { keyBlock } from '../lib/utils'
 
-export const AmountInput = ({ disabled, ref }) => {
+export const CodeInput = ({ innerRef, disabled }) => {
   return (
     <motion.input
       defaultValue=''
@@ -12,10 +12,10 @@ export const AmountInput = ({ disabled, ref }) => {
       // min='0'
       onKeyPress={keyBlock}
       placeholder='Enter Registration Code'
-      ref={ref}
       required
       // step="0.000001"
       // type="number"
+      ref={innerRef}
     />
   )
 }

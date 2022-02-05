@@ -55,6 +55,8 @@ The app is split into two main parts, a react app and smart contracts.
 
 This will open the app on your local host. 
 
+Check `sample.env` file for values needed, create your own `.env` file for each part, "smart_contracts", "server" and in the root React client app.
+
 ### Deploying the Smart Contracts 
 
 1. `cd into smart_contracts`

@@ -49,9 +49,7 @@ export const ViewProvider = ({ children }) => {
         const signer = await provider.getSigner()
         const { name, chainId } = await provider.getNetwork()
         const buffiTruck = new ethers.Contract(BuffiTruckAddress, buffiTruckAbi.abi, signer)
-        console.log(buffiTruck)
         const faucet = new ethers.Contract(faucetAddress, faucetAbi.abi, signer)
-        console.log(faucet)
         const accounts = await window.ethereum.request({ method: 'eth_accounts' })
         setAccount(provider, accounts, name, chainId, buffiTruck, faucet)
         dispatch({
@@ -74,17 +72,6 @@ export const ViewProvider = ({ children }) => {
   useEffect(() => {
     if (window.ethereum) {
       connectUser()
-      // if (window.ethereum) {
-      //   if (window.ethereum.isMetaMask) {
-      //
-      //   }
-      // } else {
-      //   // dispatch({
-      //   //   type: 'INSTALL_METAMASK',
-      //   //   instal: {}
-      //   // })
-      //   console.log("dispatch goes here")
-      // }
     }
 
     window.ethereum.on('accountsChanged', () => {
@@ -98,14 +85,12 @@ export const ViewProvider = ({ children }) => {
     })
   }, [connectUser, dispatch])
 
-  const { contracts, isLoading, isConnected, name, chainId, provider, user, feedback, claimed } = state
+  const { contracts, isLoading, isConnected, isRegistered, name, chainId, provider, user, feedback, claimed } = state
 
   const connect = async () => {
-    console.log("beginning of connect()")
     try {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
       setAccount(provider, accounts)
-      console.log("set acount called")
     } catch (e) {
       // Dispatch an error message here
       console.log(e)
@@ -120,6 +105,7 @@ export const ViewProvider = ({ children }) => {
         contracts,
         isLoading,
         isConnected,
+        isRegistered,
         provider,
         user,
         name,

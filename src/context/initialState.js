@@ -5,6 +5,7 @@ export const initialState = {
   },
   isLoading: true,
   isConnected: false,
+  isRegistered: false,
   claimed: false,
   name: null,
   chainId: null,

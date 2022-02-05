@@ -1,45 +1,35 @@
-import { useContext, useEffect } from "react";
-
+import { useContext } from "react";
 import Confetti from 'react-confetti'
-
 import { ViewContext } from "../context/AppContext"
+
 import { Logo } from "components/Logo";
 import Pill from "components/Pill";
 import Wallet from "Wallet/Wallet";
 import ArbitrumConnect from "Wallet/ArbitrumConnect";
+import RegistrationCode from "Wallet/RegistrationCode";
 import GetTokens from "Wallet/GetTokens";
 import Success from "Wallet/Success";
 
-import useAirtable from '../lib/hooks/useAirtable';
-
 const Home = () => {
-  const { user, provider, chainId, claimed } = useContext(ViewContext)
+  const { user, provider, chainId, claimed, isRegistered } = useContext(ViewContext)
   const { address } = user
 
   const renderView = () => {
     switch (true) {
-      case !address && provider:
+      case !address && !provider:
         return <Wallet />
-      case claimed:
-        return <Success />
       case address && (chainId !== 421611):
         return <ArbitrumConnect />
+      case !isRegistered:
+        return <RegistrationCode />
       case address && (chainId === 421611):
         return <GetTokens />
+      case claimed:
+        return <Success />
       default:
         return <Wallet />
     }
   }
-
-  const { data, getData } = useAirtable();
-  useEffect(() => {
-    async function onPageLoad() {
-      await getData()
-    }
-    onPageLoad()
-  }, [])
-
-  data && console.log(data)
 
   return (
     <div className="App min-h-screen flex flex-col overflow-y-auto sm:overflow-hidden">
@@ -58,7 +48,6 @@ const Home = () => {
           {renderView()}
         </div>
       </main>
-
     </div>
   );
 };

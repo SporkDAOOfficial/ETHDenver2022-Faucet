@@ -10,6 +10,13 @@ export const reducer = (state, action) => {
         return
       }
 
+      case 'SET_ACCOUNT': {
+        state.user = action.payload
+        state.isLoading = false
+        state.isConnected = true
+        return
+      }
+
       case 'SET_LOADING': {
         state.isLoading = action.payload
         return
@@ -25,15 +32,13 @@ export const reducer = (state, action) => {
         return
       }
 
-      case 'SET_CLAIMED': {
-        state.claimed = action.payload
+      case 'REGISTERED': {
+        state.isRegistered = action.payload
         return
       }
 
-      case 'SET_ACCOUNT': {
-        state.user = action.payload
-        state.isLoading = false
-        state.isConnected = true
+      case 'SET_CLAIMED': {
+        state.claimed = action.payload
         return
       }
 

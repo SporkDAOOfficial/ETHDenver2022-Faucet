@@ -46,9 +46,20 @@ const faucetContract = new Contract(
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = [];
+if (process.env.DEV) {
+  console.log('Local dev mode detected');
+  allowedOrigins.push(`http://localhost:${process.env.PORT}`);
+} else {
+  console.log('Prod mode detected');
+  const remoteURL = process.env.REMOTE_URL as string;
+  if (!remoteURL) {
+    throw new Error(`Missing environmental variable remoteURL`);
+  }
+  allowedOrigins.push(remoteURL);
+}
 const options: cors.CorsOptions = { origin: allowedOrigins };
-app.use(cors());
+app.use(cors(options));
 
 // output useful eth/token balances
 const logBalances = async () => {

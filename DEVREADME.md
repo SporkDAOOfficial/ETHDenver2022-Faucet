@@ -66,7 +66,8 @@ This will open the app on your local host.
 
 Addresses if you want to use existing contracts: 
 
-BuffiTrust Token: 0xD1924Dc661A3E0563deFE8E8028485211799e2b0
-Faucet: 0x3B44F3d1408894431adA109852a49409BD691CD8
+BuffiTruck Token: 0x587BFd3EaA64378908460A27a23d7B1dFbAC47A7
+Faucet: 0xb84Df72227baa2dE39F1A4599BD4DBEc94B72697
+FaucetAdmin: 0xaa8EfDD887D38882f74b52dF18bd0c294F9eC4b9
 
 @Dev - Bill can mint tokens and sent them to the faucet contract or your wallet. 

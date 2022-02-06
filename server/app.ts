@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
+import cors from "cors"
+
 import { Wallet, Contract, providers, utils } from "ethers";
 // TODO: ensure these are up to date
 import { abi as faucetAbi } from "./abi/Faucet.json";
@@ -38,12 +40,11 @@ const faucetContract = new Contract(FAUCET_ADDRESS, new utils.Interface([
 
 // setup express
 const app = express();
-app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+const allowedOrigins = ['http://localhost:3000'];
+const options: cors.CorsOptions = { origin: allowedOrigins  };
+app.use(cors());
 
 // output useful eth/token balances
 const logBalances = async () => {
@@ -104,7 +105,6 @@ app.post("/", async (req, res) => {
 
         if(records.length > 1){
           console.warn(`Record with code ${code} appears ${records.length } times in db...`);
-          
         }
 
         const record = records[0];
@@ -138,6 +138,7 @@ app.post("/", async (req, res) => {
               console.log('Successfully added', code, txRec.transactionHash);
               
               return res.status(200).json({
+                ok: true,
                 code: code,
                 tier: record.get("Tier ")
               });

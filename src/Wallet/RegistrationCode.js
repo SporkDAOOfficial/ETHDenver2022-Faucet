@@ -40,16 +40,7 @@ const RegistrationCode = () => {
         } else {
           console.log(res)
           console.log(res.status)
-          switch (res.text) {
-            case "Code already claimed in db":
-              throw Error(res.text)
-            case "code not found in db":
-              throw Error(res.text)
-            case "Error retrieving code":
-              throw Error(res.text)
-            default:
-              throw Error('Registration Error')
-          }
+          throw Error(res.text)
         }
       })
       .then(() => {

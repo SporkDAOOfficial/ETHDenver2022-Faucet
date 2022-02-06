@@ -16,7 +16,7 @@ const Home = () => {
 
   const renderView = () => {
     switch (true) {
-      case !address && !provider:
+      case !address:
         return <Wallet />
       case address && (chainId !== 421611):
         return <ArbitrumConnect />

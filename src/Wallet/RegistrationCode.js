@@ -1,37 +1,61 @@
-import { useContext, forwardRef, useRef, createRef } from "react";
+import { useContext, useRef } from "react";
 import { motion } from "framer-motion";
 import { ViewContext } from "../context/AppContext"
 
 import buffiFetti from '../assets/buffifeti.png'
-
 import { CodeInput } from '../components/Input'
 
 const RegistrationCode = () => {
-  const { isRegistered, dispatch } = useContext(ViewContext)
-
+  const { user, dispatch } = useContext(ViewContext)
+  const { address } = user
   const inputRef = useRef()
 
   const registerCode = async () => {
-    console.log(inputRef)
-    console.log(inputRef.current)
-
     const { value } = inputRef.current
-    console.log(value)
-    dispatch({type: 'REGISTERED', payload: true })
+    const url = process.env.REACT_APP_SERVER_URL
+    const details = { 'code': value, 'address': address }
+    var formBody = [];
 
-    // fetch(ur)
-    //   .then(res => {
-    //     if(res.ok) {
-    //       return res.json()
-    //     } else {
-    //       throw Error('Registration Error')
-    //     }
-    //   })
-    // .then(data => {
-    //   console.log(data)
-    //   dispatch({ type: 'REGISTERED', payload: true })
-    // })
-    // .catch(e => console.log(e))
+    for (var property in details) {
+      const encodedKey = encodeURIComponent(property);
+      const encodedValue = encodeURIComponent(details[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+
+    async function postData(url) {
+      const res = await fetch(url, {
+        method: 'POST', mode: 'cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formBody
+      })
+      return res.json()
+    }
+
+    postData(url)
+      .then(res => {
+        if (res.ok) {
+          console.log(res)
+          // {code: '00003', tier: 1}
+        } else {
+          console.log(res)
+          console.log(res.status)
+          switch (res.text) {
+            case "Code already claimed in db":
+              throw Error(res.text)
+            case "code not found in db":
+              throw Error(res.text)
+            case "Error retrieving code":
+              throw Error(res.text)
+            default:
+              throw Error('Registration Error')
+          }
+        }
+      })
+      .then(() => {
+        dispatch({ type: 'REGISTERED', payload: true })
+      })
+      .catch(e => console.log(e))
   }
 
   return (

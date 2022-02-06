@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-
 import { keyBlock } from '../lib/utils'
 
 export const CodeInput = ({ innerRef, disabled }) => {

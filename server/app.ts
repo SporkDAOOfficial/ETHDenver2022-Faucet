@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
-import cors from "cors"
+import cors from "cors";
 
 import { Wallet, Contract, providers, utils } from "ethers";
 // TODO: ensure these are up to date
@@ -33,18 +33,33 @@ const atBase = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
 const provider = new providers.JsonRpcProvider(process.env.RPC_URL);
 const adminSigner = new Wallet(process.env.ADMIN_PK as string, provider);
 const FAUCET_ADDRESS = process.env.FAUCET_ADDRESS as string;
-const faucetContract = new Contract(FAUCET_ADDRESS, new utils.Interface([
-  "function setAllowedWallet(address addr) external",
-  "function token() view returns(address)"
-]), adminSigner);
+const faucetContract = new Contract(
+  FAUCET_ADDRESS,
+  new utils.Interface([
+    "function setAllowedWallet(address addr) external",
+    "function token() view returns(address)"
+  ]),
+  adminSigner
+);
 
 // setup express
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const allowedOrigins = ['http://localhost:3000'];
-const options: cors.CorsOptions = { origin: allowedOrigins  };
-app.use(cors());
+const allowedOrigins = [];
+if (process.env.DEV) {
+  console.log('Local dev mode detected');
+  allowedOrigins.push(`http://localhost:${process.env.PORT}`);
+} else {
+  console.log('Prod mode detected');
+  const remoteURL = process.env.REMOTE_URL as string;
+  if (!remoteURL) {
+    throw new Error(`Missing environmental variable remoteURL`);
+  }
+  allowedOrigins.push(remoteURL);
+}
+const options: cors.CorsOptions = { origin: allowedOrigins };
+app.use(cors(options));
 
 // output useful eth/token balances
 const logBalances = async () => {
@@ -103,14 +118,28 @@ app.post("/", async (req, res) => {
           });
         }
 
-        if(records.length > 1){
-          console.warn(`Record with code ${code} appears ${records.length } times in db...`);
+        if (records.length > 1) {
+          console.warn(
+            `Record with code ${code} appears ${records.length} times in db...`
+          );
         }
 
         const record = records[0];
         if (record.get("Faucet")) {
           return res.status(500).send({
             text: "Code already claimed in db"
+          });
+        }
+        try {
+          const txResponse = await faucetContract.setAllowedWallet(address);
+          const txRec = await txResponse.wait();
+
+          console.log("Successfully added", code, txRec.transactionHash);
+        } catch (err) {
+          return res.status(500).json({
+            text: "Error:",
+            // @ts-ignore
+            err: err.toString()
           });
         }
         // update record:
@@ -131,28 +160,14 @@ app.post("/", async (req, res) => {
                 err: err.toString()
               });
             }
-            try {
-              const txResponse = await faucetContract.setAllowedWallet(address);
-              const txRec = await txResponse.wait();
-              
-              console.log('Successfully added', code, txRec.transactionHash);
-              
-              return res.status(200).json({
-                ok: true,
-                code: code,
-                tier: record.get("Tier ")
-              });
-            } catch (err) {
-              return res.status(500).json({
-                text: "Error:",
-                // @ts-ignore
-                err: err.toString()
-              });
-            }
+            return res.status(200).json({
+              ok: true,
+              code: code,
+              tier: record.get("Tier ")
+            });
           }
         );
       });
-
   } catch (err) {
     return res.status(500).json({
       text: "Error:",

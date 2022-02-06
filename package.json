@@ -87,6 +87,7 @@
   },
   "devDependencies": {
     "@typechain/ethers-v5": "^5.0.0",
+    "@types/cors": "^2.8.12",
     "hardhat": "^2.8.2",
     "postcss-cli": "^9.0.1",
     "true-myth": "^4.1.1",

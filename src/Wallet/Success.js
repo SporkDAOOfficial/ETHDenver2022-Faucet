@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { motion } from "framer-motion";
-import { ViewContext } from "../context/AppContext"
+import { useContext } from "react"
+import { motion } from "framer-motion"
 
+import { ViewContext } from "../context/AppContext"
 import buffiFetti from '../assets/buffifeti.png'
 
 const Wallet = () => {
@@ -32,7 +32,7 @@ const Wallet = () => {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Wallet;
+export default Wallet

@@ -8,23 +8,23 @@ export enum NETWORK_TYPES {
   GNOSISCHAIN = "GNOSIS CHAIN",
 }
 
-export const defaultNetworkId: number = Number(1);
+export const defaultNetworkId: number = Number(1)
 
 export const chainIdToNetworkType = (chainId: number): NETWORK_TYPES => {
   switch (chainId) {
     case 1:
-      return NETWORK_TYPES.MAINNET;
+      return NETWORK_TYPES.MAINNET
     case 3:
-      return NETWORK_TYPES.ROPSTEN;
+      return NETWORK_TYPES.ROPSTEN
     case 4:
-      return NETWORK_TYPES.RINKEBY;
+      return NETWORK_TYPES.RINKEBY
     case 421611:
-      return NETWORK_TYPES.ARBITRUM_RINKEBY;
+      return NETWORK_TYPES.ARBITRUM_RINKEBY
     case 42:
-      return NETWORK_TYPES.KOVAN;
+      return NETWORK_TYPES.KOVAN
     case 100:
-      return NETWORK_TYPES.GNOSISCHAIN;
+      return NETWORK_TYPES.GNOSISCHAIN
     default:
-      return NETWORK_TYPES.LOCAL;
+      return NETWORK_TYPES.LOCAL
   }
-};
+}

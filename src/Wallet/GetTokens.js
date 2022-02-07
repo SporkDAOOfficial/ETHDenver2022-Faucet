@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext } from "react"
 import { motion } from 'framer-motion'
 import { ViewContext } from "../context/AppContext"
 import { TierContext } from '../context/TierContext'
@@ -67,7 +67,7 @@ const GetTokens = () => {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export default GetTokens

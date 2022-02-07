@@ -16,12 +16,12 @@ const RegistrationCode = () => {
     const { value } = inputRef.current
     const url = process.env.REACT_APP_SERVER_URL
     const details = { 'code': value, 'address': address }
-    var formBody = [];
+    var formBody = []
 
     for (var property in details) {
-      const encodedKey = encodeURIComponent(property);
-      const encodedValue = encodeURIComponent(details[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
+      const encodedKey = encodeURIComponent(property)
+      const encodedValue = encodeURIComponent(details[property])
+      formBody.push(encodedKey + "=" + encodedValue)
     }
     formBody = formBody.join("&");
 
@@ -37,19 +37,14 @@ const RegistrationCode = () => {
     postData(url)
       .then(res => {
         if (res.ok) {
-          console.log(res)
           tierContext.updateTier(res.tier)
-          // {code: '00003', tier: 1}
+          // res example: { ok: true, code: '00003', tier: 1 }
         } else {
-          console.log(res)
-          console.log(res.status)
           throw Error(res.text)
         }
       })
-      .then(() => {
-        dispatch({ type: 'REGISTERED', payload: true })
-      })
-      .catch(e => console.log(e))
+      .then(() => dispatch({ type: 'REGISTERED', payload: true }))
+      .catch((error) => console.log(error))
   }
 
   return (
@@ -60,17 +55,19 @@ const RegistrationCode = () => {
       <div className="walletButtonContainer">
         <div className="mx-auto block w-full h-full text-center">
           <div className="text-center w-full h-full">
-            <motion.img
+            <motion.img 
+              src={buffiFetti} alt="Buffifeti" role="presentation"
+              className="mx-auto mb-10" 
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.075 }}
-              className="mx-auto mb-10" src={buffiFetti} alt="Buffifeti" role="presentation"
             />
             <CodeInput innerRef={inputRef} />
             <motion.h4
               onClick={() => registerCode()}
+              className="btn-primary"
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.05 }}
-              className="btn-primary">
+            >
               Submit
             </motion.h4>
           </div>
@@ -80,4 +77,4 @@ const RegistrationCode = () => {
   );
 }
 
-export default RegistrationCode;
+export default RegistrationCode

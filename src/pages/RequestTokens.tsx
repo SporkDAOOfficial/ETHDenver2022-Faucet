@@ -1,38 +1,34 @@
-import { useEffect, useState } from "react";
-import { useWeb3React } from "@web3-react/core";
-import { Confirmed } from "./Confirmed";
-import { Unconfirmed } from "./Unconfirmed";
-import { BigNumber, BigNumberish, ethers } from "ethers";
-import { useTokenFaucet } from "lib/contracts/contracts";
+import { useEffect, useState } from "react"
+import { useWeb3React } from "@web3-react/core"
+import { Confirmed } from "./Confirmed"
+import { Unconfirmed } from "./Unconfirmed"
+import { BigNumber, BigNumberish, ethers } from "ethers"
+import { useTokenFaucet } from "lib/contracts/contracts"
 
 export const CheckEligibility = () => {
-  const { account } = useWeb3React();
-
-  const contract = useTokenFaucet();
+  const { account } = useWeb3React()
+  const contract = useTokenFaucet()
 
   useEffect(() => {
     if (!account) {
-      return;
+      return
     }
     (async () => {
       try {
         const balance: BigNumberish | BigNumber | any =
-          await contract?.tokenFaucet.balanceOf(account);
-
+          await contract?.tokenFaucet.balanceOf(account)
         if (typeof account !== "undefined") {
           //Check whether account has been funded
         } else {
           //Call token faucet
         }
       } catch (e) {
-        setConfirmed(false);
+        setConfirmed(false)
       }
+    })()
+  }, [account, contract?.tokenFaucet])
 
-      // console.log("balance1", balance.toLocaleString());
-    })();
-  }, [account, contract?.tokenFaucet]);
-
-  const [confirmed, setConfirmed] = useState<boolean | null>(null);
+  const [confirmed, setConfirmed] = useState<boolean | null>(null)
 
   async function CheckEligibility(){
     //function to check eligibility to claim tokens from faucet
@@ -65,5 +61,5 @@ export const CheckEligibility = () => {
     <Confirmed />
   ) : (
     <Unconfirmed />
-  );
-};
+  )
+}

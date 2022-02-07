@@ -1,23 +1,23 @@
-import { ellipseAddress } from "../lib/utils";
+import { ellipseAddress } from "../lib/utils"
 
-import { Web3Provider } from "@ethersproject/providers";
+import { Web3Provider } from "@ethersproject/providers"
 
-import Wallet from "Wallet/Wallet";
-import { CheckEligibility } from "pages/RequestTokens";
-import { Logo } from "components/Logo";
-import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
-import { useEffect, useState } from "react";
+import Wallet from "Wallet/Wallet"
+import { CheckEligibility } from "pages/RequestTokens"
+import { Logo } from "components/Logo"
+import { useWeb3React, Web3ReactProvider } from "@web3-react/core"
+import { useEffect, useState } from "react"
 
 const Home = (): JSX.Element => {
-  const context = useWeb3React<Web3Provider>();
-  const { active, account, library, connector } = context;
-  const [activatingConnector, setActivatingConnector] = useState<any>();
+  const context = useWeb3React<Web3Provider>()
+  const { active, account, library, connector } = context
+  const [activatingConnector, setActivatingConnector] = useState<any>()
 
   useEffect(() => {
     if (activatingConnector && activatingConnector === connector) {
-      setActivatingConnector(undefined);
+      setActivatingConnector(undefined)
     }
-  }, [activatingConnector, connector]);
+  }, [activatingConnector, connector])
 
   return (
     <div className="App bg-blackish min-h-screen flex flex-col overflow-y-auto sm:overflow-hidden">
@@ -35,8 +35,8 @@ const Home = (): JSX.Element => {
                     {library?.connection?.url} {" | "}
                     <button
                       onClick={() => {
-                        setActivatingConnector(undefined);
-                        context.deactivate();
+                        setActivatingConnector(undefined)
+                        context.deactivate()
                       }}
                     >
                       deactivate
@@ -54,14 +54,14 @@ const Home = (): JSX.Element => {
         </div>
       </main>
     </div>
-  );
-};
+  )
+}
 
 // Web3 Wallet
 function getLibrary(provider: any): Web3Provider {
-  const library = new Web3Provider(provider);
-  library.pollingInterval = 12000;
-  return library;
+  const library = new Web3Provider(provider)
+  library.pollingInterval = 12000
+  return library
 }
 
 function wrappedApp() {
@@ -69,7 +69,7 @@ function wrappedApp() {
     <Web3ReactProvider getLibrary={getLibrary}>
       <Home />
     </Web3ReactProvider>
-  );
+  )
 }
 
-export default wrappedApp;
+export default wrappedApp

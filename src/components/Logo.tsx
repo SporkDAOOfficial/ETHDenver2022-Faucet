@@ -12,5 +12,5 @@ export const Logo = () => {
         alt="Opolis logo"
       /> */}
     </picture>
-  );
-};
+  )
+}

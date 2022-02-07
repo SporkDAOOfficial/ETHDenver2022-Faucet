@@ -25,5 +25,5 @@ export function Spinner({ color = "black", ...rest }: any) {
         </g>
       </g>
     </svg>
-  );
+  )
 }

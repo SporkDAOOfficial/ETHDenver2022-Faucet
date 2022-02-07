@@ -1,9 +1,9 @@
-import { Web3Provider } from "@ethersproject/providers";
-import { useWeb3React } from "@web3-react/core";
+import { Web3Provider } from "@ethersproject/providers"
+import { useWeb3React } from "@web3-react/core"
 
 export const Unconfirmed = () => {
-  const context = useWeb3React<Web3Provider>();
-  const { deactivate } = context;
+  const context = useWeb3React<Web3Provider>()
+  const { deactivate } = context
 
   return (
     <>
@@ -36,5 +36,5 @@ export const Unconfirmed = () => {
         </button>
       </div>
     </>
-  );
-};
+  )
+}

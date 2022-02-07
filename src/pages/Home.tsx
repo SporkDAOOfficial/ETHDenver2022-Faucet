@@ -1,15 +1,15 @@
-import { useContext } from "react";
+import { useContext } from "react"
 import Confetti from 'react-confetti'
 import { ViewContext } from "../context/AppContext"
 import { TierProvider } from '../context/TierContext'
 
-import { Logo } from "components/Logo";
-import Pill from "components/Pill";
-import Wallet from "Wallet/Wallet";
-import ArbitrumConnect from "Wallet/ArbitrumConnect";
-import RegistrationCode from "Wallet/RegistrationCode";
-import GetTokens from "Wallet/GetTokens";
-import Success from "Wallet/Success";
+import { Logo } from "components/Logo"
+import Pill from "components/Pill"
+import Wallet from "Wallet/Wallet"
+import ArbitrumConnect from "Wallet/ArbitrumConnect"
+import RegistrationCode from "Wallet/RegistrationCode"
+import GetTokens from "Wallet/GetTokens"
+import Success from "Wallet/Success"
 
 const Home = () => {
   const { user, chainId, claimed, isRegistered } = useContext(ViewContext)
@@ -22,13 +22,9 @@ const Home = () => {
       case address && (chainId !== 421611):
         return <ArbitrumConnect />
       case !isRegistered:
-        return <TierProvider>
-            <RegistrationCode />
-          </TierProvider>
-      case address && (chainId === 421611):
-        return <TierProvider>
-            <GetTokens />
-          </TierProvider>
+        return <TierProvider><RegistrationCode /></TierProvider>
+      case address && !claimed && (chainId === 421611):
+        return <TierProvider><GetTokens /></TierProvider>
       case claimed:
         return <Success />
       default:
@@ -54,7 +50,7 @@ const Home = () => {
         </div>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

@@ -1,6 +1,7 @@
-import { useContext } from "react";
-import { motion } from "framer-motion";
-import { walletMeta } from "assets/walletMeta";
+import { useContext } from "react"
+import { motion } from "framer-motion"
+
+import { walletMeta } from "assets/walletMeta"
 import { ViewContext } from "../context/AppContext"
 
 const Wallet = () => {
@@ -29,7 +30,7 @@ const Wallet = () => {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Wallet;
+export default Wallet

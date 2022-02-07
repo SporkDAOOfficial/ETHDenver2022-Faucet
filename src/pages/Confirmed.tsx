@@ -1,4 +1,4 @@
-import ConfettiExplosion from "@reonomy/react-confetti-explosion";
+import ConfettiExplosion from "@reonomy/react-confetti-explosion"
 
 export const Confirmed = (): JSX.Element => {
   return (
@@ -34,5 +34,5 @@ export const Confirmed = (): JSX.Element => {
         </p>
       </div>
     </>
-  );
-};
+  )
+}

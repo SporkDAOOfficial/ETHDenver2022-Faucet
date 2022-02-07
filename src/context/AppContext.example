@@ -11,7 +11,7 @@ import { reducer } from '../reducers'
 declare var window: any
 
 interface AuxProps {
-  children: ReactChild | ReactChildren;
+  children: ReactChild | ReactChildren
 }
 
 export const ViewContext = createContext(initialState)

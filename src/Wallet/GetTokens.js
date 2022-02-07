@@ -32,7 +32,7 @@ const GetTokens = () => {
 
       if (buffiTokenAdded) {
         dispatch({ type: 'SET_CLAIMED', payload: true })
-        console.log('Buffitoken Added!')
+        console.log('BUFF tokens Added!')
         
       } else {
         console.log('Something went terribly wrong')
@@ -45,7 +45,7 @@ const GetTokens = () => {
   return (
     <>
       <header className="text-center">
-        <h2 className="header1">Claim BuffiGWEI Tokens</h2>
+        <h2 className="header1">Claim BUFF Tokens</h2>
       </header>
       <div className="walletButtonContainer">
         <div className="mx-auto block w-full h-full">

@@ -16,7 +16,8 @@ dotenv.config();
   "RPC_URL",
   "ADMIN_PK",
   "FAUCET_ADDRESS",
-  "PORT",
+  "SERVER_PORT",
+  "CLIENT_PORT",
   "AIRTABLE_BASE_ID",
   "AIRTABLE_TABLE",
   "AIRTABLE_API_KEY"
@@ -49,7 +50,7 @@ app.use(bodyParser.json());
 const allowedOrigins = [];
 if (process.env.DEV) {
   console.log('Local dev mode detected');
-  allowedOrigins.push(`http://localhost:${process.env.PORT}`);
+  allowedOrigins.push(`http://localhost:${process.env.CLIENT_PORT}`);
 } else {
   console.log('Prod mode detected');
   const remoteURL = process.env.REMOTE_URL as string;
@@ -181,8 +182,8 @@ app.get("/ping", (req, res) => {
   res.send("pong");
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`server started at port ${process.env.PORT}`);
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`server started at port ${process.env.SERVER_PORT}`);
   // show balances on startup:
   logBalances();
 });

@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useCallback } from 'react'
+import { createContext, useEffect, useCallback } from 'react'
 
 import buffiTruckAbi from '../abi/BuffiTruck.json'
 import faucetAbi from '../abi/Faucet.json'

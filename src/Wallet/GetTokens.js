@@ -1,17 +1,20 @@
 import { useContext } from "react";
 import { motion } from 'framer-motion'
 import { ViewContext } from "../context/AppContext"
+import { TierContext } from '../context/TierContext'
 
 import buffiGweiImg from '../assets/buffToken.png'
 import getBuffImg from '../assets/buffigwei-1.png'
 
 const GetTokens = () => {
-  const { contracts, isLoading, dispatch } = useContext(ViewContext)
+  const tierContext = useContext(TierContext)
+  const { contracts, isLoading, dispatch, claimed } = useContext(ViewContext)
   const { faucet } = contracts
 
   async function addBuff() {
     try {
-      const hitMe = await faucet.hitMe(1)
+      console.log(`Calling hitMe(${tierContext.tier})`)
+      const hitMe = await faucet.hitMe(tierContext.tier)
       dispatch({ type: 'SET_LOADING', payload: true })
       await hitMe.wait()
       const buffiTokenAdded = await window.ethereum.request({
@@ -46,7 +49,10 @@ const GetTokens = () => {
       </header>
       <div className="walletButtonContainer">
         <div className="mx-auto block w-full h-full">
-          <button onClick={addBuff} disabled={isLoading} type="button" className="network-btns text-center relative block w-full h-full">
+          <button onClick={addBuff} disabled={isLoading || claimed} 
+            type="button" 
+            className="network-btns text-center relative block w-full h-full"
+          >
             <motion.img
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.075 }}

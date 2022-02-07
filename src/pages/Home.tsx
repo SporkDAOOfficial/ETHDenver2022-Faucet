@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Confetti from 'react-confetti'
 import { ViewContext } from "../context/AppContext"
+import { TierProvider } from '../context/TierContext'
 
 import { Logo } from "components/Logo";
 import Pill from "components/Pill";
@@ -11,7 +12,7 @@ import GetTokens from "Wallet/GetTokens";
 import Success from "Wallet/Success";
 
 const Home = () => {
-  const { user, provider, chainId, claimed, isRegistered } = useContext(ViewContext)
+  const { user, chainId, claimed, isRegistered } = useContext(ViewContext)
   const { address } = user
 
   const renderView = () => {
@@ -21,9 +22,13 @@ const Home = () => {
       case address && (chainId !== 421611):
         return <ArbitrumConnect />
       case !isRegistered:
-        return <RegistrationCode />
+        return <TierProvider>
+            <RegistrationCode />
+          </TierProvider>
       case address && (chainId === 421611):
-        return <GetTokens />
+        return <TierProvider>
+            <GetTokens />
+          </TierProvider>
       case claimed:
         return <Success />
       default:

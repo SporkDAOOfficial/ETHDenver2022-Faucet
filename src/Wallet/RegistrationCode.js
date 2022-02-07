@@ -1,11 +1,13 @@
 import { useContext, useRef } from "react";
 import { motion } from "framer-motion";
 import { ViewContext } from "../context/AppContext"
+import { TierContext } from '../context/TierContext'
 
 import buffiFetti from '../assets/buffifeti.png'
 import { CodeInput } from '../components/Input'
 
 const RegistrationCode = () => {
+  const tierContext = useContext(TierContext)
   const { user, dispatch } = useContext(ViewContext)
   const { address } = user
   const inputRef = useRef()
@@ -36,6 +38,7 @@ const RegistrationCode = () => {
       .then(res => {
         if (res.ok) {
           console.log(res)
+          tierContext.updateTier(res.tier)
           // {code: '00003', tier: 1}
         } else {
           console.log(res)

@@ -1,15 +1,14 @@
 import { ReactChildren, ReactChild, useEffect, useCallback, createContext } from 'react'
+import { useImmerReducer } from 'use-immer'
+import { ethers } from 'ethers'
+
+import { initialState } from './initialState.js'
+import { reducer } from '../reducers'
 
 import buffiTruckAbi from '../abi/BuffiTruck.json'
 import faucetAbi from '../abi/Faucet.json'
 
-import { ethers } from 'ethers'
-import { useImmerReducer } from 'use-immer'
-
-import { initialState } from './initialState.js'
-import { reducer } from '../reducers'
 declare var window: any
-
 interface AuxProps {
   children: ReactChild | ReactChildren
 }

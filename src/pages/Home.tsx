@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import Confetti from 'react-confetti'
+
 import { ViewContext } from "../context/AppContext"
 import { TierProvider } from '../context/TierContext'
 
@@ -36,9 +37,12 @@ const Home = () => {
     <div className="App min-h-screen flex flex-col overflow-y-auto sm:overflow-hidden">
       {claimed && (
         <Confetti
+          recycle={true}
           height={window.innerHeight}
           numberOfPieces={300}
-          width={window.innerWidth} />
+          width={window.innerWidth}
+          opacity={0.7}
+        />
       )}
       <header className="flex justify-between items-center p-4">
         <Logo />

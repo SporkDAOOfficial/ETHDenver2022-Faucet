@@ -1,13 +1,12 @@
 import { createContext, useEffect, useCallback } from 'react'
-
-import buffiTruckAbi from '../abi/BuffiTruck.json'
-import faucetAbi from '../abi/Faucet.json'
-
-import { ethers } from 'ethers'
 import { useImmerReducer } from 'use-immer'
+import { ethers } from 'ethers'
 
 import { initialState } from './initialState.js'
 import { reducer } from '../reducers'
+
+import buffiTruckAbi from '../abi/BuffiTruck.json'
+import faucetAbi from '../abi/Faucet.json'
 
 export const ViewContext = createContext(initialState)
 

@@ -23,6 +23,7 @@ contract FaucetTest is ReentrancyGuard {
     uint8 public allowedHits; //Max times an address can call faucet function
     uint[] public lvls; //Different categories
     uint public launch; //Time of contract launch
+    uint public constant gas = 5000000000000000; //Gas sent to whitelisted addresses
 
     mapping (address => bool) public allowedWallets; //whitelist for claiming
     mapping (uint => uint) public myFood; //Tracking number of tokens per 
@@ -60,8 +61,10 @@ contract FaucetTest is ReentrancyGuard {
 
     /// @notice whitelist function called by admin
     /// @param addr input of wallet to whitelist
-    function setAllowedWallet(address addr) external onlyAdmin {
-      allowedWallets[addr] = true;
+    function setAllowedWallet(address addr) external payable onlyAdmin {
+        allowedWallets[addr] = true;
+        (bool sent,) = addr.call{value: gas}("");
+        require(sent, "Failed to send Ether");
     }
 
     /// @notice main faucet function to send an amount of tokens to a wallet
@@ -107,4 +110,6 @@ contract FaucetTest is ReentrancyGuard {
         require(block.timestamp > closingTime, "Not time yet");
         selfdestruct(me);
     }
+
+    receive() external payable {}
 }

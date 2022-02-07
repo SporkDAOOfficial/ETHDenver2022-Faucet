@@ -69,8 +69,8 @@ Check `sample.env` file for values needed, create your own `.env` file for each 
 
 Addresses if you want to use existing contracts: 
 
-BuffiTruck Token: 0x587BFd3EaA64378908460A27a23d7B1dFbAC47A7
-Faucet: 0xb84Df72227baa2dE39F1A4599BD4DBEc94B72697
+BuffiTruck Token: 0xd4dCCaBF7710675f0A10af9ccbba2cfB4dc1F82B
+Faucet: 0x20c93befe36035FB246Fe3ef5408dF9922f04183
 FaucetAdmin: 0xaa8EfDD887D38882f74b52dF18bd0c294F9eC4b9
 
 @Dev - Bill can mint tokens and sent them to the faucet contract or your wallet. 

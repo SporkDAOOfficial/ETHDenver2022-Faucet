@@ -37,6 +37,13 @@ module.exports = {
         count: 1,
       },
 		},
+    abitrum: {
+			url: `https://arbitrum-rinkeby.infura.io/v3/${INFURA_PROJECT_ID}`,
+      accounts: {
+        mnemonic: SEED,
+        count: 1,
+      }
+		},
   },
   etherscan: {
     // Your API key for Etherscan

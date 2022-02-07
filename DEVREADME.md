@@ -30,6 +30,19 @@ Requirements:
 * https://metamask.github.io/api-playground/api-documentation/#wallet_switchEthereumChain
 * https://docs.metamask.io/guide/registering-your-token.html#example
 
+**Network Details**
+
+Network Name
+- Arbitrum Rinkeby
+Network URL
+- https://rinkeby.arbitrum.io/rpc
+Chain ID
+- 421611
+Currency Symbol
+- ARETH
+Block Explorer URL
+- https://rinkeby-explorer.arbitrum.io
+
 ## Getting App Started 
 
 The app is split into two main parts, a react app and smart contracts. 
@@ -41,6 +54,8 @@ The app is split into two main parts, a react app and smart contracts.
 3. Yarn start 
 
 This will open the app on your local host. 
+
+Check `sample.env` file for values needed, create your own `.env` file for each part, "smart_contracts", "server" and in the root React client app.
 
 ### Deploying the Smart Contracts 
 

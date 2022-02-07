@@ -1,75 +1,55 @@
-import { ellipseAddress } from "../lib/utils";
+import { useContext } from "react";
+import Confetti from 'react-confetti'
+import { ViewContext } from "../context/AppContext"
 
-import { Web3Provider } from "@ethersproject/providers";
-
-import Wallet from "Wallet/Wallet";
-import { CheckEligibility } from "pages/RequestTokens";
 import { Logo } from "components/Logo";
-import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
-import { useEffect, useState } from "react";
+import Pill from "components/Pill";
+import Wallet from "Wallet/Wallet";
+import ArbitrumConnect from "Wallet/ArbitrumConnect";
+import RegistrationCode from "Wallet/RegistrationCode";
+import GetTokens from "Wallet/GetTokens";
+import Success from "Wallet/Success";
 
-const Home = (): JSX.Element => {
-  const context = useWeb3React<Web3Provider>();
-  const { active, account, library, connector } = context;
-  const [activatingConnector, setActivatingConnector] = useState<any>();
+const Home = () => {
+  const { user, provider, chainId, claimed, isRegistered } = useContext(ViewContext)
+  const { address } = user
 
-  useEffect(() => {
-    if (activatingConnector && activatingConnector === connector) {
-      setActivatingConnector(undefined);
+  const renderView = () => {
+    switch (true) {
+      case !address:
+        return <Wallet />
+      case address && (chainId !== 421611):
+        return <ArbitrumConnect />
+      case !isRegistered:
+        return <RegistrationCode />
+      case address && (chainId === 421611):
+        return <GetTokens />
+      case claimed:
+        return <Success />
+      default:
+        return <Wallet />
     }
-  }, [activatingConnector, connector]);
+  }
 
   return (
-    <div className="App bg-blackish min-h-screen flex flex-col overflow-y-auto sm:overflow-hidden">
+    <div className="App min-h-screen flex flex-col overflow-y-auto sm:overflow-hidden">
+      {claimed && (
+        <Confetti
+          height={window.innerHeight}
+          numberOfPieces={300}
+          width={window.innerWidth} />
+      )}
       <header className="flex justify-between items-center p-4">
         <Logo />
-
-        <div className="signin-button flex flex-col gap-y-1">
-          {account && (
-            <span className="text-white" title={account}>
-              {ellipseAddress(account)}
-              {!!library?.connection?.url && (
-                <>
-                  <br />
-                  <span className="text-gray-400 text-center block">
-                    {library?.connection?.url} {" | "}
-                    <button
-                      onClick={() => {
-                        setActivatingConnector(undefined);
-                        context.deactivate();
-                      }}
-                    >
-                      deactivate
-                    </button>
-                  </span>
-                </>
-              )}
-            </span>
-          )}
-        </div>
+        <Pill />
       </header>
-      <main className="bg-white flex-grow relative">
+      <main className="flex-grow relative">
         <div className="main-content shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-6 py-10 sm:px-4 rounded flex flex-col">
-          {active ? <CheckEligibility /> : <Wallet />}
+          {renderView()}
         </div>
       </main>
     </div>
   );
 };
 
-// Web3 Wallet
-function getLibrary(provider: any): Web3Provider {
-  const library = new Web3Provider(provider);
-  library.pollingInterval = 12000;
-  return library;
-}
-
-function wrappedApp() {
-  return (
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <Home />
-    </Web3ReactProvider>
-  );
-}
-
-export default wrappedApp;
+export default Home;

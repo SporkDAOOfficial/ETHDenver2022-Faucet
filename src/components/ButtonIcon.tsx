@@ -1,16 +1,14 @@
 export const ButtonIcon: React.FC = () => {
   return (
     <svg width="18" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M3 18V7a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v11"
+      <path d="M3 18V7a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v11"
         style={{
           fill: "none",
           stroke: "var(--brand-blackish)",
           strokeWidth: "2",
         }}
       />
-      <path
-        d="M3 11a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2M3 15a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2"
+      <path d="M3 11a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2M3 15a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2"
         style={{
           fill: "none",
           stroke: "var(--brand-blackish)",

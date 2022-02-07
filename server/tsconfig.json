@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "target": "ES2017",
+      "module": "commonjs",
+      "declaration": true,
+      "rootDir": "./",
+      "outDir": "./dist",
+      "strict": true,
+      // "allowJs": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+      "strictNullChecks": true,
+      "noImplicitThis": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "experimentalDecorators": true,
+    }
+  }
+  

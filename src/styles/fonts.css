@@ -7,14 +7,14 @@
 .header2,
 .header3,
 .header4 {
-  font-family: "Playfair Display", serif;
+  font-family: canada-type-gibson, sans-serif;
 }
 
 .paragraph-xl,
 .paragraph1,
 .paragraph2,
 .section-description {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: canada-type-gibson, sans-serif;
   font-weight: 400;
 }
 
@@ -22,7 +22,8 @@
   font-size: calc((36 / var(--base-font-size) * 1rem));
   line-height: calc(48 / var(--base-font-size) * 1rem);
   color: var(--brand-blackish);
-  font-weight: 700;
+  font-family: canada-type-gibson, sans-serif;
+  font-weight: 600;
 }
 
 .header2 {
@@ -45,11 +46,10 @@
   line-height: calc(24 / var(--base-font-size) * 1rem);
   letter-spacing: 1px;
   color: black;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .header5 {
-  font-family: "Source Sans Pro", sans-serif;
   font-weight: 700;
 }
 
@@ -73,11 +73,11 @@
 
 .section-description,
 .web3-block-description {
-  font-size: calc((13 / var(--base-font-size) * 1rem));
-  line-height: calc(18 / var(--base-font-size) * 1rem);
+  font-size: calc((13 / var(--base-font-size) * 1.25rem));
+  line-height: calc(18 / var(--base-font-size) * 1.25rem);
   color: var(--brand-whale);
 }
 
 .web3-block-description {
-  opacity: 0.6;
+  opacity: 0.75;
 }

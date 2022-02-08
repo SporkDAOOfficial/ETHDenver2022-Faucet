@@ -19,7 +19,7 @@ const Wallet = () => {
             <motion.img
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.075 }}
-              className="mx-auto mb-10" src={buffiFetti} alt="Buffifeti" role="presentation" />
+              className="mx-auto mb-5" src={buffiFetti} alt="Buffifeti" role="presentation" />
             <motion.a
               rel='noopener noreferrer'
               href='https://www.ethdenver.com/'

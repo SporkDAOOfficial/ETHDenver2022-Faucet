@@ -19,7 +19,7 @@ const Wallet = () => {
             <motion.img
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.075 }}
-              className="mx-auto mb-10" src={walletMeta['metamask']?.uri} alt="" role="presentation" />
+              className="mx-auto mb-5" src={walletMeta['metamask']?.uri} alt="" role="presentation" />
             <motion.h4
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.05 }}

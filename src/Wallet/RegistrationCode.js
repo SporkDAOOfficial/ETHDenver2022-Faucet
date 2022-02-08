@@ -50,18 +50,18 @@ const RegistrationCode = () => {
   return (
     <>
       <header className="text-center">
-        <h2 className="header1">ETH Denver Registration Code</h2>
+        <h2 className="header1">Registration Code</h2>
       </header>
       <div className="walletButtonContainer">
         <div className="mx-auto block w-full h-full text-center">
           <div className="text-center w-full h-full">
             <motion.img 
               src={buffiFetti} alt="Buffifeti" role="presentation"
-              className="mx-auto mb-10" 
+              className="mx-auto mb-5" 
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.075 }}
             />
-            <CodeInput innerRef={inputRef} />
+            <CodeInput innerRef={inputRef} inputPlaceholder="Code" />
             <motion.h4
               onClick={() => registerCode()}
               className="btn-primary"

@@ -59,7 +59,7 @@ export default function ArbitrumConnect() {
             <motion.img
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.075 }}
-              className="mx-auto mb-10" src={arbitrumLogo} alt="" role="presentation" />
+              className="mx-auto mb-5" src={arbitrumLogo} alt="" role="presentation" />
             <motion.h4
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.05 }}

@@ -14,7 +14,7 @@
     "@openzeppelin/contracts": "^4.4.2",
     "@portis/web3": "^4.0.6",
     "@reonomy/react-confetti-explosion": "^1.0.3",
-    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "@tailwindcss/postcss7-compat": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -62,7 +62,7 @@
     "prebuild": "yarn build:styles",
     "prestart": "yarn build:styles",
     "start": "craco start",
-    "build": "craco build",
+    "build": "yarn add --dev postcss-cli && craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "typegen": "typechain --target ethers-v5 --outDir src/types \"src/abi/**/*.json\""
@@ -89,7 +89,7 @@
     "@typechain/ethers-v5": "^5.0.0",
     "@types/cors": "^2.8.12",
     "hardhat": "^2.8.2",
-    "postcss-cli": "^9.0.1",
+    "postcss-cli": "^9.1.0",
     "true-myth": "^4.1.1",
     "typechain": "^4.0.3"
   }

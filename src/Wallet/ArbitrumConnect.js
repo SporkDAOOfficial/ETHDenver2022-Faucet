@@ -16,7 +16,7 @@ export default function ArbitrumConnect() {
         })
       } catch (switchError) {
         // This error code indicates that the chain has not been added to MetaMask.
-        if (switchError.code === 4902) {
+        if (switchError.code === 4902 || switchError?.data?.orginalError?.code === 4902) {
           try {
             await window.ethereum.request({
               method: 'wallet_addEthereumChain',

@@ -36,7 +36,7 @@ async function main() {
     ADMIN, 
     buffiTruck.address, 
     ALLOWED_HITS,
-    [1,2,3],
+    [config.TIER1_CODE,config.TIER2_CODE,config.TIER3_CODE],
     [TIER1,TIER2,TIER3]
   );
 

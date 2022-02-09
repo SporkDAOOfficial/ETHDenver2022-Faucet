@@ -56,11 +56,13 @@ if (process.env.DEV) {
   allowedOrigins.push(`http://localhost:${process.env.CLIENT_PORT}`);
 } else {
   console.log('Prod mode detected');
-  const remoteURL = process.env.REMOTE_URL as string;
-  if (!remoteURL) {
+  const remoteURLsStr = process.env.REMOTE_URLS as string;
+  if (!remoteURLsStr) {
     throw new Error(`Missing environmental variable remoteURL`);
   }
-  allowedOrigins.push(remoteURL);
+  const remoteUrls = remoteURLsStr.split(",").map((url)=> url.trim())
+  console.log("Allowed remote urls:",remoteUrls);
+  allowedOrigins.push(...remoteUrls);
 }
 const options: cors.CorsOptions = { origin: allowedOrigins };
 app.use(cors(options));

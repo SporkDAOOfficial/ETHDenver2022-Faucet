@@ -15,7 +15,7 @@ export default function ArbitrumConnect() {
           params: [{ chainId: '0x66eeb' }],
         })
       } catch 
-      // (switchError) 
+      // (switchError)
       {
         // This error code indicates that the chain has not been added to MetaMask.
         // console.log(switchError)

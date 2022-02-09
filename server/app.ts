@@ -48,20 +48,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const allowedOrigins = [];
 if (process.env.DEV) {
-  console.log('Local dev mode detected');
+  console.log("Local dev mode detected");
   const clientPort = process.env.CLIENT_PORT as string;
   if (!clientPort) {
     throw new Error(`Missing environmental variable clientPort`);
   }
   allowedOrigins.push(`http://localhost:${process.env.CLIENT_PORT}`);
 } else {
-  console.log('Prod mode detected');
+  console.log("Prod mode detected");
   const remoteURLsStr = process.env.REMOTE_URLS as string;
   if (!remoteURLsStr) {
     throw new Error(`Missing environmental variable remoteURL`);
   }
-  const remoteUrls = remoteURLsStr.split(",").map((url)=> url.trim())
-  console.log("Allowed remote urls:",remoteUrls);
+  const remoteUrls = remoteURLsStr.split(",").map(url => url.trim());
+  console.log("Allowed remote urls:", remoteUrls);
   allowedOrigins.push(...remoteUrls);
 }
 const options: cors.CorsOptions = { origin: allowedOrigins };
@@ -86,6 +86,8 @@ const logBalances = async () => {
     `*** Faucet ETH Balance: ${utils.formatEther(faucetEthBalance)} Ether *** `
   );
   const faucetTokenBalance = await tokenContract.balanceOf(FAUCET_ADDRESS);
+
+  console.log(`*** Token Address: ${tokenAddress} *** `);
 
   console.log(
     `*** Faucet Token Balance: ${utils.formatEther(faucetTokenBalance)} *** `

@@ -58,7 +58,7 @@ if (process.env.DEV) {
   console.log("Prod mode detected");
   const remoteURLsStr = process.env.REMOTE_URLS as string;
   if (!remoteURLsStr) {
-    throw new Error(`Missing environmental variable remoteURL`);
+    throw new Error(`Missing environmental variable REMOTE_URLS`);
   }
   const remoteUrls = remoteURLsStr.split(",").map(url => url.trim());
   console.log("Allowed remote urls:", remoteUrls);

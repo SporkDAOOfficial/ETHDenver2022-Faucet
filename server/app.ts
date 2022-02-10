@@ -8,6 +8,7 @@ import { abi as faucetAbi } from "./abi/Faucet.json";
 import { abi as tokenAbi } from "./abi/BuffiTruck.json";
 import Airtable from "airtable";
 import bodyParser from "body-parser";
+import morganBody from "morgan-body"
 
 dotenv.config();
 
@@ -46,6 +47,7 @@ const faucetContract = new Contract(
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+morganBody(app)
 const allowedOrigins = [];
 if (process.env.DEV) {
   console.log("Local dev mode detected");

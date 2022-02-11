@@ -8,7 +8,7 @@ import { abi as faucetAbi } from "./abi/Faucet.json";
 import { abi as tokenAbi } from "./abi/BuffiTruck.json";
 import Airtable from "airtable";
 import bodyParser from "body-parser";
-import morganBody from "morgan-body"
+import morganBody from "morgan-body";
 
 dotenv.config();
 
@@ -26,20 +26,24 @@ dotenv.config();
     throw new Error("Missing environmental variable " + envVar);
   }
 });
-const atBase = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-  process.env.AIRTABLE_BASE_ID as string
-);
+export const atBase = new Airtable({
+  apiKey: process.env.AIRTABLE_API_KEY
+}).base(process.env.AIRTABLE_BASE_ID as string);
+
+export const faucetInterface = new utils.Interface([
+  "function setAllowedWallet(address addr) external",
+  "function token() view returns(address)",
+  "function allowedWallets(address addr) view returns(bool)",
+  "function hits(address addr) view returns(uint)"
+]);
 
 // instantiate provider / signer / contract
 const provider = new providers.JsonRpcProvider(process.env.RPC_URL);
-const adminSigner = new Wallet(process.env.ADMIN_PK as string, provider);
+export const adminSigner = new Wallet(process.env.ADMIN_PK as string, provider);
 const FAUCET_ADDRESS = process.env.FAUCET_ADDRESS as string;
-const faucetContract = new Contract(
+export const faucetContract = new Contract(
   FAUCET_ADDRESS,
-  new utils.Interface([
-    "function setAllowedWallet(address addr) external",
-    "function token() view returns(address)"
-  ]),
+  faucetInterface,
   adminSigner
 );
 
@@ -47,7 +51,7 @@ const faucetContract = new Contract(
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-morganBody(app)
+morganBody(app);
 const allowedOrigins = [];
 if (process.env.DEV) {
   console.log("Local dev mode detected");
@@ -70,7 +74,7 @@ const options: cors.CorsOptions = { origin: allowedOrigins };
 app.use(cors(options));
 
 // output useful eth/token balances
-const logBalances = async () => {
+export const logBalances = async () => {
   const adminBalance = await provider.getBalance(adminSigner.address);
   console.log();
   console.log(`*** Admin wallet address: ${adminSigner.address} *** `);
@@ -95,6 +99,44 @@ const logBalances = async () => {
     `*** Faucet Token Balance: ${utils.formatEther(faucetTokenBalance)} *** `
   );
 };
+
+app.get("/tier/:address", async (req, res) => {
+  try {
+    let { address } = req.params;
+    address = address.toLowerCase();
+    return atBase(process.env.AIRTABLE_TABLE as string)
+      .select({
+        filterByFormula: `({ETH_ADDRESS} = '${address}')`
+      })
+      .firstPage(async (err, records) => {
+        if (err) {
+          return res.status(500).send({
+            text: "Db error retrieving tier",
+            err: err.toString()
+          });
+        }
+        const record = records && records[0]
+        const tier = record && record.get("Tier ")
+
+        if (!tier) {
+          return res.status(500).send({
+            text: "Error retrieving tier",
+          });
+        }
+
+        return res.status(200).send({
+          ok: true,
+          tier: tier
+        });
+      });
+  } catch (err) {
+    return res.status(500).json({
+      text: "Error:",
+      // @ts-ignore
+      err: err.toString()
+    });
+  }
+});
 
 app.post("/", async (req, res) => {
   try {
@@ -190,9 +232,12 @@ app.post("/", async (req, res) => {
 app.get("/ping", (req, res) => {
   res.send("pong");
 });
-
-app.listen(process.env.PORT, () => {
-  console.log(`server started at port ${process.env.PORT}`);
-  // show balances on startup:
-  logBalances();
-});
+if (require.main === module) {
+  app.listen(process.env.PORT, () => {
+    console.log(`server started at port ${process.env.PORT}`);
+    // show balances on startup:
+    logBalances();
+  });
+} else {
+  console.log("not starting server");
+}

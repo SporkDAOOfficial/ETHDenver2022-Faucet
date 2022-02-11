@@ -1,47 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/williamwarren/Desktop/ETHDenver-Faucet/smart_contracts/contracts/BuffiTruck.sol": {
-      "lastModificationDate": 1643507067185,
-      "contentHash": "10d99178d4e0ef8a753e96450b8d06e3",
-      "sourceName": "contracts/BuffiTruck.sol",
-      "solcConfig": {
-        "version": "0.8.5",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "hardhat/console.sol",
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "BuffiTruckTest"
-      ]
-    },
     "/Users/williamwarren/Desktop/ETHDenver-Faucet/smart_contracts/contracts/Faucet.sol": {
-      "lastModificationDate": 1644201314282,
-      "contentHash": "e0958d6da6d45ebef77d7d61546e53c1",
+      "lastModificationDate": 1644542735875,
+      "contentHash": "27268a95ccc79bf122e617ed8a4c002b",
       "sourceName": "contracts/Faucet.sol",
       "solcConfig": {
         "version": "0.8.5",
@@ -76,7 +38,7 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "FaucetTest"
+        "Faucet"
       ]
     },
     "/Users/williamwarren/Desktop/ETHDenver-Faucet/smart_contracts/node_modules/hardhat/console.sol": {
@@ -366,6 +328,44 @@
       ],
       "artifacts": [
         "ReentrancyGuard"
+      ]
+    },
+    "/Users/williamwarren/Desktop/ETHDenver-Faucet/smart_contracts/contracts/BuffiGweiToken.sol": {
+      "lastModificationDate": 1644541068899,
+      "contentHash": "be55a9c65b9c59f927b912dfbf1340e1",
+      "sourceName": "contracts/BuffiGweiToken.sol",
+      "solcConfig": {
+        "version": "0.8.5",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol",
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "BuffiGweiToken"
       ]
     }
   }

@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 /// @dev requires privileged access
 error NotPermitted();
 
-contract BuffiTruckTest is ERC20 {
+contract BuffiGweiToken is ERC20 {
 
     address public minter; 
 
@@ -16,7 +16,7 @@ contract BuffiTruckTest is ERC20 {
         _;
     }
 
-    constructor(address _minter, uint amount) ERC20("BuffiTruck Token", "BUFF") {
+    constructor(address _minter, uint amount) ERC20("BuffiGwei22 Token", "BGT") {
         minter = _minter; 
         _mint(minter, amount);
     }

@@ -14,7 +14,7 @@ error NotPermitted();
 /// @dev already called faucet max times
 error AlreadyHit();
 
-contract FaucetTest is ReentrancyGuard {
+contract Faucet is ReentrancyGuard {
     using SafeERC20 for IERC20;
 
     address public token; //ERC20 to be distributed
@@ -62,6 +62,7 @@ contract FaucetTest is ReentrancyGuard {
     /// @notice whitelist function called by admin
     /// @param addr input of wallet to whitelist
     function setAllowedWallet(address addr) external payable onlyAdmin {
+        require(!allowedWallets[addr], "Already whitelisted");
         allowedWallets[addr] = true;
         (bool sent,) = addr.call{value: gas}("");
         require(sent, "Failed to send Ether");
@@ -72,12 +73,11 @@ contract FaucetTest is ReentrancyGuard {
         if(hits[msg.sender] >= allowedHits) revert AlreadyHit();
         if(!allowedWallets[msg.sender]) revert NotPermitted();
         if(myFood[lvl] < 1) revert NotPermitted();
-        
+
+        hits[msg.sender] += 1; 
         uint myTokens = myFood[lvl];
         IERC20(token).safeTransfer(msg.sender, myTokens);
 
-        hits[msg.sender] += 1; 
-        
         return myTokens;
     }
 

@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "tsc && node dist/app.js",
-    "dev_start": "nodemon app.ts"
+    "dev_start": "nodemon app.ts",
+    "run_task": "tsc && node dist/scripts/app.js"
   },
   "dependencies": {
     "@types/cors": "^2.8.12",

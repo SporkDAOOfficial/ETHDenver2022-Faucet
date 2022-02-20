@@ -138,13 +138,19 @@ app.get("/tier/:address", async (req, res) => {
   }
 });
 
+const alphanumericRegex = /^[\p{L}\p{N}]*$/u;
+
 app.post("/", async (req, res) => {
   try {
-    const { code, address } = req.body;
-
+    let { code, address } = req.body;
+    code = code.trim()
     // validate params
     if (!code || !code.length) {
       res.status(500).json("No code provided");
+    }
+
+    if(!code.match(alphanumericRegex)){
+      res.status(500).json("Invalid code");
     }
 
     if (!utils.isAddress(address)) {
